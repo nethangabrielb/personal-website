@@ -15,10 +15,12 @@ interface ButtonProps extends ComponentPropsWithoutRef<typeof motion.button> {
 }
 
 const variants: Record<Variant, string> = {
-  primary: "bg-foreground text-background hover:opacity-80",
-  secondary: "bg-muted text-foreground hover:bg-muted/70",
+  primary:
+    "border border-accent-green text-accent-green bg-transparent hover:bg-surface",
+  secondary:
+    "bg-accent-green text-primary-foreground hover:bg-accent-green-dark",
   ghost: "bg-transparent text-foreground hover:bg-muted",
-  destructive: "bg-red-500 text-white hover:bg-red-600",
+  destructive: "bg-destructive text-white hover:opacity-90",
 };
 
 const sizes: Record<Size, string> = {
@@ -41,10 +43,10 @@ export function MotionButton({
       whileTap={{ scale: 0.97 }}
       disabled={disabled || loading}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-lg font-medium",
-        "transition-colors focus-visible:outline-none focus-visible:ring-2",
-        "focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-        "cursor-pointer",
+        "inline-flex items-center justify-center gap-2 font-medium",
+        "rounded-(--radius-sm) transition-colors",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
         variants[variant],
         sizes[size],
         className,
