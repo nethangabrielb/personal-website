@@ -99,7 +99,7 @@ export const TechStack = () => {
           {techStacks.map((stack) => (
             <div
               key={stack.category}
-              className="rounded-xl border border-border bg-surface p-4 flex flex-col gap-3"
+              className="rounded-xl border border-border bg-surface p-4 flex flex-col gap-3 transition-all duration-300 hover:shadow-md"
             >
               <p className="text-md  font-medium text-muted-foreground">
                 {stack.category}
