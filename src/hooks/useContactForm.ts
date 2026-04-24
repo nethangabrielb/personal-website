@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { toast } from "sonner"
 import { z } from 'zod'
 
 export const contactSchema = z.object({
@@ -19,7 +20,7 @@ export function useContactForm(onSuccess?: () => void) {
   const onSubmit = async (data: ContactFormData) => {
     const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT
     if (!endpoint) {
-      console.warn('No VITE_CONTACT_FORM_ENDPOINT set')
+      toast.error("Error sending the form. Please try again.")
       return
     }
     const res = await fetch(endpoint, {
@@ -30,6 +31,9 @@ export function useContactForm(onSuccess?: () => void) {
     if (res.ok) {
       form.reset()
       onSuccess?.()
+      toast.success("Message sent successfully!")
+    } else {
+      toast.error("Error sending the form. Please try again.")
     }
   }
 
