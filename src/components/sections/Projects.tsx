@@ -46,7 +46,7 @@ const projectsData = [
     title: "Chirper",
     subHeading: "Social Media Platform",
     description:
-      "Real-time social media platform featuring a pnpm monorepo, Controller-Service-Repository architecture, and instant messaging via Socket.IO.",
+      "A fully responsive Twitter/X clone. Replicates the core social experience with threaded replies, optimistic UI updates, real-time direct messaging, and live push notifications.",
     techStack: [
       { icon: SiNextdotjs, label: "Next.js", fill: "#000000" },
       { icon: SiExpress, label: "Express", fill: "#000000" },
