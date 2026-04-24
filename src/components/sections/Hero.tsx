@@ -19,7 +19,7 @@ export const Hero = () => {
           Hi, I'm <span className="text-accent-green">Nethan Bagasbas!</span>
         </h1>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
-          I build things because I can't stop. 🙃
+          I build software. It usually works 🥲 <code className="text-sm">/j</code>
         </h2>
       </Reveal>
 
@@ -35,8 +35,8 @@ export const Hero = () => {
           <TechBadge icon={SiNodedotjs} label="Node.js" fill="#5FA04E" />,{" "}
           <TechBadge icon={SiReact} label="React" fill="#61DAFB" />,{" "}
           <TechBadge icon={SiNextdotjs} label="Next.js" fill="#000000" />.
-          <br /> I genuinely enjoy the process of learning and building. <br />
-          If you need a reliable developer, hook me up!
+          <br /> I enjoy learning through building along the way. <br />
+          Got something cool in mind? Let’s talk! 🍵
         </p>
       </Reveal>
 
