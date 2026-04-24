@@ -40,6 +40,7 @@ const projectsData = [
       live: "https://calibrate-ai.vercel.app/",
       github: "https://github.com/nethangabrielb/calibrate-ai",
     },
+    screenshot: "/calibrate-screenshot.png",
   },
   {
     title: "Chirper",
@@ -61,6 +62,7 @@ const projectsData = [
       live: "https://chirper-frontend.vercel.app/",
       github: "https://github.com/nethangabrielb/chirper",
     },
+    screenshot: "/chirper-screenshot.png",
   },
 ];
 
@@ -77,7 +79,7 @@ export const Projects = () => {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="flex flex-row gap-4 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           {projectsData.map((project) => (
             <ProjectCard project={project}></ProjectCard>
           ))}

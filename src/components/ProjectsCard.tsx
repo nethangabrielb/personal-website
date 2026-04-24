@@ -17,56 +17,71 @@ interface Project {
   title: string;
   subHeading: string;
   description: string;
+  screenshot: string;
   techStack: TechItem[];
   links: ProjectLinks;
 }
 
 export const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <div className="bg-[#E8E4DF] rounded-[12px] p-4 border border-[#D1CDC7] transition-all duration-300 hover:shadow-md">
+    <div className="group border border-border p-4 rounded-lg transition-all duration-300 hover:shadow-md flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="font-lora text-xl font-medium text-[#1A1A1A] mb-1">
+          <h3 className="font-heading text-xl font-medium text-text-primary mb-0.5">
             {project.title}
           </h3>
-          <p className="font-dm-sans text-sm font-medium text-[#4A7C5F]">
+          <p className="font-sans text-sm font-medium text-accent-green-dark">
             {project.subHeading}
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
           <a
             href={project.links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#6B7280] hover:text-[#4A7C5F] transition-colors"
+            className="text-muted-foreground hover:text-accent-green-dark transition-colors"
             aria-label="View GitHub Repository"
           >
-            <SiGithub></SiGithub>
+            <SiGithub size={18} />
           </a>
           <a
             href={project.links.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#6B7280] hover:text-[#4A7C5F] transition-colors"
+            className="text-muted-foreground hover:text-accent-green-dark transition-colors"
             aria-label="View Live Project"
           >
-            <ExternalLink size={20} />
+            <ExternalLink size={18} />
           </a>
         </div>
       </div>
 
+      {/* Screenshot */}
+      <div className="relative mb-5 rounded-lg overflow-hidden border border-border/60 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+        <div className="bg-border/40 flex items-center gap-1.5 px-3 py-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+        </div>
+        <img
+          src={project.screenshot}
+          alt={`${project.title} screenshot`}
+          className="w-full aspect-16/10 object-cover object-top"
+        />
+      </div>
+
       {/* Description */}
-      <p className="font-dm-sans text-[#1A1A1A] text-[15px] leading-relaxed mb-6 opacity-90">
+      <p className="font-sans text-text-primary text-[15px] leading-relaxed mb-5 opacity-85">
         {project.description}
       </p>
 
       {/* Tech Stack Tags */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mt-auto">
         {project.techStack.map((tech) => (
           <div
             key={tech.label}
-            className="inline-flex items-center gap-1.5 bg-[#F9F7F4] border border-[#D1CDC7] px-2 py-1 rounded-[6px]"
+            className="inline-flex items-center gap-1.5 bg-background border border-border px-2 py-1 rounded-md"
           >
             <svg
               role="img"
@@ -76,7 +91,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               xmlns="http://www.w3.org/2000/svg"
               dangerouslySetInnerHTML={{ __html: tech.icon.path }}
             />
-            <span className="font-dm-mono text-[12px] text-[#1A1A1A]">
+            <span className="font-mono text-[12px] text-text-primary">
               {tech.label.toLowerCase()}
             </span>
           </div>
@@ -84,15 +99,15 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Action Button */}
-      <div className="mt-6 pt-4 border-t border-[#D1CDC7]/50">
+      <div className="mt-5 pt-4 border-t border-border/50">
         <a
           href={project.links.live}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center text-sm font-dm-sans font-medium text-[#7C9E8A] hover:text-[#4A7C5F] transition-colors group"
+          className="inline-flex items-center text-sm font-sans font-medium text-accent-green hover:text-accent-green-dark transition-colors group/link"
         >
           View Case Study
-          <span className="ml-1 transition-transform group-hover:translate-x-0.5">
+          <span className="ml-1 transition-transform group-hover/link:translate-x-0.5">
             →
           </span>
         </a>
