@@ -96,10 +96,14 @@
   --font-sans: "DM Sans", sans-serif;
   --font-mono: "DM Mono", monospace;
 
-  --radius-sm: calc(var(--radius) * 0.5); /* 6px  — buttons */
-  --radius-md: calc(var(--radius) * 0.667); /* 8px  */
-  --radius-lg: var(--radius); /* 12px — cards   */
-  --radius-xl: calc(var(--radius) * 1.333); /* 16px */
+  --radius-sm: calc(var(--radius) * 0.5);
+  /* 6px  — buttons */
+  --radius-md: calc(var(--radius) * 0.667);
+  /* 8px  */
+  --radius-lg: var(--radius);
+  /* 12px — cards   */
+  --radius-xl: calc(var(--radius) * 1.333);
+  /* 16px */
 }
 
 /* ─── Base ───────────────────────────────────────────────────── */
@@ -112,6 +116,7 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -150,9 +155,11 @@ samp {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 999px;
@@ -162,9 +169,11 @@ samp {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
