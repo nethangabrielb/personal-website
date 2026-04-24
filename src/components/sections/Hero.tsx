@@ -25,7 +25,7 @@ export const Hero = () => {
 
       <Reveal delay={0.2}>
         <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-          Full-Stack Dev based in the Philippines{" "}
+          Graduating CS student & Full-Stack Dev based in the Philippines{" "}
           <img
             alt="Philippines"
             className="size-4 inline -translate-y-0.1"
