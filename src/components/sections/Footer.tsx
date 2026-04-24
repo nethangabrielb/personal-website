@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className="border-t border-border py-6 text-center text-sm text-muted-foreground">
-      © {new Date().getFullYear()} YourName. All rights reserved.
+      © {new Date().getFullYear()} nethangabrielb. All rights reserved.
     </footer>
   )
 }
