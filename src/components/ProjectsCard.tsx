@@ -1,9 +1,9 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { ExternalLink } from "lucide-react";
-import type { SimpleIcon } from "simple-icons";
+import type { ElementType } from "react";
 
 interface TechItem {
-  icon: SimpleIcon;
+  icon: ElementType;
   label: string;
   fill: string;
 }
@@ -78,24 +78,22 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
       {/* Tech Stack Tags */}
       <div className="flex flex-wrap gap-2 mt-auto">
-        {project.techStack.map((tech) => (
+        {project.techStack.map((tech) => {
+          const Icon = tech.icon;
+          return (
           <div
             key={tech.label}
             className="inline-flex items-center gap-1.5 bg-background border border-border px-2 py-1 rounded-md"
           >
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
+            <Icon
               className="size-3.5"
-              style={{ fill: tech.fill }}
-              xmlns="http://www.w3.org/2000/svg"
-              dangerouslySetInnerHTML={{ __html: tech.icon.path }}
+              style={{ color: tech.fill.startsWith("#") ? tech.fill : `#${tech.fill}` }}
             />
             <span className="font-mono text-[12px] text-text-primary">
               {tech.label.toLowerCase()}
             </span>
           </div>
-        ))}
+        )})}
       </div>
 
       {/* Action Button */}

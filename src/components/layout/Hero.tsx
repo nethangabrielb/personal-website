@@ -1,4 +1,4 @@
-import { siNextdotjs, siNodedotjs, siReact } from "simple-icons";
+import { SiNextdotjs, SiNodedotjs, SiReact } from "@icons-pack/react-simple-icons";
 
 import { TechBadge } from "@/components/TechBadge";
 import { MotionButton } from "@/components/ui/MotionButton";
@@ -32,9 +32,9 @@ export const Hero = () => {
             src="https://purecatamphetamine.github.io/country-flag-icons/3x2/PH.svg"
           />{" "}
           <br />I specialize in building apps with{" "}
-          <TechBadge icon={siNodedotjs} label="Node.js" fill="#5FA04E" />,{" "}
-          <TechBadge icon={siReact} label="React" fill="#61DAFB" />,{" "}
-          <TechBadge icon={siNextdotjs} label="Next.js" fill="#000000" />.
+          <TechBadge icon={SiNodedotjs} label="Node.js" fill="#5FA04E" />,{" "}
+          <TechBadge icon={SiReact} label="React" fill="#61DAFB" />,{" "}
+          <TechBadge icon={SiNextdotjs} label="Next.js" fill="#000000" />.
           <br /> I genuinely enjoy the process of learning and building. <br />
           If you need a reliable developer, hook me up!
         </p>
