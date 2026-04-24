@@ -66,9 +66,7 @@ export const Contact = () => {
           <div className="flex flex-col justify-between">
             <div>
               <p className="text-muted-foreground leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or
-                opportunities to be part of something great. Feel free to reach
-                out through the form or connect with me directly.
+                Look, I know reaching out to someone you've never met can feel a little awkward. But I promise I'm pretty easy to talk to. If you have a project you want built, an idea you're not sure about yet, or even just a question, drop me a message. I genuinely enjoy hearing what people are working on, and I'll get back to you as soon as I can.
               </p>
             </div>
 
