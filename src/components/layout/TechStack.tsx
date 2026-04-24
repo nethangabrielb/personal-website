@@ -90,7 +90,7 @@ export const TechStack = () => {
           Tech Stack
         </h2>
         <p className="text-md text-muted-foreground mt-1">
-          The stuffs I use to make stuffs.
+          The tools I use to build things.
         </p>
       </Reveal>
 
