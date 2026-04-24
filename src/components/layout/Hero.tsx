@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export const Hero = () => {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-22">
+    <section className="mx-auto max-w-5xl px-4 py-20">
       <Reveal>
         <code className="text-xs bg-accent w-fit px-2 p-1 rounded-lg mb-8">
           open for work
