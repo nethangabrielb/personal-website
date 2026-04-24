@@ -107,6 +107,7 @@ export const TechStack = () => {
               <div className="flex flex-wrap gap-2">
                 {stack.tools.map((tool) => (
                   <TechBadge
+                    className="border border-border bg-background/20! shadow-2xs"
                     key={tool.label}
                     icon={tool.icon}
                     label={tool.label}

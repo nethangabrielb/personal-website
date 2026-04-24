@@ -81,19 +81,20 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         {project.techStack.map((tech) => {
           const Icon = tech.icon;
           return (
-          <div
-            key={tech.label}
-            className="inline-flex items-center gap-1.5 bg-background border border-border px-2 py-1 rounded-md"
-          >
-            <Icon
-              className="size-3.5"
-              style={{ color: tech.fill.startsWith("#") ? tech.fill : `#${tech.fill}` }}
-            />
-            <span className="font-mono text-[12px] text-text-primary">
-              {tech.label.toLowerCase()}
-            </span>
-          </div>
-        )})}
+            <div
+              key={tech.label}
+              className="inline-flex items-center gap-1.5 bg-surface border border-border px-2 py-1 rounded-md"
+            >
+              <Icon
+                className="size-3.5"
+                style={{ color: tech.fill.startsWith("#") ? tech.fill : `#${tech.fill}` }}
+              />
+              <span className="font-mono text-[12px] text-text-primary">
+                {tech.label.toLowerCase()}
+              </span>
+            </div>
+          )
+        })}
       </div>
 
       {/* Action Button */}
@@ -104,7 +105,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
           rel="noopener noreferrer"
           className="inline-flex items-center text-sm font-sans font-medium text-accent-green hover:text-accent-green-dark transition-colors group/link"
         >
-          View Case Study
+          Read more
           <span className="ml-1 transition-transform group-hover/link:translate-x-0.5">
             →
           </span>
