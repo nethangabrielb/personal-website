@@ -1,6 +1,6 @@
-import { Hero } from "@/components/layout/Hero";
-import { Projects } from "@/components/layout/Projects";
-import { TechStack } from "@/components/layout/TechStack";
+import { Hero } from "@/components/sections/Hero";
+import { Projects } from "@/components/sections/Projects";
+import { TechStack } from "@/components/sections/TechStack";
 
 export const HomePage = () => {
   return (
