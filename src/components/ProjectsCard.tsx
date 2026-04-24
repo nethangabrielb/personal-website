@@ -24,7 +24,7 @@ interface Project {
 
 export const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <div className="group border border-border p-4 rounded-lg transition-all duration-300 hover:shadow-md flex flex-col">
+    <div className="group border border-border bg-surface p-4 rounded-lg transition-all duration-300 hover:shadow-md flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div>
@@ -58,8 +58,8 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Screenshot */}
-      <div className="relative mb-5 rounded-lg overflow-hidden border border-border/60 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-        <div className="bg-border/40 flex items-center gap-1.5 px-3 py-1.5">
+      <div className="relative mb-5 rounded-lg overflow-hidden border border-border/60 shadow-sm group-hover:shadow-lg transition-shadow duration-300">
+        <div className="bg-border flex items-center gap-1.5 px-3 py-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
