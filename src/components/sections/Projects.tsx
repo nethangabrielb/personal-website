@@ -11,6 +11,7 @@ import {
   SiReactquery,
   SiSocketdotio,
   SiTailwindcss,
+  SiGithub,
   SiTypescript,
   SiZod,
 } from "@icons-pack/react-simple-icons";
@@ -83,6 +84,21 @@ export const Projects = () => {
           ))}
         </div>
       </Reveal>
-    </section>
+
+      <Reveal>
+        <p className="text-md text-center text-muted-foreground mt-6">
+          I've basically completed 30+ projects ranging from static sites to full-stack apps during my time learning in The Odin Project. <br></br> Check out more of my work on{" "}
+          <a
+            href="https://github.com/nethangabrielb"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="inline-flex items-center gap-1 hover:text-foreground transition-all duration-300 hover:-translate-y-0.5"
+          >
+            GitHub
+            <SiGithub className="size-4" />
+          </a>
+        </p>
+      </Reveal>
+    </section >
   );
 };
