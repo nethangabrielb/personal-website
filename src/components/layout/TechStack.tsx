@@ -99,9 +99,9 @@ export const TechStack = () => {
           {techStacks.map((stack) => (
             <div
               key={stack.category}
-              className="rounded-xl border border-border bg-surface p-5 flex flex-col gap-3"
+              className="rounded-xl border border-border bg-surface p-4 flex flex-col gap-3"
             >
-              <p className="text-sm font-mono text-muted-foreground">
+              <p className="text-md  font-medium text-muted-foreground">
                 {stack.category}
               </p>
               <div className="flex flex-wrap gap-2">
