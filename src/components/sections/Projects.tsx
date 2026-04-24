@@ -2,6 +2,7 @@ import {
   SiBetterauth,
   SiDocker,
   SiExpress,
+  SiGithub,
   SiMistralai,
   SiNextdotjs,
   SiPassport,
@@ -11,7 +12,6 @@ import {
   SiReactquery,
   SiSocketdotio,
   SiTailwindcss,
-  SiGithub,
   SiTypescript,
   SiZod,
 } from "@icons-pack/react-simple-icons";
@@ -67,7 +67,7 @@ const projectsData = [
 
 export const Projects = () => {
   return (
-    <section className="mx-auto max-w-5xl px-4 pb-20">
+    <section className="mx-auto max-w-5xl px-4 py-16">
       <Reveal delay={0.2}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Personal Projects
@@ -87,7 +87,9 @@ export const Projects = () => {
 
       <Reveal delay={0.2}>
         <p className="text-md text-center text-muted-foreground mt-6">
-          I've also completed 30+ projects ranging from static sites to full-stack apps during my time learning in The Odin Project. <br></br> Check out more of my work on{" "}
+          I've also completed 30+ projects ranging from static sites to
+          full-stack apps during my time learning in The Odin Project. <br></br>{" "}
+          Check out more of my work on{" "}
           <a
             href="https://github.com/nethangabrielb"
             rel="noopener noreferrer"
@@ -99,6 +101,6 @@ export const Projects = () => {
           </a>
         </p>
       </Reveal>
-    </section >
+    </section>
   );
 };
