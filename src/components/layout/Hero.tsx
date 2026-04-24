@@ -1,3 +1,5 @@
+import { siNextdotjs, siNodedotjs, siReact } from "simple-icons";
+
 import { TechBadge } from "@/components/TechBadge";
 import { MotionButton } from "@/components/ui/MotionButton";
 import { Reveal } from "@/components/ui/Reveal";
@@ -29,10 +31,10 @@ export const Hero = () => {
             src="https://purecatamphetamine.github.io/country-flag-icons/3x2/PH.svg"
           />{" "}
           <br />I specialize building web apps with{" "}
-          <TechBadge icon="devicon-nodejs-plain colored" label="Node.js" />,{" "}
-          <TechBadge icon="devicon-react-original colored" label="React" />,{" "}
-          <TechBadge icon="devicon-nextjs-plain" label="Next.js" /> <br />
-          I genuinely enjoy the process of learning and building. <br />
+          <TechBadge icon={siNodedotjs} label="Node.js" fill="#5FA04E" />,{" "}
+          <TechBadge icon={siReact} label="React" fill="#61DAFB" />,{" "}
+          <TechBadge icon={siNextdotjs} label="Next.js" fill="#000000" /> I
+          genuinely enjoy the process of learning and building. <br />
           If you need a reliable dev, let's talk!
         </p>
       </Reveal>
