@@ -97,20 +97,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         })}
       </div>
 
-      {/* Action Button */}
-      <div className="mt-5 pt-4 border-t border-border/50">
-        <a
-          href={project.links.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center text-sm font-sans font-medium text-accent-green hover:text-accent-green-dark transition-colors group/link"
-        >
-          Read more
-          <span className="ml-1 transition-transform group-hover/link:translate-x-0.5">
-            →
-          </span>
-        </a>
-      </div>
+
     </div>
   );
 };
