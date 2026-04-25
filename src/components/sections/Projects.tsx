@@ -15,8 +15,10 @@ import {
   SiTypescript,
   SiZod,
 } from "@icons-pack/react-simple-icons";
+import { useRef } from "react";
 
 import { ProjectCard } from "@/components/ProjectsCard";
+import { useScrollSection } from "@/hooks/useScrollSection";
 
 import { Reveal } from "../ui/Reveal";
 
@@ -66,8 +68,14 @@ const projectsData = [
 ];
 
 export const Projects = () => {
+  const ref = useRef<HTMLElement>(null);
+
+  useScrollSection({
+    sectionName: "Projects",
+    ref,
+  });
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="projects">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="projects" ref={ref}>
       <Reveal delay={0.2}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Personal Projects

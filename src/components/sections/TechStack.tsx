@@ -30,9 +30,11 @@ import {
   SiVite,
   SiZod,
 } from "@icons-pack/react-simple-icons";
+import { useRef } from "react";
 
 import { TechBadge } from "@/components/TechBadge";
 import { Reveal } from "@/components/ui/Reveal";
+import { useScrollSection } from "@/hooks/useScrollSection";
 
 const techStacks = [
   {
@@ -83,8 +85,15 @@ const techStacks = [
 ];
 
 export const TechStack = () => {
+  const ref = useRef<HTMLElement>(null);
+
+  useScrollSection({
+    sectionName: "Skills",
+    ref,
+  });
+
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="techstack">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="techstack" ref={ref}>
       <Reveal delay={0.4}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Tech Stack

@@ -6,10 +6,11 @@ import {
   SiSanity,
   SiTailwindcss,
 } from "@icons-pack/react-simple-icons";
-import type { ElementType } from "react";
+import { type ElementType, useRef } from "react";
 
 import { TechBadge } from "@/components/TechBadge";
 import { Reveal } from "@/components/ui/Reveal";
+import { useScrollSection } from "@/hooks/useScrollSection";
 
 interface ExperienceTech {
   icon: ElementType;
@@ -67,8 +68,15 @@ const experiences: ExperienceItem[] = [
 ];
 
 export const Experience = () => {
+  const ref = useRef<HTMLElement>(null);
+
+  useScrollSection({
+    sectionName: "Experience",
+    ref,
+  });
+
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="experience">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="experience" ref={ref}>
       <Reveal delay={0.2}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Relevant Experience

@@ -3,14 +3,27 @@ import {
   SiNodedotjs,
   SiReact,
 } from "@icons-pack/react-simple-icons";
+import { motion } from "motion/react";
+import { useRef } from "react";
 
 import { TechBadge } from "@/components/TechBadge";
 import { MotionButton } from "@/components/ui/MotionButton";
 import { Reveal } from "@/components/ui/Reveal";
-
+import { useScrollSection } from "@/hooks/useScrollSection";
 export const Hero = () => {
+  const ref = useRef<HTMLElement>(null);
+
+  useScrollSection({
+    sectionName: "Hero",
+    ref,
+  });
+
   return (
-    <section className="mx-auto max-w-5xl px-4 py-20">
+    <motion.section
+      className="mx-auto max-w-5xl px-4 py-20"
+      id="hero"
+      ref={ref}
+    >
       <Reveal>
         <code className="text-xs bg-accent w-fit px-2 py-1 rounded-lg mb-4 flex items-center gap-2">
           <span className="w-2 h-2 bg-accent-green rounded-full inline-block animate-pulse" />
@@ -55,6 +68,6 @@ export const Hero = () => {
           </MotionButton>
         </div>
       </Reveal>
-    </section>
+    </motion.section>
   );
 };

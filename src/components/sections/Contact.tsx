@@ -1,11 +1,13 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Mail } from "lucide-react";
+import { useRef } from "react";
 
 import { Input } from "@/components/ui/Input";
 import { MotionButton } from "@/components/ui/MotionButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { Textarea } from "@/components/ui/Textarea";
 import { useContactForm } from "@/hooks/useContactForm";
+import { useScrollSection } from "@/hooks/useScrollSection";
 
 export const Contact = () => {
   const { form, onSubmit } = useContactForm();
@@ -14,8 +16,15 @@ export const Contact = () => {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = form;
 
+  const ref = useRef<HTMLElement>(null);
+
+  useScrollSection({
+    sectionName: "Contact",
+    ref,
+  });
+
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="contact">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="contact" ref={ref}>
       <Reveal delay={0.2}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Get in Touch
