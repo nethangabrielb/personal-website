@@ -84,7 +84,7 @@ const techStacks = [
 
 export const TechStack = () => {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="techstack">
       <Reveal delay={0.4}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Tech Stack

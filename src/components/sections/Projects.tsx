@@ -67,7 +67,7 @@ const projectsData = [
 
 export const Projects = () => {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="projects">
       <Reveal delay={0.2}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Personal Projects

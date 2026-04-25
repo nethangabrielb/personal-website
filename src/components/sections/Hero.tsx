@@ -1,4 +1,8 @@
-import { SiNextdotjs, SiNodedotjs, SiReact } from "@icons-pack/react-simple-icons";
+import {
+  SiNextdotjs,
+  SiNodedotjs,
+  SiReact,
+} from "@icons-pack/react-simple-icons";
 
 import { TechBadge } from "@/components/TechBadge";
 import { MotionButton } from "@/components/ui/MotionButton";
@@ -19,7 +23,8 @@ export const Hero = () => {
           Hi, I'm <span className="text-accent-green">Nethan Bagasbas!</span>
         </h1>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
-          I build software. It usually works 🥲 <code className="text-sm">/j</code>
+          I build software. It usually works 🥲{" "}
+          <code className="text-sm">/j</code>
         </h2>
       </Reveal>
 
@@ -42,8 +47,12 @@ export const Hero = () => {
 
       <Reveal delay={0.3}>
         <div className="mt-8 flex gap-3">
-          <MotionButton>See my work</MotionButton>
-          <MotionButton variant="secondary">Get in touch</MotionButton>
+          <MotionButton>
+            <a href="#techstack">See my work</a>
+          </MotionButton>
+          <MotionButton variant="secondary">
+            <a href="#contact">Get in touch</a>
+          </MotionButton>
         </div>
       </Reveal>
     </section>

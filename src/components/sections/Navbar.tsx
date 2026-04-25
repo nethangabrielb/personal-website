@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
-
 const links = [
-  { to: "/", label: "Home" },
-  // { to: '/projects', label: 'Projects' },
-  // { to: '/contact', label: 'Contact' },
+  { to: "#", label: "Home" },
+  { to: "#techstack", label: "Skills" },
+  { to: "#experience", label: "Experience" },
+  { to: "#projects", label: "Projects" },
+  { to: "#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -17,15 +17,15 @@ export function Navbar() {
           nethangabrielb
         </a>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-4">
           {links.map(({ to, label }) => (
-            <NavLink
+            <a
               key={to}
-              to={to}
+              href={to}
               className="hover:text-primary transition-colors"
             >
               {label}
-            </NavLink>
+            </a>
           ))}
         </div>
       </nav>

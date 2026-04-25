@@ -14,9 +14,8 @@ export const Contact = () => {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = form;
 
-
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-16" id="contact">
       <Reveal delay={0.2}>
         <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
           Get in Touch
@@ -66,7 +65,12 @@ export const Contact = () => {
           <div className="flex flex-col justify-between">
             <div>
               <p className="text-muted-foreground leading-relaxed">
-                Look, I know reaching out to someone you've never met can feel a little awkward. But I promise I'm pretty easy to talk to. If you have a project you want built, an idea you're not sure about yet, or even just a question, drop me a message. I genuinely enjoy hearing what people are working on, and I'll get back to you as soon as I can.
+                Look, I know reaching out to someone you've never met can feel a
+                little awkward. But I promise I'm pretty easy to talk to. If you
+                have a project you want built, an idea you're not sure about
+                yet, or even just a question, drop me a message. I genuinely
+                enjoy hearing what people are working on, and I'll get back to
+                you as soon as I can.
               </p>
             </div>
 
@@ -76,7 +80,9 @@ export const Contact = () => {
                 className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent-green transition-colors"
               >
                 <Mail className="size-5 shrink-0" />
-                <span className="text-sm">bagasbas.nethangabriel@gmail.com</span>
+                <span className="text-sm">
+                  bagasbas.nethangabriel@gmail.com
+                </span>
               </a>
               <a
                 href="https://github.com/nethangabrielb"
@@ -93,7 +99,6 @@ export const Contact = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent-green transition-colors"
               >
-
                 <i className="devicon-linkedin-plain text-xl"></i>
 
                 <span className="text-sm">linkedin.com/in/nethangabrielb</span>
