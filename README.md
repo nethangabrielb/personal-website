@@ -1,91 +1,84 @@
-# Vite 8 Portfolio Template
+# Nethan Bagasbas — Personal Portfolio
 
-A personal frontend template built with Vite 8, React 19, TypeScript, and Tailwind CSS v4.
+🌐 [nethangabrielb.dev](https://nethangabrielb.dev)
 
-## Stack
+A personal portfolio showcasing my experience, projects, and tech stack as a Full-Stack Developer based in the Philippines.
 
-| Layer | Library |
-|-------|---------|
-| Bundler | Vite 8 (Rolldown) |
-| UI | React 19 + TypeScript |
-| Styling | Tailwind CSS v4 |
-| Routing | React Router v7 |
-| Animation | Motion (Framer Motion) |
-| Forms | React Hook Form + Zod |
-| Path alias | `@/` → `src/` |
+## 🚀 Tech Stack
 
-## Getting Started
+- **Framework:** React 19 + TypeScript
+- **Bundler:** Vite 8 (Rolldown)
+- **Styling:** Tailwind CSS v4
+- **Routing:** React Router v7
+- **Animations:** Motion (Framer Motion)
+- **Forms & Validation:** React Hook Form + Zod
+- **State Management & Data Fetching:** Zustand, TanStack Query
+- **Icons:** React Simple Icons & Lucide React
+- **UI Components:** Custom components built with Radix UI / Shadcn
 
+## 📂 Sections
+
+1. **Hero** — Introduction and background
+2. **Tech Stack** — Languages, frameworks, and tools I use daily
+3. **Experience** — Professional and freelance work (Syntactics Inc., Freelance)
+4. **Projects** — Highlights including **Calibrate AI** and **Chirper**
+5. **Contact** — Functional contact form
+
+## ✨ Features
+
+- Scroll-triggered animations via Framer Motion
+- Responsive across mobile, tablet, and desktop
+- Prerendered HTML for SEO via `vite-prerender-plugin`
+- Strict TypeScript environment
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm or pnpm
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm install
-cp .env.example .env.local
-npm run dev
+   git clone https://github.com/nethangabrielb/personal-website.git
+   cd personal-website
 ```
 
-## Project Structure
-
+2. Install dependencies:
+```bash
+   pnpm install
 ```
+
+3. Set up environment variables:
+```bash
+   cp .env.example .env.local
+```
+   Set `VITE_CONTACT_FORM_ENDPOINT` if you want to test the contact form.
+
+4. Start the development server:
+```bash
+   pnpm dev
+```
+
+   Running at `http://localhost:5173/`
+
+## 📦 Project Structure
+
+```text
 src/
 ├── components/
-│   ├── ui/          # Button, Input, Textarea, Reveal, ThemeToggle
-│   └── layout/      # RootLayout, Navbar, Footer
-├── hooks/
-│   ├── useAnimation.ts     # useReveal (scroll-triggered)
-│   ├── useMediaQuery.ts
-│   └── useContactForm.ts   # RHF + Zod contact form
-├── lib/
-│   ├── theme.tsx    # ThemeProvider + useTheme hook
-│   └── utils.ts     # cn() helper
-├── pages/
-│   ├── HomePage.tsx
-│   └── NotFoundPage.tsx
-├── styles/
-│   └── globals.css  # Design tokens + Tailwind base
-└── types/
-    └── index.ts     # Shared types (Project, NavItem, etc.)
+│   ├── sections/    # Hero, TechStack, Experience, Projects, Contact
+│   ├── ui/          # Reusable UI components
+│   └── layout/      # Navbar, Footer
+├── hooks/           # Custom React hooks
+├── lib/             # Utility functions and providers
+├── pages/           # Page components
+├── styles/          # Global styles and Tailwind entry point
+└── types/           # Shared TypeScript definitions
 ```
 
-## Theming
+## 🤝 Let's Connect
 
-Design tokens live in `src/styles/globals.css` as CSS custom properties.
-Toggle between light/dark with `useTheme()` from `@/lib/theme`.
-
-```ts
-const { resolvedTheme, setTheme } = useTheme()
-setTheme('dark') // 'light' | 'dark' | 'system'
-```
-
-## Animation
-
-Use `<Reveal>` for scroll-triggered fade-ins:
-
-```tsx
-<Reveal delay={0.1} direction="up">
-  <h1>Hello</h1>
-</Reveal>
-```
-
-Use `useReveal()` directly for custom motion:
-
-```ts
-const { ref, isInView } = useReveal()
-```
-
-## Contact Form
-
-Set `VITE_CONTACT_FORM_ENDPOINT` in `.env.local` (e.g. Formspree or Web3Forms URL).
-Use the `useContactForm()` hook in any form component.
-
-## Adding a Page
-
-1. Create `src/pages/NewPage.tsx`
-2. Add a route in `src/App.tsx`
-3. Add a nav link in `src/components/layout/Navbar.tsx`
-
-## Deployment
-
-```bash
-npm run build   # outputs to /dist
-```
-
-Deploy `/dist` to Vercel, Netlify, or any static host.
+Reach out through the contact form on the site or find me on [GitHub](https://github.com/nethangabrielb) and [LinkedIn](https://linkedin.com/in/nethangabrielb).
