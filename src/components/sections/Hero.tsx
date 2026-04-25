@@ -25,7 +25,7 @@ export const Hero = () => {
       id="home"
       ref={ref}
     >
-      <div className="flex flex-col-reverse items-center gap-10 md:flex-row md:items-center md:justify-between md:gap-12 lg:gap-20">
+      <div className="flex flex-col-reverse items-center gap-10 md:flex-row md:items-start md:justify-between md:gap-12 lg:gap-20">
         <div className="flex flex-col flex-1 gap-6 w-full">
           <Reveal>
             <code className="text-xs bg-accent w-fit px-2 py-1 rounded-lg flex items-center gap-2">
