@@ -93,22 +93,26 @@ export const TechStack = () => {
   });
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="techstack" ref={ref}>
+    <section
+      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
+      id="techstack"
+      ref={ref}
+    >
       <Reveal delay={0.4}>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Tech Stack
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
+        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
           The tools I use to build things.
         </p>
       </Reveal>
 
       <Reveal delay={0.5}>
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-3 md:gap-5">
           {techStacks.map((stack) => (
             <div
               key={stack.category}
-              className="rounded-xl border border-border bg-surface p-4 flex flex-col gap-3 transition-all duration-300 hover:shadow-md"
+              className="flex flex-col gap-3.5 rounded-xl border border-border bg-surface p-4 transition-all duration-300 hover:shadow-md sm:p-5"
             >
               <p className="text-sm sm:text-base font-medium text-muted-foreground">
                 {stack.category}

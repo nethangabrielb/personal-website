@@ -75,18 +75,22 @@ export const Projects = () => {
     ref,
   });
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="projects" ref={ref}>
+    <section
+      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
+      id="projects"
+      ref={ref}
+    >
       <Reveal delay={0.2}>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Personal Projects
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
+        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
           These are some of my proudest personal projects.
         </p>
       </Reveal>
 
       <Reveal delay={0.4}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <div className="mt-7 grid grid-cols-1 gap-5 sm:mt-8 md:grid-cols-2 md:gap-6">
           {projectsData.map((project) => (
             <ProjectCard project={project}></ProjectCard>
           ))}
@@ -94,7 +98,7 @@ export const Projects = () => {
       </Reveal>
 
       <Reveal delay={0.2}>
-        <p className="text-sm sm:text-base md:text-lg text-center text-muted-foreground mt-6">
+        <p className="mx-auto mt-5 max-w-3xl text-center text-sm sm:mt-6 sm:text-base md:text-lg text-muted-foreground leading-relaxed">
           I've also completed 30+ projects ranging from static sites to
           full-stack apps during my time learning in The Odin Project. <br></br>{" "}
           Check out more of my work on{" "}

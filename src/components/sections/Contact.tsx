@@ -24,18 +24,22 @@ export const Contact = () => {
   });
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="contact" ref={ref}>
+    <section
+      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
+      id="contact"
+      ref={ref}
+    >
       <Reveal delay={0.2}>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Get in Touch
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
+        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
           Have a project in mind or just want to chat? Reach out!
         </p>
       </Reveal>
 
       <Reveal delay={0.3}>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="mt-7 grid grid-cols-1 gap-8 sm:mt-8 md:grid-cols-2 md:gap-10">
           {/* Form */}
           <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <Input
@@ -73,7 +77,7 @@ export const Contact = () => {
           {/* Info */}
           <div className="flex flex-col justify-between">
             <div>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              <p className="max-w-prose text-sm sm:text-base text-muted-foreground leading-relaxed">
                 Look, I know reaching out to someone you've never met can feel a
                 little awkward. But I promise I'm pretty easy to talk to. If you
                 have a project you want built, an idea you're not sure about
@@ -83,7 +87,7 @@ export const Contact = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 mt-8">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4">
               <a
                 href="mailto:bagasbas.nethangabriel@gmail.com"
                 className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent-green transition-colors"

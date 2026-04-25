@@ -76,20 +76,24 @@ export const Experience = () => {
   });
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16" id="experience" ref={ref}>
+    <section
+      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
+      id="experience"
+      ref={ref}
+    >
       <Reveal delay={0.2}>
         <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Relevant Experience
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
+        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
           The things I did when I used my skills in a real-world setting.
         </p>
       </Reveal>
 
-      <div className="mt-8 flex flex-col gap-6">
+      <div className="mt-7 flex flex-col gap-5 sm:mt-8 sm:gap-6">
         {experiences.map((exp, index) => (
           <Reveal key={index} delay={0.3 + index * 0.1}>
-            <div className="rounded-xl border border-border p-6 md:p-8 transition-all duration-300 hover:shadow-md">
+            <div className="rounded-xl border border-border p-5 transition-all duration-300 hover:shadow-md sm:p-6 md:p-8">
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
                 <h3 className="font-heading text-lg sm:text-xl font-medium text-text-primary">
                   {exp.company}
@@ -103,11 +107,11 @@ export const Experience = () => {
                 {exp.role}
               </p>
 
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mt-4">
+              <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed sm:mt-4">
                 {exp.description}
               </p>
 
-              <ul className="mt-4 flex flex-col gap-2">
+              <ul className="mt-3 flex flex-col gap-2 sm:mt-4">
                 {exp.tasks.map((task, i) => (
                   <li
                     key={i}

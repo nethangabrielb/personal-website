@@ -24,9 +24,9 @@ interface Project {
 
 export const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <div className="group border border-border bg-surface p-4 rounded-lg transition-all duration-300 hover:shadow-md flex flex-col">
+    <div className="group flex flex-col rounded-lg border border-border bg-surface p-4 transition-all duration-300 hover:shadow-md sm:p-5">
       {/* Header */}
-      <div className="flex justify-between items-start mb-4">
+      <div className="mb-3 flex items-start justify-between sm:mb-4">
         <div>
           <h3 className="font-heading text-lg sm:text-xl font-medium text-text-primary mb-0.5">
             {project.title}
@@ -58,7 +58,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Screenshot */}
-      <div className="relative mb-5 rounded-lg overflow-hidden border border-border/60 shadow-sm group-hover:shadow-lg transition-shadow duration-300">
+      <div className="relative mb-4 overflow-hidden rounded-lg border border-border/60 shadow-sm transition-shadow duration-300 group-hover:shadow-lg sm:mb-5">
         <div className="bg-border flex items-center gap-1.5 px-3 py-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
@@ -72,7 +72,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Description */}
-      <p className="font-sans text-text-primary text-sm sm:text-[15px] md:text-base leading-relaxed mb-5 opacity-85">
+      <p className="mb-4 font-sans text-sm text-text-primary leading-relaxed opacity-85 sm:mb-5 sm:text-[15px] md:text-base">
         {project.description}
       </p>
 

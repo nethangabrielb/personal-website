@@ -20,7 +20,7 @@ export const Hero = () => {
 
   return (
     <motion.section
-      className="mx-auto max-w-5xl px-4 py-20"
+      className="mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-24"
       id="hero"
       ref={ref}
     >
@@ -31,7 +31,7 @@ export const Hero = () => {
         </code>
       </Reveal>
 
-      <Reveal delay={0.1} className="mt-4">
+      <Reveal delay={0.1} className="mt-3 sm:mt-4">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-primary leading-tight">
           Hi, I'm <span className="text-accent-green">Nethan Bagasbas!</span>
         </h1>
@@ -42,7 +42,7 @@ export const Hero = () => {
       </Reveal>
 
       <Reveal delay={0.2}>
-        <p className="mt-4 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+        <p className="mt-5 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
           Graduating CS student & Full-Stack Dev based in the Philippines{" "}
           <img
             alt="Philippines"
@@ -59,7 +59,7 @@ export const Hero = () => {
       </Reveal>
 
       <Reveal delay={0.3}>
-        <div className="mt-8 flex gap-3">
+        <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
           <MotionButton>
             <a href="#techstack">See my work</a>
           </MotionButton>
