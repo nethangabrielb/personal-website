@@ -12,7 +12,7 @@ A personal portfolio showcasing my experience, projects, and tech stack as a Ful
 - **Routing:** React Router v7
 - **Animations:** Motion (Framer Motion)
 - **Forms & Validation:** React Hook Form + Zod
-- **State Management & Data Fetching:** Zustand, TanStack Query
+- **State Management & Data Fetching:** Context API, TanStack Query
 - **Icons:** React Simple Icons & Lucide React
 - **UI Components:** Custom components built with Radix UI / Shadcn
 
