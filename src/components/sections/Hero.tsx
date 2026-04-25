@@ -20,7 +20,7 @@ export const Hero = () => {
 
   return (
     <motion.section
-      className="mx-auto max-w-5xl px-4 py-16 sm:py-20 lg:py-24"
+      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
       id="hero"
       ref={ref}
     >

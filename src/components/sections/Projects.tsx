@@ -92,7 +92,7 @@ export const Projects = () => {
       <Reveal delay={0.4}>
         <div className="mt-7 grid grid-cols-1 gap-5 sm:mt-8 md:grid-cols-2 md:gap-6">
           {projectsData.map((project) => (
-            <ProjectCard project={project}></ProjectCard>
+            <ProjectCard project={project} key={project.title}></ProjectCard>
           ))}
         </div>
       </Reveal>

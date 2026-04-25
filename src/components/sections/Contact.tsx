@@ -41,7 +41,10 @@ export const Contact = () => {
       <Reveal delay={0.3}>
         <div className="mt-7 grid grid-cols-1 gap-8 sm:mt-8 md:grid-cols-2 md:gap-10">
           {/* Form */}
-          <form onSubmit={onSubmit} className="flex flex-col gap-4">
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-4 border border-border/60 rounded-lg p-4 transition-all duration-300 hover:shadow-md"
+          >
             <Input
               label="Name"
               placeholder="Your name"
