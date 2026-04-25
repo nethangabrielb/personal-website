@@ -14,14 +14,14 @@ export const Hero = () => {
   const ref = useRef<HTMLElement>(null);
 
   useScrollSection({
-    sectionName: "Hero",
+    sectionName: "Home",
     ref,
   });
 
   return (
     <motion.section
       className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
-      id="hero"
+      id="home"
       ref={ref}
     >
       <Reveal>

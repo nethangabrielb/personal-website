@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { SectionContext } from "@/CurrentSectionProvider";
 
 const links = [
-  { to: "#hero", label: "Hero" },
+  { to: "#home", label: "Home" },
   { to: "#techstack", label: "Skills" },
   { to: "#experience", label: "Experience" },
   { to: "#projects", label: "Projects" },
