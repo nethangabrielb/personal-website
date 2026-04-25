@@ -77,10 +77,10 @@ export const Projects = () => {
   return (
     <section className="mx-auto max-w-5xl px-4 py-16" id="projects" ref={ref}>
       <Reveal delay={0.2}>
-        <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Personal Projects
         </h2>
-        <p className="text-md text-muted-foreground mt-1">
+        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
           These are some of my proudest personal projects.
         </p>
       </Reveal>
@@ -94,7 +94,7 @@ export const Projects = () => {
       </Reveal>
 
       <Reveal delay={0.2}>
-        <p className="text-md text-center text-muted-foreground mt-6">
+        <p className="text-sm sm:text-base md:text-lg text-center text-muted-foreground mt-6">
           I've also completed 30+ projects ranging from static sites to
           full-stack apps during my time learning in The Odin Project. <br></br>{" "}
           Check out more of my work on{" "}

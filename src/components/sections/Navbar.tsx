@@ -1,6 +1,7 @@
-import { motion } from "motion/react";
+import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import type { MouseEvent } from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { SectionContext } from "@/CurrentSectionProvider";
 
@@ -14,6 +15,7 @@ const links = [
 
 export function Navbar() {
   const { currentSection, setSectionFromNav } = useContext(SectionContext)!;
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -22,12 +24,10 @@ export function Navbar() {
   ) => {
     event.preventDefault();
     setSectionFromNav(label);
+    setMenuOpen(false);
 
     const section = document.querySelector<HTMLElement>(to);
-    if (!section) {
-      return;
-    }
-
+    if (!section) return;
     section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -41,7 +41,8 @@ export function Navbar() {
           nethangabrielb
         </a>
 
-        <div className="flex items-center gap-4">
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-4">
           {links.map(({ to, label }) => (
             <a
               key={to}
@@ -61,7 +62,40 @@ export function Navbar() {
             </a>
           ))}
         </div>
+
+        {/* Hamburger button */}
+        <button
+          className="md:hidden text-primary"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden border-t border-border bg-background/95 backdrop-blur px-4 py-4 flex flex-col gap-4"
+          >
+            {links.map(({ to, label }) => (
+              <a
+                key={to}
+                href={to}
+                className={`text-base transition-colors hover:text-primary ${currentSection === label ? "text-primary font-medium" : "text-muted-foreground"}`}
+                onClick={(event) => handleNavClick(event, to, label)}
+              >
+                {label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

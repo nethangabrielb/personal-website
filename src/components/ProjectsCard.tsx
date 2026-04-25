@@ -28,10 +28,10 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="font-heading text-xl font-medium text-text-primary mb-0.5">
+          <h3 className="font-heading text-lg sm:text-xl font-medium text-text-primary mb-0.5">
             {project.title}
           </h3>
-          <p className="font-sans text-sm font-medium text-accent-green-dark">
+          <p className="font-sans text-xs sm:text-sm font-medium text-accent-green-dark">
             {project.subHeading}
           </p>
         </div>
@@ -72,7 +72,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       </div>
 
       {/* Description */}
-      <p className="font-sans text-text-primary text-[15px] leading-relaxed mb-5 opacity-85">
+      <p className="font-sans text-text-primary text-sm sm:text-[15px] md:text-base leading-relaxed mb-5 opacity-85">
         {project.description}
       </p>
 
@@ -87,17 +87,19 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             >
               <Icon
                 className="size-3.5"
-                style={{ color: tech.fill.startsWith("#") ? tech.fill : `#${tech.fill}` }}
+                style={{
+                  color: tech.fill.startsWith("#")
+                    ? tech.fill
+                    : `#${tech.fill}`,
+                }}
               />
-              <span className="font-mono text-[12px] text-text-primary">
+              <span className="font-mono text-[11px] sm:text-[12px] text-text-primary">
                 {tech.label.toLowerCase()}
               </span>
             </div>
-          )
+          );
         })}
       </div>
-
-
     </div>
   );
 };

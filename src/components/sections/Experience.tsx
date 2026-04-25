@@ -78,10 +78,10 @@ export const Experience = () => {
   return (
     <section className="mx-auto max-w-5xl px-4 py-16" id="experience" ref={ref}>
       <Reveal delay={0.2}>
-        <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Relevant Experience
         </h2>
-        <p className="text-md text-muted-foreground mt-1">
+        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
           The things I did when I used my skills in a real-world setting.
         </p>
       </Reveal>
@@ -91,19 +91,19 @@ export const Experience = () => {
           <Reveal key={index} delay={0.3 + index * 0.1}>
             <div className="rounded-xl border border-border p-6 md:p-8 transition-all duration-300 hover:shadow-md">
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                <h3 className="font-heading text-xl font-medium text-text-primary">
+                <h3 className="font-heading text-lg sm:text-xl font-medium text-text-primary">
                   {exp.company}
                 </h3>
-                <span className="text-sm font-mono text-muted-foreground shrink-0">
+                <span className="text-xs sm:text-sm font-mono text-muted-foreground shrink-0">
                   {exp.period}
                 </span>
               </div>
 
-              <p className="text-md font-medium text-accent-green">
+              <p className="text-sm sm:text-base font-medium text-accent-green">
                 {exp.role}
               </p>
 
-              <p className="text-muted-foreground leading-relaxed mt-4">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mt-4">
                 {exp.description}
               </p>
 
@@ -116,7 +116,7 @@ export const Experience = () => {
                     <span className="text-accent-green/50 mt-1.5 text-xs shrink-0">
                       ◆
                     </span>
-                    <span>{task}</span>
+                    <span className="text-sm sm:text-base">{task}</span>
                   </li>
                 ))}
               </ul>

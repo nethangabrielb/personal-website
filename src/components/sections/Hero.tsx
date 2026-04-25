@@ -32,17 +32,17 @@ export const Hero = () => {
       </Reveal>
 
       <Reveal delay={0.1} className="mt-4">
-        <h1 className="text-5xl font-medium tracking-tight text-primary leading-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-primary leading-tight">
           Hi, I'm <span className="text-accent-green">Nethan Bagasbas!</span>
         </h1>
-        <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-primary leading-tight mt-2">
           I build software. It usually works 🥲{" "}
           <code className="text-sm">/j</code>
         </h2>
       </Reveal>
 
       <Reveal delay={0.2}>
-        <p className="mt-4 max-w-xl text-lg text-muted-foreground">
+        <p className="mt-4 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
           Graduating CS student & Full-Stack Dev based in the Philippines{" "}
           <img
             alt="Philippines"

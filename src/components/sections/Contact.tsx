@@ -26,10 +26,10 @@ export const Contact = () => {
   return (
     <section className="mx-auto max-w-5xl px-4 py-16" id="contact" ref={ref}>
       <Reveal delay={0.2}>
-        <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Get in Touch
         </h2>
-        <p className="text-md text-muted-foreground mt-1">
+        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
           Have a project in mind or just want to chat? Reach out!
         </p>
       </Reveal>
@@ -73,7 +73,7 @@ export const Contact = () => {
           {/* Info */}
           <div className="flex flex-col justify-between">
             <div>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 Look, I know reaching out to someone you've never met can feel a
                 little awkward. But I promise I'm pretty easy to talk to. If you
                 have a project you want built, an idea you're not sure about
@@ -89,7 +89,7 @@ export const Contact = () => {
                 className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent-green transition-colors"
               >
                 <Mail className="size-5 shrink-0" />
-                <span className="text-sm">
+                <span className="text-xs sm:text-sm">
                   bagasbas.nethangabriel@gmail.com
                 </span>
               </a>
@@ -100,7 +100,9 @@ export const Contact = () => {
                 className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent-green transition-colors"
               >
                 <SiGithub className="size-5 shrink-0" />
-                <span className="text-sm">github.com/nethangabrielb</span>
+                <span className="text-xs sm:text-sm">
+                  github.com/nethangabrielb
+                </span>
               </a>
               <a
                 href="https://linkedin.com/in/nethangabrielb"
@@ -110,7 +112,9 @@ export const Contact = () => {
               >
                 <i className="devicon-linkedin-plain text-xl"></i>
 
-                <span className="text-sm">linkedin.com/in/nethangabrielb</span>
+                <span className="text-xs sm:text-sm">
+                  linkedin.com/in/nethangabrielb
+                </span>
               </a>
             </div>
           </div>

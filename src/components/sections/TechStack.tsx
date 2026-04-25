@@ -95,10 +95,10 @@ export const TechStack = () => {
   return (
     <section className="mx-auto max-w-5xl px-4 py-16" id="techstack" ref={ref}>
       <Reveal delay={0.4}>
-        <h2 className="text-4xl font-medium tracking-tight text-primary leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
           Tech Stack
         </h2>
-        <p className="text-md text-muted-foreground mt-1">
+        <p className="text-sm sm:text-base md:text-lg text-muted-foreground mt-1">
           The tools I use to build things.
         </p>
       </Reveal>
@@ -110,7 +110,7 @@ export const TechStack = () => {
               key={stack.category}
               className="rounded-xl border border-border bg-surface p-4 flex flex-col gap-3 transition-all duration-300 hover:shadow-md"
             >
-              <p className="text-md  font-medium text-muted-foreground">
+              <p className="text-sm sm:text-base font-medium text-muted-foreground">
                 {stack.category}
               </p>
               <div className="flex flex-wrap gap-2">
