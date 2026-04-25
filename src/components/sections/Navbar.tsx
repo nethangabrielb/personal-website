@@ -81,7 +81,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-t border-border bg-background/95 backdrop-blur px-4 py-4 flex flex-col gap-4"
+            className="md:hidden absolute top-full left-0 right-0 border-t border-border bg-background/95 backdrop-blur px-4 py-4 flex flex-col gap-4"
           >
             {links.map(({ to, label }) => (
               <a
