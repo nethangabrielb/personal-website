@@ -2,12 +2,17 @@ import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { loadEnv } from "vite";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 
 const defaultSiteUrl = "https://nethangabrielb.vercel.app";
-const rawSiteUrl = process.env.VITE_SITE_URL || defaultSiteUrl;
+const mode = process.env.NODE_ENV === "development" ? "development" : "production";
+const envFromFiles = loadEnv(mode, projectRoot, "");
+const rawSiteUrl =
+  process.env.VITE_SITE_URL || envFromFiles.VITE_SITE_URL || defaultSiteUrl;
 const siteUrl = rawSiteUrl.replace(/\/+$/, "");
 
 const robotsContent = `User-agent: *
