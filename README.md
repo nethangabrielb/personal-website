@@ -20,7 +20,7 @@ A personal portfolio showcasing my experience, projects, and tech stack as a Ful
 
 1. **Hero** — Introduction and background
 2. **Tech Stack** — Languages, frameworks, and tools I use daily
-3. **Experience** — Professional and freelance work (Syntactics Inc., Freelance)
+3. **Experience** — Professional and freelance work
 4. **Projects** — Highlights including **Calibrate AI** and **Chirper**
 5. **Contact** — Functional contact form
 
