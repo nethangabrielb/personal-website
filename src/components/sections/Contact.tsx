@@ -92,12 +92,12 @@ export const Contact = () => {
 
             <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:gap-4">
               <a
-                href="mailto:bagasbas.nethangabriel@gmail.com"
+                href="mailto:contact@nethangabrielb.dev"
                 className="inline-flex items-center gap-3 text-muted-foreground hover:text-accent-green transition-colors"
               >
                 <Mail className="size-5 shrink-0" />
                 <span className="text-xs sm:text-sm">
-                  bagasbas.nethangabriel@gmail.com
+                  contact@nethangabrielb.dev
                 </span>
               </a>
               <a
