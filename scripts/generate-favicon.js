@@ -1,5 +1,5 @@
-import sharp from "sharp";
 import { readFileSync } from "fs";
+import sharp from "sharp";
 
 const svg = readFileSync("public/nethan-icon.svg");
 

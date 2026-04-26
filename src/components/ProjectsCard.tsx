@@ -68,6 +68,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
           src={project.screenshot}
           alt={`${project.title} screenshot`}
           className="w-full aspect-16/10 object-cover object-top"
+          loading="lazy"
         />
       </div>
 

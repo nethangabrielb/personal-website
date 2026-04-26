@@ -9,7 +9,8 @@ const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 
 const defaultSiteUrl = "https://nethangabrielb.vercel.app";
-const mode = process.env.NODE_ENV === "development" ? "development" : "production";
+const mode =
+  process.env.NODE_ENV === "development" ? "development" : "production";
 const envFromFiles = loadEnv(mode, projectRoot, "");
 const rawSiteUrl =
   process.env.VITE_SITE_URL || envFromFiles.VITE_SITE_URL || defaultSiteUrl;

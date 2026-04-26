@@ -89,7 +89,8 @@ export const Hero = () => {
           <div className="relative w-56 h-72 md:w-64 md:h-80 lg:w-72 lg:h-96">
             <div className="absolute inset-0 rounded-2xl bg-accent-green/20 translate-x-3 translate-y-3" />
             <img
-              src="/hero-me.jpg"
+              src="/hero-me.webp"
+              fetchPriority="high"
               alt="Nethan Bagasbas"
               className="relative w-full h-full rounded-2xl object-cover object-top border-2 border-accent-green shadow-sm"
             />

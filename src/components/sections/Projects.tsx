@@ -42,7 +42,7 @@ const projectsData = [
       live: "https://calibrate-ai.vercel.app/",
       github: "https://github.com/nethangabrielb/calibrate-ai",
     },
-    screenshot: "/calibrate-screenshot.png",
+    screenshot: "/calibrate-screenshot.webp",
   },
   {
     title: "Chirper",
@@ -63,7 +63,7 @@ const projectsData = [
       live: "https://chirper-frontend.vercel.app/",
       github: "https://github.com/nethangabrielb/chirper",
     },
-    screenshot: "/chirper-screenshot.png",
+    screenshot: "/chirper-screenshot.webp",
   },
 ];
 
