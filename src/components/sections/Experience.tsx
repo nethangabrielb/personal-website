@@ -86,7 +86,7 @@ export const Experience = () => {
           Relevant Experience
         </h2>
         <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
-          The things I did when I used my skills in a real-world setting.
+          Real work, real codebases, real deadlines.
         </p>
       </Reveal>
 
