@@ -85,7 +85,7 @@ export const Projects = () => {
           Personal Projects
         </h2>
         <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
-          These are some of my proudest personal projects.
+          Things I built because I wanted to, not because I had to.
         </p>
       </Reveal>
 
