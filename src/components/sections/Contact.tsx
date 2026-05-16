@@ -8,7 +8,7 @@ export const Contact = () => {
   const { form, onSubmit } = useContactForm();
   const {
     register,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = form;
 
   const ref = useRef<HTMLElement>(null);
@@ -104,11 +104,7 @@ export const Contact = () => {
               className="form-submit"
               disabled={isSubmitting}
             >
-              {isSubmitting
-                ? "Sending..."
-                : isSubmitSuccessful
-                  ? "Message sent!"
-                  : "Send message"}
+              {isSubmitting ? "Sending..." : "Send message"}
             </button>
           </form>
         </div>

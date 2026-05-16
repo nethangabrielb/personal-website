@@ -14,7 +14,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <SectionProvider>
         <Toaster
-          position="bottom-right"
+          position="top-center"
           toastOptions={{
             style: {
               background: "var(--bg)",
