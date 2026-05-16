@@ -1,16 +1,14 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
-import { Footer } from '../sections/Footer'
-import { Navbar } from '../sections/Navbar'
+import { Navbar } from "../sections/Navbar";
 
 export function RootLayout() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground antialiased">
+    <div className="min-h-screen bg-bg text-text antialiased">
       <Navbar />
-      <main className="flex-1">
+      <main>
         <Outlet />
       </main>
-      <Footer />
     </div>
-  )
+  );
 }

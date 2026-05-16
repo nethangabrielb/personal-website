@@ -4,6 +4,11 @@ import sharp from "sharp";
 const images = [
   { input: "public/hero-me.jpg", output: "public/hero-me.webp", width: 570 },
   {
+    input: "public/hero-me-new.png",
+    output: "public/hero-me-new.webp",
+    width: 570,
+  },
+  {
     input: "public/calibrate-screenshot.png",
     output: "public/calibrate-screenshot.webp",
     width: 960,

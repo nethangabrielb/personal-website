@@ -1,118 +1,151 @@
-import {
-  SiBetterauth,
-  SiDocker,
-  SiExpress,
-  SiGithub,
-  SiMistralai,
-  SiNextdotjs,
-  SiPassport,
-  SiPostgresql,
-  SiPrisma,
-  SiReact,
-  SiReactquery,
-  SiSocketdotio,
-  SiTailwindcss,
-  SiTypescript,
-  SiZod,
-} from "@icons-pack/react-simple-icons";
 import { useRef } from "react";
 
-import { ProjectCard } from "@/components/ProjectsCard";
+import { Reveal } from "@/components/ui/Reveal";
 import { useScrollSection } from "@/hooks/useScrollSection";
-
-import { Reveal } from "../ui/Reveal";
 
 const projectsData = [
   {
-    title: "Calibrate AI",
-    subHeading: "AI-Powered Job Application Tracker",
+    number: "01",
+    title: "CALIBRATE AI",
+    subtitle: "AI-Powered Job Application Tracker",
     description:
       "AI-powered job application tracker that analyzes resumes against roles to generate fit scores, identify skill gaps, and provide concise recommendations.",
-    techStack: [
-      { icon: SiReact, label: "React", fill: "#61DAFB" },
-      { icon: SiNextdotjs, label: "Next.js", fill: "#000000" },
-      { icon: SiTypescript, label: "TypeScript", fill: "#3178C6" },
-      { icon: SiTailwindcss, label: "Tailwind CSS", fill: "#06B6D4" },
-      { icon: SiReactquery, label: "TanStack Query", fill: "#FF4154" },
-      { icon: SiMistralai, label: "Mistral AI", fill: "#FDDC0D" },
-      { icon: SiBetterauth, label: "Better Auth", fill: "#EB5424" },
-      { icon: SiZod, label: "Zod", fill: "#3E67B1" },
+    tech: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Mistral AI",
+      "Better Auth",
+      "Zod",
     ],
+    screenshot: "/calibrate-screenshot.webp",
     links: {
       live: "https://calibrate-ai.vercel.app/",
       github: "https://github.com/nethangabrielb/calibrate-ai",
     },
-    screenshot: "/calibrate-screenshot.webp",
   },
   {
-    title: "Chirper",
-    subHeading: "Social Media Platform",
+    number: "02",
+    title: "CHIRPER",
+    subtitle: "Social Media Platform",
     description:
-      "A fully responsive Twitter/X clone. Replicates the core social experience with threaded replies, optimistic UI updates, real-time direct messaging, and live push notifications.",
-    techStack: [
-      { icon: SiNextdotjs, label: "Next.js", fill: "#000000" },
-      { icon: SiExpress, label: "Express", fill: "#000000" },
-      { icon: SiTypescript, label: "TypeScript", fill: "#3178C6" },
-      { icon: SiPostgresql, label: "PostgreSQL", fill: "#4169E1" },
-      { icon: SiPrisma, label: "Prisma", fill: "#2D3748" },
-      { icon: SiPassport, label: "Passport.js", fill: "#34E27A" },
-      { icon: SiSocketdotio, label: "Socket.IO", fill: "#010101" },
-      { icon: SiDocker, label: "Docker", fill: "#2496ED" },
+      "A fully responsive Twitter/X clone with threaded replies, optimistic UI updates, real-time direct messaging, and live push notifications.",
+    tech: [
+      "Next.js",
+      "Express",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "Passport.js",
+      "Socket.IO",
+      "Docker",
     ],
+    screenshot: "/chirper-screenshot.webp",
     links: {
       live: "https://chirper-frontend.vercel.app/",
       github: "https://github.com/nethangabrielb/chirper",
     },
-    screenshot: "/chirper-screenshot.webp",
   },
 ];
 
 export const Projects = () => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useScrollSection({
     sectionName: "Projects",
     ref,
   });
+
   return (
-    <section
-      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
-      id="projects"
-      ref={ref}
-    >
-      <Reveal delay={0.2}>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
-          Personal Projects
-        </h2>
-        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
-          Things I built because I wanted to, not because I had to.
-        </p>
-      </Reveal>
+    <div id="projects" ref={ref}>
+      <div className="section-header">
+        <Reveal>
+          <p className="section__number">01</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="section__heading">PROJECTS</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="section__sub">
+            Things I built because I wanted to, not because I had to.
+          </p>
+        </Reveal>
+      </div>
 
-      <Reveal delay={0.4}>
-        <div className="mt-7 grid grid-cols-1 gap-5 sm:mt-8 md:grid-cols-2 md:gap-6">
-          {projectsData.map((project) => (
-            <ProjectCard project={project} key={project.title}></ProjectCard>
-          ))}
+      {projectsData.map((project, index) => (
+        <div key={project.number}>
+          {index > 0 && <hr className="project__divider" />}
+          <section className="project">
+            <div className="project__layout">
+              {/* Left — info */}
+              <div className="project__info">
+                <Reveal>
+                  <p className="project__number">{project.number}</p>
+                </Reveal>
+
+                <Reveal delay={0.1}>
+                  <h2 className="project__name">{project.title}</h2>
+                  <p className="project__subtitle">{project.subtitle}</p>
+                </Reveal>
+
+                <Reveal delay={0.15}>
+                  <p className="project__desc">{project.description}</p>
+                </Reveal>
+
+                <Reveal delay={0.2}>
+                  <div className="project__tags">
+                    {project.tech.map((t) => (
+                      <span key={t} className="project__tag">
+                        {t.toLowerCase()}
+                      </span>
+                    ))}
+                  </div>
+                </Reveal>
+
+                <Reveal delay={0.25}>
+                  <div className="project__links">
+                    <a
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project__link"
+                    >
+                      View Live ↗
+                    </a>
+                    <a
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project__link"
+                    >
+                      GitHub ↗
+                    </a>
+                  </div>
+                </Reveal>
+              </div>
+
+              {/* Right — screenshot */}
+              <Reveal delay={0.2}>
+                <div className="project__screenshot">
+                  <div className="project__screenshot-bar">
+                    <span className="project__dot project__dot--red" />
+                    <span className="project__dot project__dot--yellow" />
+                    <span className="project__dot project__dot--green" />
+                  </div>
+                  <img
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    className="project__screenshot-img"
+                    loading="lazy"
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </section>
         </div>
-      </Reveal>
-
-      <Reveal delay={0.2}>
-        <p className="mx-auto mt-5 max-w-3xl text-center text-sm sm:mt-6 sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-          I've also completed 30+ projects ranging from static sites to
-          full-stack apps during my time learning in The Odin Project. <br></br>{" "}
-          Check out more of my work on{" "}
-          <a
-            href="https://github.com/nethangabrielb"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="inline-flex items-center gap-1 hover:text-foreground transition-all duration-300 hover:-translate-y-0.5"
-          >
-            GitHub
-            <SiGithub className="size-4" />
-          </a>
-        </p>
-      </Reveal>
-    </section>
+      ))}
+    </div>
   );
 };

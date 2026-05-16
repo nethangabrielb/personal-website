@@ -1,21 +1,29 @@
-import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import type { MouseEvent } from "react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { SectionContext } from "@/CurrentSectionProvider";
 
 const links = [
-  { to: "#home", label: "Home" },
-  { to: "#techstack", label: "Skills" },
-  { to: "#experience", label: "Experience" },
+  { to: "#about", label: "About" },
   { to: "#projects", label: "Projects" },
+  { to: "#experience", label: "Experience" },
   { to: "#contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const { currentSection, setSectionFromNav } = useContext(SectionContext)!;
+  const [visible, setVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Show nav after scrolling past hero
+  useEffect(() => {
+    const handleScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.85);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -31,45 +39,52 @@ export function Navbar() {
     section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const sectionMap: Record<string, string> = {
+    About: "About",
+    Projects: "Projects",
+    Experience: "Experience",
+    Contact: "Contact",
+  };
+  const activeLabel = sectionMap[currentSection] || "";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <a
-          href="#"
-          className="text-lg font-medium text-text-primary tracking-tight"
-        >
-          nethangabrielb
+    <header className={`nav ${visible ? "nav--visible" : ""}`}>
+      <nav className="nav__inner">
+        <a href="#" className="nav__logo">
+          NB
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-4">
+        <ul className="nav__links">
           {links.map(({ to, label }) => (
-            <a
-              key={to}
-              href={to}
-              className={`relative hover:text-primary transition-colors ${currentSection === label ? "text-primary" : ""}`}
-              onClick={(event) => handleNavClick(event, to, label)}
-            >
-              {label}
-              {currentSection === label && (
-                <motion.p
-                  className="h-0.5 mt-2 absolute bottom-0 bg-primary w-full"
-                  layoutId="underline"
-                >
-                  {" "}
-                </motion.p>
-              )}
-            </a>
+            <li key={to}>
+              <a
+                href={to}
+                className={`nav__link ${activeLabel === label ? "nav__link--active" : ""}`}
+                onClick={(event) => handleNavClick(event, to, label)}
+              >
+                {label}
+                {activeLabel === label && (
+                  <motion.div
+                    layoutId="nav-indicator-desktop"
+                    className="nav__indicator"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* Hamburger button */}
         <button
-          className="md:hidden text-primary"
+          className="nav__toggle"
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          <span className="nav__toggle-bar" />
+          <span className="nav__toggle-bar" />
+          <span className="nav__toggle-bar" />
         </button>
       </nav>
 
@@ -81,16 +96,23 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 right-0 border-t border-border bg-background/95 backdrop-blur px-4 py-4 flex flex-col gap-4"
+            className={`nav__mobile nav__mobile--open`}
           >
             {links.map(({ to, label }) => (
               <a
                 key={to}
                 href={to}
-                className={`text-base transition-colors hover:text-primary ${currentSection === label ? "text-primary font-medium" : "text-muted-foreground"}`}
+                className={`nav__link ${activeLabel === label ? "nav__link--active" : ""}`}
                 onClick={(event) => handleNavClick(event, to, label)}
               >
                 {label}
+                {activeLabel === label && (
+                  <motion.div
+                    layoutId="nav-indicator-mobile"
+                    className="nav__indicator"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
               </a>
             ))}
           </motion.div>

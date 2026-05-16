@@ -1,69 +1,35 @@
-import {
-  SiAstro,
-  SiLaravel,
-  SiNextdotjs,
-  SiReact,
-  SiSanity,
-  SiTailwindcss,
-} from "@icons-pack/react-simple-icons";
-import { type ElementType, useRef } from "react";
+import { useRef } from "react";
 
-import { TechBadge } from "@/components/TechBadge";
 import { Reveal } from "@/components/ui/Reveal";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
-interface ExperienceTech {
-  icon: ElementType;
-  label: string;
-  fill: string;
-}
-
-interface ExperienceItem {
-  company: string;
-  role: string;
-  period: string;
-  description: string;
-  tasks: string[];
-  tech: ExperienceTech[];
-}
-
-const experiences: ExperienceItem[] = [
+const experiences = [
   {
     company: "Self-Employed",
     role: "Freelance Web Developer",
-    period: "Sep 2025 – Dec 2025",
-    description:
+    date: "Sep 2025 – Dec 2025",
+    summary:
       "Designed and delivered tailored web solutions for various clients.",
-    tasks: [
+    bullets: [
       "Built and delivered SEO-optimized websites",
       "Owned end-to-end design and implementation",
       "Integrated headless CMS for content management",
     ],
-    tech: [
-      { icon: SiAstro, label: "Astro", fill: "#FF5D01" },
-      { icon: SiSanity, label: "Sanity CMS", fill: "#F03E2F" },
-      { icon: SiReact, label: "React", fill: "#61DAFB" },
-      { icon: SiTailwindcss, label: "Tailwind CSS", fill: "#06B6D4" },
-    ],
+    tech: ["Astro", "Sanity CMS", "React", "Tailwind CSS"],
   },
   {
     company: "Syntactics Inc.",
     role: "Full-Stack Developer Intern",
-    period: "Jun 2025 – Aug 2025",
-    description:
+    date: "Jun 2025 – Aug 2025",
+    summary:
       "Contributed to the development of enterprise systems and internal training platforms.",
-    tasks: [
+    bullets: [
       "Developed and maintained enterprise web applications",
       "Refactored frontend architecture and shared hooks",
       "Built REST API endpoints and file upload integrations",
       "Collaborated with team and shipped through code reviews",
     ],
-    tech: [
-      { icon: SiReact, label: "React", fill: "#61DAFB" },
-      { icon: SiNextdotjs, label: "Next.js", fill: "#000000" },
-      { icon: SiLaravel, label: "Laravel", fill: "#FF2D20" },
-      { icon: SiTailwindcss, label: "Tailwind CSS", fill: "#06B6D4" },
-    ],
+    tech: ["React", "Next.js", "Laravel", "Tailwind CSS"],
   },
 ];
 
@@ -76,70 +42,53 @@ export const Experience = () => {
   });
 
   return (
-    <section
-      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
-      id="experience"
-      ref={ref}
-    >
-      <Reveal delay={0.2}>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
-          Relevant Experience
-        </h2>
-        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
-          Real work, real codebases, real deadlines.
-        </p>
-      </Reveal>
-
-      <div className="mt-7 flex flex-col gap-5 sm:mt-8 sm:gap-6">
-        {experiences.map((exp, index) => (
-          <Reveal key={index} delay={0.3 + index * 0.1}>
-            <div className="rounded-xl border border-border p-5 transition-all duration-300 hover:shadow-md sm:p-6 md:p-8">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                <h3 className="font-heading text-lg sm:text-xl font-medium text-text-primary">
-                  {exp.company}
-                </h3>
-                <span className="text-xs sm:text-sm font-mono text-muted-foreground shrink-0">
-                  {exp.period}
-                </span>
-              </div>
-
-              <p className="text-sm sm:text-base font-medium text-accent-green">
-                {exp.role}
-              </p>
-
-              <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed sm:mt-4">
-                {exp.description}
-              </p>
-
-              <ul className="mt-3 flex flex-col gap-2 sm:mt-4">
-                {exp.tasks.map((task, i) => (
-                  <li
-                    key={i}
-                    className="text-muted-foreground leading-relaxed flex items-start gap-3"
-                  >
-                    <span className="text-accent-green/50 mt-1.5 text-xs shrink-0">
-                      ◆
-                    </span>
-                    <span className="text-sm sm:text-base">{task}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-2 mt-6 pt-5 border-t border-border/50">
-                {exp.tech.map((tech) => (
-                  <TechBadge
-                    key={tech.label}
-                    icon={tech.icon}
-                    label={tech.label}
-                    fill={tech.fill}
-                    className="border border-border bg-background/20! shadow-2xs"
-                  />
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        ))}
+    <section className="experience" id="experience" ref={ref}>
+      <div className="section-header">
+        <Reveal>
+          <p className="section__number">02</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="section__heading">EXPERIENCE</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="section__sub">
+            Real work, real codebases, real deadlines.
+          </p>
+        </Reveal>
       </div>
+
+      {experiences.map((exp, index) => (
+        <Reveal key={index} delay={0.1 + index * 0.15}>
+          <div className="experience__card">
+            <div className="experience__header">
+              <div>
+                <h3 className="experience__company">{exp.company}</h3>
+                <p className="experience__role">{exp.role}</p>
+              </div>
+              <span className="experience__date">{exp.date}</span>
+            </div>
+
+            <p className="experience__summary">{exp.summary}</p>
+
+            <ul className="experience__bullets">
+              {exp.bullets.map((bullet, i) => (
+                <li key={i} className="experience__bullet">
+                  <span className="experience__bullet-marker">◆</span>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+
+            <div className="experience__tags">
+              {exp.tech.map((t) => (
+                <span key={t} className="experience__tag">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      ))}
     </section>
   );
 };

@@ -32,7 +32,7 @@ export const useScrollSection = ({
         }
       },
       {
-        threshold: 0.35,
+        threshold: 0.1,
         rootMargin: "-72px 0px -45% 0px",
       },
     );
