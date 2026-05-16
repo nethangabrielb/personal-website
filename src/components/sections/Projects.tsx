@@ -71,7 +71,7 @@ export const Projects = () => {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="section__sub">
-            Things I built because I wanted to, not because I had to.
+            My top projects I built because I wanted to, not because I had to.
           </p>
         </Reveal>
       </div>
