@@ -1,3 +1,5 @@
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
@@ -112,7 +114,7 @@ export const Projects = () => {
                       rel="noopener noreferrer"
                       className="project__link"
                     >
-                      View Live ↗
+                      View Live <ArrowUpRight size={14} />
                     </a>
                     <a
                       href={project.links.github}
@@ -120,7 +122,7 @@ export const Projects = () => {
                       rel="noopener noreferrer"
                       className="project__link"
                     >
-                      GitHub ↗
+                      GitHub <SiGithub size={14} />
                     </a>
                   </div>
                 </Reveal>

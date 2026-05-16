@@ -42,7 +42,7 @@ export const Hero = () => {
 
       <Reveal>
         <p className="hero__label">
-          Full-Stack Developer — Cagayan de Oro, PH
+          Full-Stack Developer — Butuan City, PH
           <span className="hero__cursor">▋</span>
         </p>
       </Reveal>
@@ -57,6 +57,19 @@ export const Hero = () => {
 
       <Reveal delay={0.2}>
         <p className="hero__stack">React · Node.js · PostgreSQL · Next.js</p>
+      </Reveal>
+
+      <Reveal delay={0.3}>
+        <div className="hero__actions">
+          <a
+            href="bagasbas-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--outline"
+          >
+            View Resume
+          </a>
+        </div>
       </Reveal>
 
       {/* Scroll indicator */}

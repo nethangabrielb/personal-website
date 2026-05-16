@@ -3,6 +3,7 @@ import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 export const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ export const HomePage = () => {
       <Projects />
       <Experience />
       <Contact />
+      <BackToTop />
     </>
   );
 };

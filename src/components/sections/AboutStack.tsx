@@ -53,7 +53,7 @@ export const AboutStack = () => {
       {/* Bio paragraph */}
       <Reveal delay={0.15}>
         <p className="about__bio">
-          Graduating Computer Science student from USTP, Cagayan de Oro. I build
+          Graduating Computer Science student from USTP, Butuan City. I build
           full-stack web applications — from the database schema to the deployed
           container. I started with The Odin Project in my sophomore year and
           haven't stopped shipping since. Currently looking for junior and remote
