@@ -12,16 +12,17 @@ A personal portfolio showcasing my experience, projects, and tech stack as a Ful
 - **Routing:** React Router v7
 - **Animations:** Motion (Framer Motion)
 - **Forms & Validation:** React Hook Form + Zod
+- **Notifications:** Sonner
 - **State Management & Data Fetching:** Context API, TanStack Query
 - **Icons:** React Simple Icons & Lucide React
-- **UI Components:** Custom components built with Radix UI / Shadcn
+- **UI Components:** Custom CSS Design System with Radix UI / Shadcn
 
 ## 📂 Sections
 
 1. **Hero** — Introduction and background
-2. **Tech Stack** — Languages, frameworks, and tools I use daily
+2. **About & Skills** — Biography, educational background, and tech stack
 3. **Experience** — Professional and freelance work
-4. **Projects** — Highlights including **Calibrate AI** and **Chirper**
+4. **Projects** — Featured highlights including **Calibrate AI** and **Chirper**
 5. **Contact** — Functional contact form
 
 ## ✨ Features
@@ -69,7 +70,7 @@ A personal portfolio showcasing my experience, projects, and tech stack as a Ful
 ```text
 src/
 ├── components/
-│   ├── sections/    # Hero, TechStack, Experience, Projects, Contact
+│   ├── sections/    # Hero, AboutStack, Experience, Projects, Contact
 │   ├── ui/          # Reusable UI components
 │   └── layout/      # Navbar, Footer
 ├── hooks/           # Custom React hooks
