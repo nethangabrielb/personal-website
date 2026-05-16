@@ -2,11 +2,11 @@
 import sharp from "sharp";
 
 const images = [
-  { input: "public/hero-me.jpg", output: "public/hero-me.webp", width: 570 },
+  { input: "public/hero-me.jpg", output: "public/hero-me.webp", width: 1086 },
   {
     input: "public/hero-me-new.png",
     output: "public/hero-me-new.webp",
-    width: 570,
+    width: 1086,
   },
   {
     input: "public/calibrate-screenshot.png",
@@ -21,6 +21,6 @@ const images = [
 ];
 
 for (const { input, output, width } of images) {
-  await sharp(input).resize({ width }).webp({ quality: 80 }).toFile(output);
+  await sharp(input).resize({ width }).webp({ quality: 95 }).toFile(output);
   console.log(`Done: ${output}`);
 }
