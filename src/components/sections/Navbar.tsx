@@ -6,6 +6,7 @@ import { SectionContext } from "@/CurrentSectionProvider";
 
 const links = [
   { to: "#about", label: "About" },
+  { to: "#techstack", label: "Stack" },
   { to: "#projects", label: "Projects" },
   { to: "#experience", label: "Experience" },
   { to: "#contact", label: "Contact" },
@@ -41,6 +42,7 @@ export function Navbar() {
 
   const sectionMap: Record<string, string> = {
     About: "About",
+    Skills: "Stack",
     Projects: "Projects",
     Experience: "Experience",
     Contact: "Contact",
