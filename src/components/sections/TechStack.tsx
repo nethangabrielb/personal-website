@@ -1,84 +1,59 @@
-import {
-  SiAstro,
-  SiBetterauth,
-  SiCss,
-  SiDigitalocean,
-  SiDocker,
-  SiExpress,
-  SiGit,
-  SiHtml5,
-  SiInsomnia,
-  SiJavascript,
-  SiLaravel,
-  SiMistralai,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPassport,
-  SiPhp,
-  SiPnpm,
-  SiPostgresql,
-  SiPrisma,
-  SiReact,
-  SiReactquery,
-  SiSanity,
-  SiSocketdotio,
-  SiSupabase,
-  SiTailwindcss,
-  SiTypescript,
-  SiUpstash,
-  SiVercel,
-  SiVite,
-  SiZod,
-} from "@icons-pack/react-simple-icons";
+import { Database, Laptop, Sparkles, Terminal } from "lucide-react";
 import { useRef } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
 import { useScrollSection } from "@/hooks/useScrollSection";
+import { techIconMap } from "@/lib/techIcons";
 
 const techStacks = [
   {
     category: "Frontend",
+    icon: Laptop,
+    glow: "rgba(97, 218, 251, 0.03)",
     tools: [
-      { icon: SiReact, label: "React", fill: "#61DAFB" },
-      { icon: SiNextdotjs, label: "Next.js", fill: "#000000" },
-      { icon: SiTypescript, label: "TypeScript", fill: "#3178C6" },
-      { icon: SiJavascript, label: "JavaScript", fill: "#F7DF1E" },
-      { icon: SiTailwindcss, label: "Tailwind CSS", fill: "#06B6D4" },
-      { icon: SiHtml5, label: "HTML5", fill: "#E34F26" },
-      { icon: SiCss, label: "CSS3", fill: "#1572B6" },
-      { icon: SiAstro, label: "Astro", fill: "#FF5D01" },
-      { icon: SiReactquery, label: "TanStack Query", fill: "#FF4154" },
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "HTML5",
+      "CSS3",
+      "Astro",
+      "TanStack Query",
     ],
   },
   {
     category: "Backend",
+    icon: Database,
+    glow: "rgba(95, 160, 78, 0.03)",
     tools: [
-      { icon: SiNodedotjs, label: "Node.js", fill: "#5FA04E" },
-      { icon: SiExpress, label: "Express", fill: "#000000" },
-      { icon: SiPostgresql, label: "PostgreSQL", fill: "#4169E1" },
-      { icon: SiPrisma, label: "Prisma", fill: "#2D3748" },
-      { icon: SiInsomnia, label: "RESTful APIs", fill: "#4000BF" },
-      { icon: SiSocketdotio, label: "Socket.IO", fill: "#010101" },
-      { icon: SiMistralai, label: "Mistral AI", fill: "#FDDC0D" },
-      { icon: SiPassport, label: "Passport.js", fill: "#34E27A" },
-      { icon: SiLaravel, label: "Laravel", fill: "#FF2D20" },
-      { icon: SiPhp, label: "PHP", fill: "#777BB4" },
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+      "Socket.IO",
+      "Mistral AI",
+      "Passport.js",
+      "Laravel",
+      "PHP",
     ],
   },
   {
     category: "Tools & Infra",
+    icon: Terminal,
+    glow: "rgba(240, 80, 50, 0.03)",
     tools: [
-      { icon: SiGit, label: "Git", fill: "#F05032" },
-      { icon: SiDocker, label: "Docker", fill: "#2496ED" },
-      { icon: SiVercel, label: "Vercel", fill: "#000000" },
-      { icon: SiDigitalocean, label: "DigitalOcean", fill: "#0080FF" },
-      { icon: SiBetterauth, label: "Better Auth", fill: "#EB5424" },
-      { icon: SiZod, label: "Zod", fill: "#3E67B1" },
-      { icon: SiSupabase, label: "Supabase", fill: "#3ECF8E" },
-      { icon: SiUpstash, label: "Upstash Redis", fill: "#00E9A3" },
-      { icon: SiSanity, label: "Sanity", fill: "#F03E2F" },
-      { icon: SiPnpm, label: "pnpm", fill: "#F69220" },
-      { icon: SiVite, label: "Vite", fill: "#646CFF" },
+      "Git",
+      "Docker",
+      "Vercel",
+      "DigitalOcean",
+      "Better Auth",
+      "Zod",
+      "Supabase",
+      "Upstash Redis",
+      "Sanity CMS",
+      "pnpm",
+      "Vite",
     ],
   },
 ];
@@ -93,48 +68,97 @@ export const TechStack = () => {
 
   return (
     <section className="techstack" id="techstack" ref={ref}>
-      <div className="section-header">
-        <Reveal>
-          <p className="section__number">01</p>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="section__heading">TECH STACK</h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="section__sub">
-            The stack I know well enough to ship with.
-          </p>
-        </Reveal>
-      </div>
+      <div className="techstack__layout">
+        {/* Left Column: Stack Strategy & Philosophy */}
+        <div className="techstack__left">
+          <Reveal>
+            <p className="section__number">01</p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="section__heading">TECH STACK</h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="techstack__philosophy">
+              My approach is centered around building high-performance, type-safe software that scales. I select tools that support fast iteration cycles while preserving strict code quality, type safety, and seamless deployments.
+            </p>
+          </Reveal>
 
-      <Reveal delay={0.5}>
-        <div className="techstack__grid">
-          {techStacks.map((stack) => (
-            <div key={stack.category} className="techstack__card">
-              <p className="techstack__category">{stack.category}</p>
-              <div className="techstack__badges">
-                {stack.tools.map((tool) => {
-                  const Icon = tool.icon;
-                  return (
-                    <span key={tool.label} className="techstack__badge">
-                      <Icon
-                        className="techstack__badge-icon"
-                        style={{
-                          color: tool.fill.startsWith("#")
-                            ? tool.fill
-                            : `#${tool.fill}`,
-                        }}
-                      />
-                      {tool.label}
-                    </span>
-                  );
-                })}
+          {/* Daily Driver Highlight Panel */}
+          <Reveal delay={0.18}>
+            <div className="techstack__focus-panel">
+              <div className="techstack__focus-header">
+                <Sparkles className="techstack__focus-icon" />
+                <span className="techstack__focus-title">CURRENT DAILY DRIVER</span>
               </div>
+              <p className="techstack__focus-desc">
+                Building custom full-stack software using a highly modern, fully integrated core stack:
+              </p>
+              <div className="techstack__focus-badges">
+                <span className="techstack__focus-badge">Next.js</span>
+                <span className="techstack__focus-badge">TypeScript</span>
+                <span className="techstack__focus-badge">PostgreSQL</span>
+                <span className="techstack__focus-badge">Tailwind</span>
+              </div>
+              <hr className="techstack__focus-divider" />
+              <p className="techstack__focus-desc techstack__focus-desc--secondary">
+                <strong>Currently sharpening:</strong> Core algorithms & data structures (LeetCode) and high-scale System Design principles.
+              </p>
             </div>
-          ))}
+          </Reveal>
         </div>
-      </Reveal>
+
+        {/* Right Column: Flat Clean Grid Cards */}
+        <div className="techstack__right">
+          <div className="techstack__cards-stack">
+            {techStacks.map((stack, index) => {
+              const CategoryIcon = stack.icon;
+              return (
+                <Reveal key={stack.category} delay={0.15 + index * 0.1}>
+                  <div
+                    className="techstack__card"
+                    style={
+                      {
+                        "--ambient-glow": stack.glow,
+                      } as React.CSSProperties
+                    }
+                  >
+                    <div className="techstack__card-header">
+                      <div className="techstack__card-icon-wrapper">
+                        <CategoryIcon className="techstack__card-icon" />
+                      </div>
+                      <p className="techstack__category">{stack.category}</p>
+                    </div>
+                    <div className="techstack__badges">
+                      {stack.tools.map((toolName) => {
+                        const iconInfo = techIconMap[toolName];
+                        if (!iconInfo) return null;
+                        const Icon = iconInfo.icon;
+                        return (
+                          <span
+                            key={toolName}
+                            className="techstack__badge"
+                            style={
+                              {
+                                "--brand-color": iconInfo.fill,
+                              } as React.CSSProperties
+                            }
+                          >
+                            <Icon
+                              className="techstack__badge-icon"
+                              style={{ color: iconInfo.fill }}
+                            />
+                            {toolName}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
-

@@ -66,7 +66,7 @@ export const Projects = () => {
     <div id="projects" ref={ref}>
       <div className="section-header">
         <Reveal>
-          <p className="section__number">01</p>
+          <p className="section__number">02</p>
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="section__heading">PROJECTS</h2>
@@ -104,7 +104,15 @@ export const Projects = () => {
                       const iconInfo = techIconMap[t];
                       const IconComponent = iconInfo?.icon;
                       return (
-                        <span key={t} className="project__tag">
+                        <span
+                          key={t}
+                          className="project__tag"
+                          style={
+                            {
+                              "--brand-color": iconInfo?.fill || "var(--amber)",
+                            } as React.CSSProperties
+                          }
+                        >
                           {IconComponent && (
                             <IconComponent
                               className="project__tag-icon"

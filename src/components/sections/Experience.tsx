@@ -47,7 +47,7 @@ export const Experience = () => {
       {/* Section header — consistent with Projects & About */}
       <div className="section-header">
         <Reveal>
-          <p className="section__number">02</p>
+          <p className="section__number">03</p>
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="section__heading">EXPERIENCE</h2>
@@ -111,6 +111,11 @@ export const Experience = () => {
                       <span
                         key={`${exp.company}-tech-${index}-${j}-${t}`}
                         className="experience__tag"
+                        style={
+                          {
+                            "--brand-color": iconInfo?.fill || "var(--amber)",
+                          } as React.CSSProperties
+                        }
                       >
                         {IconComponent && (
                           <IconComponent
