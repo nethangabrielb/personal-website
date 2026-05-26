@@ -258,7 +258,6 @@ h6 {
 }
 
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;
@@ -618,25 +617,78 @@ h6 {
 
 .experience {
   padding: 6rem 6vw;
-  max-width: 900px;
 }
 
-.experience__label {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 2.5rem;
+/* Timeline container */
+.experience__timeline {
+  position: relative;
+  padding-left: 2rem;
 }
 
+/* Timeline dot */
+.experience__dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 2.5rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--rule);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+/* Card */
 .experience__card {
-  border-top: 0.5px solid var(--rule);
-  padding: 2rem 0;
+  position: relative;
+  padding: 2rem 0 2rem 1.5rem;
 }
 
-.experience__card:last-child {
-  border-bottom: 0.5px solid var(--rule);
+/* Per-card timeline line segment */
+.experience__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2rem;
+  width: 1px;
+  background: var(--rule);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* First card: fade in from top */
+.experience__timeline > *:first-child .experience__card::before {
+  top: 2rem;
+}
+
+/* Last card: fade out at bottom */
+.experience__timeline > *:last-child .experience__card::before {
+  bottom: 2rem;
+}
+
+.experience__card:hover::before {
+  background: var(--amber);
+  box-shadow: 0 0 6px rgba(192, 123, 42, 0.3);
+}
+
+.experience__card:hover .experience__dot {
+  border-color: var(--amber);
+  background: var(--amber);
+  box-shadow: 0 0 8px rgba(192, 123, 42, 0.4);
+}
+
+/* Divider between cards */
+.experience__timeline > * + * .experience__card {
+  border-top: 0.5px solid var(--rule);
+}
+
+.experience__card-body {
+  display: flex;
+  flex-direction: column;
 }
 
 .experience__header {
@@ -652,6 +704,11 @@ h6 {
   color: var(--text);
   margin: 0;
   letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.experience__card:hover .experience__company {
+  color: var(--amber);
 }
 
 .experience__role {
@@ -719,6 +776,11 @@ h6 {
   padding: 0.3rem 0.6rem;
   border-radius: 3px;
   letter-spacing: 0.02em;
+  transition: border-color 0.2s ease;
+}
+
+.experience__card:hover .experience__tag {
+  border-color: rgba(192, 123, 42, 0.3);
 }
 
 /* ─── Contact ────────────────────────────────────────────────── */
@@ -945,6 +1007,40 @@ h6 {
 /* ─── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
+  .experience {
+    padding: 4rem 6vw;
+  }
+
+  .experience__timeline {
+    padding-left: 0;
+  }
+
+  .experience__timeline::before {
+    display: none;
+  }
+
+  .experience__dot {
+    display: none;
+  }
+
+  .experience__card {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .experience__card:hover {
+    border-left-color: transparent;
+  }
+
+  .experience__header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .experience__date {
+    padding-top: 0;
+  }
+
   .hero__photo {
     display: none;
   }
@@ -977,15 +1073,6 @@ h6 {
 
   .project__screenshot {
     order: -1;
-  }
-
-  .experience__header {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .experience__date {
-    padding-top: 0;
   }
 
   .contact__form-wrapper {

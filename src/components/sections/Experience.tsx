@@ -43,6 +43,7 @@ export const Experience = () => {
 
   return (
     <section className="experience" id="experience" ref={ref}>
+      {/* Section header — consistent with Projects & About */}
       <div className="section-header">
         <Reveal>
           <p className="section__number">02</p>
@@ -57,38 +58,65 @@ export const Experience = () => {
         </Reveal>
       </div>
 
-      {experiences.map((exp, index) => (
-        <Reveal key={index} delay={0.1 + index * 0.15}>
-          <div className="experience__card">
-            <div className="experience__header">
-              <div>
-                <h3 className="experience__company">{exp.company}</h3>
-                <p className="experience__role">{exp.role}</p>
+      {/* Timeline cards */}
+      <div className="experience__timeline">
+        {experiences.map((exp, index) => (
+          <Reveal
+            key={`${exp.company}-${exp.role}-${index}`}
+            delay={0.1 + index * 0.15}
+          >
+            <div className="experience__card">
+              <div className="experience__dot" aria-hidden="true" />
+
+              <div className="experience__card-body">
+                <div className="experience__header">
+                  <div>
+                    <h3 className="experience__company">{exp.company}</h3>
+                    <p className="experience__role">{exp.role}</p>
+                  </div>
+                  <time
+                    className="experience__date"
+                    dateTime={exp.date}
+                    aria-label={exp.date}
+                  >
+                    {exp.date}
+                  </time>
+                </div>
+
+                <p className="experience__summary">{exp.summary}</p>
+
+                <ul className="experience__bullets">
+                  {exp.bullets.map((bullet, i) => (
+                    <li
+                      key={`${exp.company}-bullet-${i}`}
+                      className="experience__bullet"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="experience__bullet-marker"
+                      >
+                        ◆
+                      </span>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="experience__tags">
+                  {exp.tech.map((t, j) => (
+                    <span
+                      key={`${exp.company}-tech-${index}-${j}-${t}`}
+                      className="experience__tag"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <span className="experience__date">{exp.date}</span>
             </div>
-
-            <p className="experience__summary">{exp.summary}</p>
-
-            <ul className="experience__bullets">
-              {exp.bullets.map((bullet, i) => (
-                <li key={i} className="experience__bullet">
-                  <span className="experience__bullet-marker">◆</span>
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-
-            <div className="experience__tags">
-              {exp.tech.map((t) => (
-                <span key={t} className="experience__tag">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      ))}
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 };
