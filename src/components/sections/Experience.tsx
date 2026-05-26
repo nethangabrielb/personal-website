@@ -2,6 +2,7 @@ import { useRef } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
 import { useScrollSection } from "@/hooks/useScrollSection";
+import { techIconMap } from "@/lib/techIcons";
 
 const experiences = [
   {
@@ -103,14 +104,24 @@ export const Experience = () => {
                 </ul>
 
                 <div className="experience__tags">
-                  {exp.tech.map((t, j) => (
-                    <span
-                      key={`${exp.company}-tech-${index}-${j}-${t}`}
-                      className="experience__tag"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  {exp.tech.map((t, j) => {
+                    const iconInfo = techIconMap[t];
+                    const IconComponent = iconInfo?.icon;
+                    return (
+                      <span
+                        key={`${exp.company}-tech-${index}-${j}-${t}`}
+                        className="experience__tag"
+                      >
+                        {IconComponent && (
+                          <IconComponent
+                            className="experience__tag-icon"
+                            style={{ color: iconInfo.fill }}
+                          />
+                        )}
+                        {t}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </div>

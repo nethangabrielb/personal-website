@@ -32,7 +32,6 @@ import {
 } from "@icons-pack/react-simple-icons";
 import { useRef } from "react";
 
-import { TechBadge } from "@/components/TechBadge";
 import { Reveal } from "@/components/ui/Reveal";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
@@ -93,40 +92,43 @@ export const TechStack = () => {
   });
 
   return (
-    <section
-      className="mx-auto max-w-5xl px-4 py-14 sm:py-16 lg:py-20"
-      id="techstack"
-      ref={ref}
-    >
-      <Reveal delay={0.4}>
-        <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-primary leading-tight">
-          Tech Stack
-        </h2>
-        <p className="mt-1 max-w-2xl text-sm sm:text-base md:text-lg text-muted-foreground">
-          The stack I know well enough to ship with.
-        </p>
-      </Reveal>
+    <section className="techstack" id="techstack" ref={ref}>
+      <div className="section-header">
+        <Reveal>
+          <p className="section__number">01</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="section__heading">TECH STACK</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="section__sub">
+            The stack I know well enough to ship with.
+          </p>
+        </Reveal>
+      </div>
 
       <Reveal delay={0.5}>
-        <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-3 md:gap-5">
+        <div className="techstack__grid">
           {techStacks.map((stack) => (
-            <div
-              key={stack.category}
-              className="flex flex-col gap-3.5 rounded-xl border border-border bg-surface p-4 transition-all duration-300 hover:shadow-md sm:p-5"
-            >
-              <p className="text-sm sm:text-base font-medium text-muted-foreground">
-                {stack.category}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {stack.tools.map((tool) => (
-                  <TechBadge
-                    className="border border-border bg-background/20! shadow-2xs"
-                    key={tool.label}
-                    icon={tool.icon}
-                    label={tool.label}
-                    fill={tool.fill}
-                  />
-                ))}
+            <div key={stack.category} className="techstack__card">
+              <p className="techstack__category">{stack.category}</p>
+              <div className="techstack__badges">
+                {stack.tools.map((tool) => {
+                  const Icon = tool.icon;
+                  return (
+                    <span key={tool.label} className="techstack__badge">
+                      <Icon
+                        className="techstack__badge-icon"
+                        style={{
+                          color: tool.fill.startsWith("#")
+                            ? tool.fill
+                            : `#${tool.fill}`,
+                        }}
+                      />
+                      {tool.label}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}
@@ -135,3 +137,4 @@ export const TechStack = () => {
     </section>
   );
 };
+

@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
+import { techIconMap } from "@/lib/techIcons";
+
 const projectsData = [
   {
     number: "01",
@@ -98,11 +100,21 @@ export const Projects = () => {
 
                 <Reveal delay={0.2}>
                   <div className="project__tags">
-                    {project.tech.map((t) => (
-                      <span key={t} className="project__tag">
-                        {t.toLowerCase()}
-                      </span>
-                    ))}
+                    {project.tech.map((t) => {
+                      const iconInfo = techIconMap[t];
+                      const IconComponent = iconInfo?.icon;
+                      return (
+                        <span key={t} className="project__tag">
+                          {IconComponent && (
+                            <IconComponent
+                              className="project__tag-icon"
+                              style={{ color: iconInfo.fill }}
+                            />
+                          )}
+                          {t}
+                        </span>
+                      );
+                    })}
                   </div>
                 </Reveal>
 
