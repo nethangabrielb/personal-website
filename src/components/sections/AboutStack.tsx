@@ -104,7 +104,8 @@ export const AboutStack = () => {
   "stack": ["React", "Next.js", "TypeScript", "Node.js"],
   "experience": "Full-Stack Developer Intern @ Syntactics Inc.",
   "education": "BS Computer Science — USTP, 2026",
-  "seeking": "Junior full-stack roles (PH / Remote)"
+  "seeking": "Junior full-stack roles (PH / Remote)",
+  "github": "`}<a href="https://github.com/nethangabrielb" target="_blank" rel="noopener noreferrer" className="about__terminal-link">github.com/nethangabrielb</a>{`"
 }`}
                   </code>
                 </pre>

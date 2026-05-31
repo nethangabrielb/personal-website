@@ -456,7 +456,7 @@ h6 {
 /* ─── About ──────────────────────────────────────────────────── */
 
 .about {
-  padding: 6rem 6vw;
+  padding: 8rem 6vw;
   background: var(--bg);
 }
 
@@ -667,6 +667,17 @@ h6 {
   line-height: 1.5;
 }
 
+.about__terminal-link {
+  color: var(--amber);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.about__terminal-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ── About principles list ─── */
 .about__principles {
   display: flex;
@@ -805,7 +816,7 @@ h6 {
 
 #projects {
   background: var(--bg-project);
-  padding: 6rem 6vw;
+  padding: 8rem 6vw;
 }
 
 .project {
@@ -984,7 +995,7 @@ h6 {
 /* ─── Experience ─────────────────────────────────────────────── */
 
 .experience {
-  padding: 6rem 6vw;
+  padding: 8rem 6vw;
 }
 
 /* Timeline container */
@@ -1324,7 +1335,7 @@ h6 {
 /* ─── Tech Stack ─────────────────────────────────────────────── */
 
 .techstack {
-  padding: 6rem 6vw;
+  padding: 8rem 6vw;
   background: var(--bg-project);
 }
 
@@ -1417,10 +1428,11 @@ h6 {
 }
 
 .techstack__focus-desc--secondary {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   line-height: 1.5;
 }
+
 
 .techstack__right {
   display: flex;
