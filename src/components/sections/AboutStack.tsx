@@ -1,4 +1,4 @@
-import { Code, Zap } from "lucide-react";
+import { Code, Layers, Zap } from "lucide-react";
 import { useRef } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
@@ -27,31 +27,58 @@ export const AboutStack = () => {
             <h2 className="section__heading">ABOUT</h2>
           </Reveal>
 
-          {/* Bio paragraphs */}
+          {/* Bio */}
           <div className="about__bios">
             <Reveal delay={0.15}>
               <p className="about__bio">
-                I'm a graduating Computer Science student at USTP who got into
-                software development through self-directed learning and countless
-                hours building things from scratch. What started with responsive
-                web interfaces in The Odin Project eventually evolved into building
-                and deploying full-stack applications focused on performance,
-                usability, and clean system design.
+                I build full-stack applications from database schema to deployment
+                — focused on performance, maintainability, and clean architecture.
               </p>
             </Reveal>
-
             <Reveal delay={0.2}>
               <p className="about__bio">
-                I enjoy working across the entire stack — from designing database
-                schemas and backend systems to crafting responsive, intuitive user
-                experiences. Recently, I've been sharpening my problem-solving and
-                DSA fundamentals through LeetCode while deepening my understanding
-                of scalable system design and modern full-stack architecture. I'm
-                currently looking for junior and remote full-stack opportunities
-                where I can continue growing while contributing meaningful work.
+                I got into development through self-directed learning — 1,000+
+                hours through The Odin Project before I ever stepped into a
+                professional environment. That foundation is what I build on.
               </p>
             </Reveal>
           </div>
+
+          {/* Stat cards */}
+          <div className="about__stats">
+            <Reveal delay={0.25}>
+              <div className="about__stat">
+                <span className="about__stat-value">1,000+</span>
+                <span className="about__stat-label">Hours — 3 Years Self-Taught</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="about__stat">
+                <span className="about__stat-value">30+</span>
+                <span className="about__stat-label">Projects Built</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.35}>
+              <div className="about__stat">
+                <span className="about__stat-value">Full-Stack Intern</span>
+                <span className="about__stat-label">Syntactics Inc. 2025</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.4}>
+              <div className="about__stat">
+                <span className="about__stat-value">BS Computer Science</span>
+                <span className="about__stat-label">Graduating June 2026</span>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Footnote */}
+          <Reveal delay={0.45}>
+            <p className="about__footnote">
+              Currently sharpening algorithms &amp; system design through structured
+              LeetCode practice.
+            </p>
+          </Reveal>
         </div>
 
         {/* Right Column: Interactive Terminal Card & Principles */}
@@ -73,16 +100,11 @@ export const AboutStack = () => {
                     {`{
   "name": "Nethan Gabriel Bagasbas",
   "role": "Full-Stack Web Developer",
-  "origin": "Butuan City, PH",
-  "favorites": {
-    "editor": "VS Code",
-    "shell": "zsh / bash",
-    "stack": "React / Next.js / TypeScript"
-  },
-  "currently_reading": [
-    "Kafka on the Shore (Haruki Murakami)",
-    "System Design (Distributed Systems)"
-  ]
+  "origin": "Philippines",
+  "stack": ["React", "Next.js", "TypeScript", "Node.js"],
+  "experience": "Full-Stack Developer Intern @ Syntactics Inc.",
+  "education": "BS Computer Science — USTP, 2026",
+  "seeking": "Junior full-stack roles (PH / Remote)"
 }`}
                   </code>
                 </pre>
@@ -98,9 +120,9 @@ export const AboutStack = () => {
                   <Zap className="about__principle-icon" />
                 </div>
                 <div className="about__principle-info">
-                  <span className="about__principle-title">Performance First</span>
+                  <span className="about__principle-title">⚡ Performance First</span>
                   <p className="about__principle-desc">
-                    Speed is a feature. Optimized database queries, lightweight page weights, and 60fps animations are non-negotiable.
+                    Optimized queries, Redis caching, and lightweight UIs — shipped in production.
                   </p>
                 </div>
               </div>
@@ -112,9 +134,23 @@ export const AboutStack = () => {
                   <Code className="about__principle-icon" />
                 </div>
                 <div className="about__principle-info">
-                  <span className="about__principle-title">Scalable DX</span>
+                  <span className="about__principle-title">{"</> Type-Safe by Default"}</span>
                   <p className="about__principle-desc">
-                    Clean, self-documenting code. Standardized BEM layouts, strictly typed API contracts (TypeScript + Zod), and dockerized environments.
+                    TypeScript + Zod across the stack. Standardized contracts, zero runtime surprises.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.46}>
+              <div className="about__principle">
+                <div className="about__principle-icon-wrapper">
+                  <Layers className="about__principle-icon" />
+                </div>
+                <div className="about__principle-info">
+                  <span className="about__principle-title">🧩 Clean Architecture</span>
+                  <p className="about__principle-desc">
+                    Modular design, separation of concerns, and maintainable patterns — built to scale.
                   </p>
                 </div>
               </div>

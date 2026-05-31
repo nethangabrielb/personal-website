@@ -50,7 +50,7 @@ export const Hero = () => {
 
       <Reveal>
         <p className="hero__label">
-          Full-Stack Developer — Butuan City, PH
+          Full-Stack Developer — Philippines
           <span className="hero__cursor">▋</span>
         </p>
       </Reveal>
