@@ -27,8 +27,8 @@ export const Contact = () => {
               TOGETHER
             </h2>
             <p className="contact-sub">
-              Looking for a junior full-stack developer who ships, reads errors carefully,
-              and understands what they've built.
+              I'm a junior full-stack developer who ships, reads errors carefully,
+              and understands what I've built. Let's build something together.
             </p>
             <div className="contact-links">
               <a href="mailto:contact@nethangabrielb.dev" className="contact-link">
