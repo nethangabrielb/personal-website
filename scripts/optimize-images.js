@@ -18,6 +18,11 @@ const images = [
     output: "public/chirper-screenshot.webp",
     width: 960,
   },
+  {
+    input: "public/personal-website.png",
+    output: "public/personal-website.webp",
+    width: 960,
+  },
 ];
 
 for (const { input, output, width } of images) {

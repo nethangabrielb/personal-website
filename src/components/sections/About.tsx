@@ -14,8 +14,13 @@ export const About = () => {
         <div className="about-grid">
           <div className="about-label-col">
             <div className="big-label">
-              WHO<br /><span className="accent">I AM</span>
+              WHO <span className="accent">I AM</span>
             </div>
+
+            <div className="about-avatar-container">
+              <img src="/hero-me-new.png" alt="Nethan Gabriel Bagasbas" className="about-avatar" />
+            </div>
+
             <div className="about-meta">
               <div className="meta-row">
                 <span className="meta-key">Education</span>
@@ -40,28 +45,49 @@ export const About = () => {
           </div>
           <div className="about-content">
             <p>
-              I'm a full-stack developer who builds things that actually ship. Graduated from{" "}
-              <span className="highlight">USTP-CDO</span> with a CS degree and spent my sophomore year
-              grinding through <span className="highlight">The Odin Project</span> — 1,000+ hours of
-              building before most students finished their first internship application.
+              I build full-stack applications from database schema to deployment — focused
+              on performance, maintainability, and clean architecture.
             </p>
             <p>
-              At <span className="highlight">Syntactics Inc.</span>, I took initialization logic scattered
-              across 23 pages and collapsed it into a single <span className="tech-tag react">React</span>{" "}
-              hook — a ~90% code reduction that eliminated race conditions across 20+ production
-              deployments. I also shipped a full-stack admin interface for a{" "}
-              <span className="tech-tag ts">TS</span> training platform in under a week.
+              I got into development through self-directed learning — 1,000+ hours through{" "}
+              <span className="highlight">The Odin Project</span> before I ever stepped into
+              a professional environment. That foundation is what I build on.
             </p>
             <p>
-              My thesis explored lightweight ML severity estimation for plant disease using
-              MobileNetV2 with CAM-based methods. EigenCAM came out on top.
-              It's the kind of problem that doesn't get solved by following a tutorial.
+              I focus on performance: optimized queries, <span className="highlight">Redis caching</span>,
+              and lightweight UIs. On both the client and server, I write <span className="highlight">TypeScript</span> +{" "}
+              <span className="highlight">Zod</span> to enforce clean, type-safe contracts with zero
+              runtime surprises. Everything is designed around modular, maintainable patterns.
             </p>
             <p style={{ color: "var(--mid-gray)" }}>
-              Currently job hunting for junior full-stack roles in the Philippines and remote.
-              If you need someone who reads error messages carefully and actually understands
-              what they built — let's talk.
+              Currently sharpening algorithms &amp; system design through structured LeetCode practice.
             </p>
+
+            <div className="about-terminal">
+              <div className="about-terminal-bar">
+                <span className="dot red" />
+                <span className="dot yellow" />
+                <span className="dot green" />
+                <span className="about-terminal-title">developer.json</span>
+              </div>
+              <pre className="about-terminal-code">{`{
+  "name": "Nethan Gabriel B. Bagasbas",
+  "role": "Full Stack Developer",
+  "location": "Philippines 🇵🇭",
+  "status": "Actively learning & building",
+  "focus": [
+    "Expanding full-stack development skills",
+    "Modern system design & scalable architecture",
+    "API Design & Contract-First Development"
+  ],
+  "interests": [
+    "Web Performance & Optimization",
+    "Clean, maintainable code",
+    "AI integrations"
+  ],
+  "open_to": "Collaborations, freelance, full-time roles"
+}`}</pre>
+            </div>
           </div>
         </div>
       </div>

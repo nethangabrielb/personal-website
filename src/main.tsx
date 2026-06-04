@@ -17,18 +17,14 @@ createRoot(document.getElementById("root")!).render(
           position="top-center"
           toastOptions={{
             style: {
-              background: "var(--bg)",
-              color: "var(--text)",
-              border: "0.5px solid var(--rule)",
+              background: "var(--near-black)",
+              color: "var(--off-white)",
+              border: "0.5px solid var(--charcoal)",
               fontFamily: "var(--font-body)",
               fontSize: "0.75rem",
               textTransform: "uppercase",
               letterSpacing: "0.05em",
               borderRadius: "4px",
-            },
-            classNames: {
-              success: "text-amber border-amber",
-              error: "text-red-500 border-red-500",
             },
           }}
         />

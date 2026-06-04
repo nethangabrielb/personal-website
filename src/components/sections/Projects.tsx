@@ -9,6 +9,7 @@ const projectsData = [
     title: "CALIBRATE AI",
     description:
       "AI-powered job application tracker with resume scoring, match analysis, and Zod-validated JSON output via Mistral AI. Features anti-inflation rubric, Upstash Redis rate limiting, and resume versioning with duplicate detection.",
+    screenshot: "/calibrate-screenshot.webp",
     tags: [
       { label: "React", cls: "react" },
       { label: "TypeScript", cls: "ts" },
@@ -29,6 +30,7 @@ const projectsData = [
     title: "CHIRPER",
     description:
       "Full-stack Twitter/X clone with real-time messaging via Socket.IO. Built as a pnpm monorepo with Controller→Service→Repository architecture, cursor-based pagination, and Google OAuth. Docker-deployed on DigitalOcean; Next.js frontend on Vercel.",
+    screenshot: "/chirper-screenshot.webp",
     tags: [
       { label: "React", cls: "react" },
       { label: "TypeScript", cls: "ts" },
@@ -49,6 +51,7 @@ const projectsData = [
     title: "NETHANGABRIELB.DEV",
     description:
       "This portfolio — Vite + React + TypeScript + Tailwind + Framer Motion. Prerendered for SEO. Lighthouse scores: 99 Performance, 92 Accessibility, 100 Best Practices, 100 SEO.",
+    screenshot: "/personal-website.webp",
     tags: [
       { label: "React", cls: "react" },
       { label: "TypeScript", cls: "ts" },
@@ -107,6 +110,15 @@ export const Projects = () => {
                   <span className="project-status live">Live</span>
                 </div>
                 <p className="project-desc">{project.description}</p>
+                {project.screenshot && (
+                  <div className="project-screenshot">
+                    <img
+                      src={project.screenshot}
+                      alt={`${project.title} screenshot`}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
                 <div className="project-tags">
                   {project.tags.map((tag) => (
                     <span key={tag.label} className={`tag ${tag.cls}`}>

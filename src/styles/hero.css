@@ -11,9 +11,9 @@
 .hero-main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: end;
-  padding-top: 80px;
-  gap: 0;
+  align-items: center;
+  padding-top: 120px;
+  gap: 48px;
   position: relative;
 }
 
@@ -34,7 +34,7 @@
 .hero-left {
   position: relative;
   z-index: 1;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
 .hero-eyebrow {
@@ -80,7 +80,7 @@
 }
 
 .hero-role-block {
-  margin-top: 32px;
+  margin-top: 40px;
   border-left: 3px solid var(--gold);
   padding-left: 16px;
   opacity: 0;
@@ -104,8 +104,8 @@
 
 .hero-ctas {
   display: flex;
-  gap: 12px;
-  margin-top: 48px;
+  gap: 16px;
+  margin-top: 56px;
   opacity: 0;
   animation: slideUp 0.6s ease forwards;
   animation-delay: 0.7s;
@@ -154,48 +154,125 @@
 .hero-right {
   position: relative;
   z-index: 1;
-  padding-bottom: 80px;
-  padding-left: 48px;
+  padding-bottom: 100px;
+  padding-left: 56px;
   border-left: 1px solid rgba(192, 123, 42, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 48px;
+  gap: 56px;
 }
 
-.hero-desc {
-  max-width: 340px;
-  color: var(--mid-gray);
-  font-size: 12px;
-  line-height: 1.8;
+.hero-manifesto {
+  max-width: 480px;
   opacity: 0;
   animation: slideLeft 0.6s ease forwards;
   animation-delay: 0.5s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.hero-desc strong { color: var(--off-white); font-weight: 500; }
+.manifesto-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+}
+.manifesto-tagline {
+  font-size: 16px;
+  color: var(--off-white);
+  line-height: 1.5;
+}
+.manifesto-tagline strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+.manifesto-sub {
+  font-size: 12px;
+  color: var(--mid-gray);
+  line-height: 1.6;
+}
+.manifesto-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.manifesto-list li {
+  font-size: 12px;
+  color: var(--off-white);
+  line-height: 1.6;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.manifesto-list li:hover {
+  transform: translateX(6px);
+}
+.manifesto-list li .bullet {
+  font-family: var(--font-mono);
+  color: var(--gold);
+  font-size: 11px;
+  white-space: nowrap;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+.manifesto-list li:hover .bullet {
+  color: var(--off-white);
+  text-shadow: 0 0 8px var(--gold);
+}
+.tech-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--off-white);
+  background: rgba(192, 123, 42, 0.08);
+  border: 1px solid rgba(192, 123, 42, 0.2);
+  padding: 1px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+.manifesto-list li:hover .tech-code {
+  background: rgba(192, 123, 42, 0.15);
+  border-color: rgba(192, 123, 42, 0.4);
+}
 
 .hero-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border: 1px solid rgba(192, 123, 42, 0.12);
+  border-top: 1px solid rgba(192, 123, 42, 0.12);
+  border-bottom: 1px solid rgba(192, 123, 42, 0.12);
   opacity: 0;
-  animation: slideLeft 0.6s ease forwards;
+  animation: slideUp 0.6s ease forwards;
   animation-delay: 0.65s;
+  margin-top: auto;
+  margin-bottom: 64px;
 }
 .stat-cell {
-  padding: 20px 24px;
+  padding: 24px 32px;
   border-right: 1px solid rgba(192, 123, 42, 0.12);
-  border-bottom: 1px solid rgba(192, 123, 42, 0.12);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: default;
 }
-.stat-cell:nth-child(even) { border-right: none; }
-.stat-cell:nth-child(n+3) { border-bottom: none; }
+.stat-cell:hover {
+  background-color: rgba(192, 123, 42, 0.02);
+}
+.stat-cell:last-child {
+  border-right: none;
+}
 .stat-val {
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 22px;
   color: var(--gold);
-  line-height: 1;
+  line-height: 1.1;
   margin-bottom: 4px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+.stat-cell:hover .stat-val {
+  transform: translateY(-2px);
 }
 .stat-label {
   font-size: 10px;

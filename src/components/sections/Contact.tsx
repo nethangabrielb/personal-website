@@ -47,24 +47,28 @@ export const Contact = () => {
                 <span className="contact-link-label">nethangabrielb.dev</span>
                 <span className="contact-link-arrow">→</span>
               </a>
+              <a href="/bagasbas-resume.pdf" className="contact-link" target="_blank" rel="noopener noreferrer">
+                <span className="contact-link-label">Download Resume (PDF)</span>
+                <span className="contact-link-arrow">→</span>
+              </a>
             </div>
           </div>
 
           <div className="contact-right">
             <form onSubmit={onSubmit}>
               <div className="form-row">
-                <label className="form-label">Name</label>
-                <input type="text" className="form-input" placeholder="Your name" {...register("name")} />
+                <label className="form-label" htmlFor="contact-name">Name</label>
+                <input id="contact-name" type="text" className="form-input" placeholder="Your name" {...register("name")} />
                 {errors.name && <span className="form-error">{errors.name.message}</span>}
               </div>
               <div className="form-row">
-                <label className="form-label">Email</label>
-                <input type="email" className="form-input" placeholder="your@email.com" {...register("email")} />
+                <label className="form-label" htmlFor="contact-email">Email</label>
+                <input id="contact-email" type="email" className="form-input" placeholder="your@email.com" {...register("email")} />
                 {errors.email && <span className="form-error">{errors.email.message}</span>}
               </div>
               <div className="form-row">
-                <label className="form-label">Message</label>
-                <textarea className="form-textarea" placeholder="What do you need built?" {...register("message")} />
+                <label className="form-label" htmlFor="contact-message">Message</label>
+                <textarea id="contact-message" className="form-textarea" placeholder="What do you need built?" {...register("message")} />
                 {errors.message && <span className="form-error">{errors.message.message}</span>}
               </div>
               <button type="submit" className="form-submit" disabled={isSubmitting}>

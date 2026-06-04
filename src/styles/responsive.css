@@ -3,6 +3,18 @@
   :root { --gutter: 48px; }
   .hero-main { grid-template-columns: 1fr; }
   .hero-right { display: none; }
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+  .stat-cell {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(192, 123, 42, 0.12);
+    border-bottom: 1px solid rgba(192, 123, 42, 0.12);
+  }
+  .stat-cell:nth-child(even) { border-right: none; }
+  .stat-cell:nth-child(n+3) { border-bottom: none; }
   .about-grid { grid-template-columns: 1fr; }
   .about-label-col { position: static; }
   .projects-header { grid-template-columns: 1fr; gap: 16px; }
@@ -32,5 +44,17 @@
     border-top: 1px solid rgba(192, 123, 42, 0.08);
     justify-content: flex-start;
     padding: 16px 32px;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+  .stat-cell {
+    border-right: none;
+    border-bottom: 1px solid rgba(192, 123, 42, 0.12);
+  }
+  .stat-cell:last-child {
+    border-bottom: none;
   }
 }

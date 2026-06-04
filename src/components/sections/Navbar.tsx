@@ -41,7 +41,7 @@ export function Navbar() {
 
   return (
     <nav className="nav-bar">
-      <div className="nav-index">NBB.DEV</div>
+      <div className="nav-index">NETHANGABRIELB.DEV</div>
       <ul className="nav-links">
         {links.map(({ to, label }) => (
           <li key={to}>

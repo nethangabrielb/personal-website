@@ -12,46 +12,54 @@ export const Experience = () => {
       <div className="outer">
         <SectionRule number="05" title="Experience" date="PROFESSIONAL HISTORY" />
         <div className="exp-layout">
-          <div className="exp-heading">
-            EX<br /><span style={{ color: "var(--gold)" }}>PE<br />RI<br />EN<br />CE</span>
-          </div>
+          <div className="exp-heading">EXPERIENCE</div>
           <div className="exp-list">
             <div className="exp-item">
               <div className="exp-meta">
-                <div className="exp-period">Jun – Aug 2025</div>
-                <div className="exp-type">Internship</div>
+                <div className="exp-period">Sep 2025 – Dec 2025</div>
+                <div className="exp-type">Freelance</div>
               </div>
               <div className="exp-body">
-                <div className="exp-role">SOFTWARE ENGINEER INTERN</div>
-                <div className="exp-company">Syntactics Inc. — Cagayan de Oro</div>
+                <div className="exp-role">FREELANCE WEB DEVELOPER</div>
+                <div className="exp-company">Self-Employed</div>
                 <p className="exp-desc">
-                  Worked on production React applications with real users and real stakes.
-                  Took two problems seriously: messy initialization logic and a missing admin interface.
+                  Designed and delivered tailored web solutions for various clients.
                 </p>
-                <div className="exp-highlight">
-                  Consolidated component initialization logic from <strong>23 pages into a single React hook</strong>,
-                  reducing code by ~90–95% and eliminating race conditions across{" "}
-                  <strong>20+ production deployments</strong>. Built a full-stack admin interface
-                  for a Laravel/Next.js training platform within a week.
+                <ul className="exp-bullets">
+                  <li>Built and delivered SEO-optimized websites</li>
+                  <li>Owned end-to-end design and implementation</li>
+                  <li>Integrated headless CMS for content management</li>
+                </ul>
+                <div className="exp-tags">
+                  <span className="exp-tag">Astro</span>
+                  <span className="exp-tag">Sanity CMS</span>
+                  <span className="exp-tag">React</span>
+                  <span className="exp-tag">Tailwind CSS</span>
                 </div>
               </div>
             </div>
             <div className="exp-item">
               <div className="exp-meta">
-                <div className="exp-period">2022 – 2026</div>
-                <div className="exp-type">Education</div>
+                <div className="exp-period">Jun 2025 – Aug 2025</div>
+                <div className="exp-type">Internship</div>
               </div>
               <div className="exp-body">
-                <div className="exp-role">BS COMPUTER SCIENCE</div>
-                <div className="exp-company">USTP-CDO — Dean's List</div>
+                <div className="exp-role">FULL-STACK DEVELOPER INTERN</div>
+                <div className="exp-company">Syntactics Inc.</div>
                 <p className="exp-desc">
-                  Built the actual skills in parallel — started The Odin Project in sophomore year.
-                  Thesis: lightweight CAM-based plant disease severity estimation.
+                  Contributed to the development of enterprise systems and internal training platforms.
                 </p>
-                <div className="exp-highlight">
-                  Completed <strong>The Odin Project</strong> in full: 1,000+ hours, 30+ shipped projects.
-                  Thesis defended and revised. EigenCAM established as top-performing CAM method
-                  across Corn, Potato, and Tomato datasets.
+                <ul className="exp-bullets">
+                  <li>Developed and maintained enterprise web applications</li>
+                  <li>Refactored frontend architecture and shared hooks</li>
+                  <li>Built REST API endpoints and file upload integrations</li>
+                  <li>Collaborated with team and shipped through code reviews</li>
+                </ul>
+                <div className="exp-tags">
+                  <span className="exp-tag">React</span>
+                  <span className="exp-tag">Next.js</span>
+                  <span className="exp-tag">Laravel</span>
+                  <span className="exp-tag">Tailwind CSS</span>
                 </div>
               </div>
             </div>

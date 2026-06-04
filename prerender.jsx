@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 
 import { SectionProvider } from "./src/CurrentSectionProvider";
 import App from "./src/App";
-import { ThemeProvider } from "./src/lib/theme";
 
 export async function prerender(data) {
   const url = data.url || "/";
@@ -12,9 +11,7 @@ export async function prerender(data) {
   const html = renderToString(
     <MemoryRouter initialEntries={[url]}>
       <SectionProvider>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
+        <App />
       </SectionProvider>
     </MemoryRouter>,
   );

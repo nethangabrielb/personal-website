@@ -3,7 +3,7 @@ export function Footer() {
     <footer>
       <div className="footer-left">
         <span className="footer-sig">NETHAN GABRIEL B.</span>
-        <span>Full-Stack Developer · Nasipit, PH</span>
+        <span>Full-Stack Developer · PH</span>
       </div>
       <div>
         <a href="https://github.com/nethangabrielb" target="_blank" rel="noopener noreferrer">GitHub</a>
