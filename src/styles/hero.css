@@ -46,10 +46,13 @@
   animation: slideUp 0.6s ease forwards;
   animation-delay: 0.1s;
 }
+
 .hero-eyebrow-line {
-  width: 40px; height: 1px;
+  width: 40px;
+  height: 1px;
   background: var(--gold);
 }
+
 .hero-eyebrow span {
   font-size: 10px;
   letter-spacing: 0.2em;
@@ -62,6 +65,7 @@
   line-height: 0.88;
   position: relative;
 }
+
 .hero-name .first {
   display: block;
   font-size: clamp(80px, 9vw, 140px);
@@ -70,6 +74,7 @@
   animation: slideRight 0.7s ease forwards;
   animation-delay: 0.25s;
 }
+
 .hero-name .last {
   display: block;
   font-size: clamp(80px, 9vw, 140px);
@@ -87,6 +92,7 @@
   animation: slideUp 0.6s ease forwards;
   animation-delay: 0.55s;
 }
+
 .hero-role {
   font-family: var(--font-body);
   font-size: 13px;
@@ -95,6 +101,7 @@
   letter-spacing: 0.02em;
   line-height: 1.6;
 }
+
 .hero-location {
   font-size: 11px;
   color: var(--mid-gray);
@@ -129,7 +136,11 @@
   transition: background 0.15s, transform 0.1s;
   letter-spacing: 0.03em;
 }
-.btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+.btn-primary:hover {
+  background: var(--gold-dark);
+  transform: translateY(-1px);
+}
 
 .btn-ghost {
   display: inline-flex;
@@ -148,7 +159,12 @@
   transition: border-color 0.15s, color 0.15s, transform 0.1s;
   letter-spacing: 0.03em;
 }
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
+}
 
 /* Hero right */
 .hero-right {
@@ -172,26 +188,31 @@
   flex-direction: column;
   gap: 12px;
 }
+
 .manifesto-header {
   font-family: var(--font-mono);
   font-size: 10px;
   color: var(--gold);
   letter-spacing: 0.15em;
 }
+
 .manifesto-tagline {
   font-size: 16px;
   color: var(--off-white);
   line-height: 1.5;
 }
+
 .manifesto-tagline strong {
   color: var(--gold);
   font-weight: 500;
 }
+
 .manifesto-sub {
   font-size: 12px;
   color: var(--mid-gray);
   line-height: 1.6;
 }
+
 .manifesto-list {
   list-style: none;
   padding: 0;
@@ -200,6 +221,7 @@
   flex-direction: column;
   gap: 10px;
 }
+
 .manifesto-list li {
   font-size: 12px;
   color: var(--off-white);
@@ -209,9 +231,11 @@
   gap: 8px;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .manifesto-list li:hover {
   transform: translateX(6px);
 }
+
 .manifesto-list li .bullet {
   font-family: var(--font-mono);
   color: var(--gold);
@@ -219,10 +243,12 @@
   white-space: nowrap;
   transition: color 0.25s, text-shadow 0.25s;
 }
+
 .manifesto-list li:hover .bullet {
   color: var(--off-white);
   text-shadow: 0 0 8px var(--gold);
 }
+
 .tech-code {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -234,6 +260,7 @@
   white-space: nowrap;
   transition: background-color 0.25s, border-color 0.25s;
 }
+
 .manifesto-list li:hover .tech-code {
   background: rgba(192, 123, 42, 0.15);
   border-color: rgba(192, 123, 42, 0.4);
@@ -251,18 +278,22 @@
   margin-top: auto;
   margin-bottom: 64px;
 }
+
 .stat-cell {
   padding: 24px 32px;
   border-right: 1px solid rgba(192, 123, 42, 0.12);
   transition: background-color 0.3s ease, border-color 0.3s ease;
   cursor: default;
 }
+
 .stat-cell:hover {
   background-color: rgba(192, 123, 42, 0.02);
 }
+
 .stat-cell:last-child {
   border-right: none;
 }
+
 .stat-val {
   font-family: var(--font-display);
   font-size: 22px;
@@ -271,9 +302,12 @@
   margin-bottom: 4px;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
 }
+
 .stat-cell:hover .stat-val {
+  color: var(--off-white);
   transform: translateY(-2px);
 }
+
 .stat-label {
   font-size: 10px;
   color: var(--mid-gray);
@@ -288,12 +322,14 @@
   overflow: hidden;
   position: relative;
 }
+
 .ticker-track {
   display: flex;
   gap: 0;
   animation: ticker 30s linear infinite;
   white-space: nowrap;
 }
+
 .ticker-item {
   display: inline-flex;
   align-items: center;
@@ -304,22 +340,55 @@
   letter-spacing: 0.15em;
   color: var(--mid-gray);
 }
-.ticker-sep { color: var(--gold); font-size: 8px; }
+
+.ticker-sep {
+  color: var(--gold);
+  font-size: 8px;
+}
+
 @keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ─── Animations ─── */
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 @keyframes slideRight {
-  from { opacity: 0; transform: translateX(-32px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
 @keyframes slideLeft {
-  from { opacity: 0; transform: translateX(32px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

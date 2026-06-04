@@ -50,14 +50,14 @@ const projectsData = [
     number: "03",
     title: "NETHANGABRIELB.DEV",
     description:
-      "This portfolio — Vite + React + TypeScript + Tailwind + Framer Motion. Prerendered for SEO. Lighthouse scores: 99 Performance, 92 Accessibility, 100 Best Practices, 100 SEO.",
+      "This portfolio — React + Vite + TypeScript + Vanilla CSS. Verified by Google PageSpeed Insights (90+ Performance, 96 Accessibility, 100 Best Practices, 100 SEO) and Seobility (88% On-Page score).",
     screenshot: "/personal-website.webp",
     tags: [
       { label: "React", cls: "react" },
       { label: "TypeScript", cls: "ts" },
       { label: "Vite", cls: "" },
-      { label: "Tailwind", cls: "" },
-      { label: "Framer Motion", cls: "" },
+      { label: "Vanilla CSS", cls: "" },
+      { label: "Motion", cls: "" },
     ],
     links: {
       live: "https://nethangabrielb.dev",
