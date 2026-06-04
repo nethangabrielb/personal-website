@@ -12,7 +12,14 @@ export const Experience = () => {
       <div className="outer">
         <SectionRule number="05" title="Experience" date="PROFESSIONAL HISTORY" />
         <div className="exp-layout">
-          <div className="exp-heading">EXPERIENCE</div>
+          <div className="exp-sidebar">
+            <div className="exp-heading">
+              WORK<br /><span style={{ color: "var(--gold)" }}>HISTORY</span>
+            </div>
+            <p className="exp-note">
+              My professional timeline, spanning client-tailored freelance projects and enterprise development internships.
+            </p>
+          </div>
           <div className="exp-list">
             <div className="exp-item">
               <div className="exp-meta">

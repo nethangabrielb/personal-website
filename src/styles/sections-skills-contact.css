@@ -93,6 +93,12 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 80px;
+  align-items: start;
+}
+
+.exp-sidebar {
+  position: sticky;
+  top: 96px;
 }
 
 .exp-heading {
@@ -100,8 +106,13 @@
   font-size: clamp(64px, 7vw, 115px);
   line-height: 0.9;
   color: var(--off-white);
-  position: sticky;
-  top: 96px;
+  margin-bottom: 24px;
+}
+
+.exp-note {
+  font-size: 11px;
+  color: var(--mid-gray);
+  line-height: 1.8;
 }
 
 .exp-list {
