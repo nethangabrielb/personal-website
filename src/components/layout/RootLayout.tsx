@@ -1,14 +1,19 @@
 import { Outlet } from "react-router-dom";
 
+import { GridOverlay } from "@/components/ui/GridOverlay";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+
 import { Navbar } from "../sections/Navbar";
 
 export function RootLayout() {
   return (
-    <div className="min-h-screen bg-bg text-text antialiased">
+    <>
+      <ScrollProgress />
+      <GridOverlay />
       <Navbar />
       <main>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }

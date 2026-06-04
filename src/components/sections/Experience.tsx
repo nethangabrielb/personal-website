@@ -1,137 +1,62 @@
 import { useRef } from "react";
 
-import { Reveal } from "@/components/ui/Reveal";
+import { SectionRule } from "@/components/ui/SectionRule";
 import { useScrollSection } from "@/hooks/useScrollSection";
-import { techIconMap } from "@/lib/techIcons";
-
-const experiences = [
-  {
-    company: "Self-Employed",
-    role: "Freelance Web Developer",
-    date: "Sep 2025 – Dec 2025",
-    summary:
-      "Designed and delivered tailored web solutions for various clients.",
-    bullets: [
-      "Built and delivered SEO-optimized websites",
-      "Owned end-to-end design and implementation",
-      "Integrated headless CMS for content management",
-    ],
-    tech: ["Astro", "Sanity CMS", "React", "Tailwind CSS"],
-  },
-  {
-    company: "Syntactics Inc.",
-    role: "Full-Stack Developer Intern",
-    date: "Jun 2025 – Aug 2025",
-    summary:
-      "Contributed to the development of enterprise systems and internal training platforms.",
-    bullets: [
-      "Developed and maintained enterprise web applications",
-      "Refactored frontend architecture and shared hooks",
-      "Built REST API endpoints and file upload integrations",
-      "Collaborated with team and shipped through code reviews",
-    ],
-    tech: ["React", "Next.js", "Laravel", "Tailwind CSS"],
-  },
-];
 
 export const Experience = () => {
   const ref = useRef<HTMLElement>(null);
-
-  useScrollSection({
-    sectionName: "Experience",
-    ref,
-  });
+  useScrollSection({ sectionName: "Experience", ref });
 
   return (
-    <section className="experience" id="experience" ref={ref}>
-      {/* Section header — consistent with Projects & About */}
-      <div className="section-header">
-        <Reveal>
-          <p className="section__number">03</p>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="section__heading">EXPERIENCE</h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="section__sub">
-            Real work, real codebases, real deadlines.
-          </p>
-        </Reveal>
-      </div>
-
-      {/* Timeline cards */}
-      <div className="experience__timeline">
-        {experiences.map((exp, index) => (
-          <Reveal
-            key={`${exp.company}-${exp.role}-${index}`}
-            delay={0.1 + index * 0.15}
-          >
-            <div className="experience__card">
-              <div className="experience__dot" aria-hidden="true" />
-
-              <div className="experience__card-body">
-                <div className="experience__header">
-                  <div>
-                    <h3 className="experience__company">{exp.company}</h3>
-                    <p className="experience__role">{exp.role}</p>
-                  </div>
-                  <time
-                    className="experience__date"
-                    dateTime={exp.date}
-                    aria-label={exp.date}
-                  >
-                    {exp.date}
-                  </time>
-                </div>
-
-                <p className="experience__summary">{exp.summary}</p>
-
-                <ul className="experience__bullets">
-                  {exp.bullets.map((bullet, i) => (
-                    <li
-                      key={`${exp.company}-bullet-${i}`}
-                      className="experience__bullet"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="experience__bullet-marker"
-                      >
-                        ◆
-                      </span>
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="experience__tags">
-                  {exp.tech.map((t, j) => {
-                    const iconInfo = techIconMap[t];
-                    const IconComponent = iconInfo?.icon;
-                    return (
-                      <span
-                        key={`${exp.company}-tech-${index}-${j}-${t}`}
-                        className="experience__tag"
-                        style={
-                          {
-                            "--brand-color": iconInfo?.fill || "var(--amber)",
-                          } as React.CSSProperties
-                        }
-                      >
-                        {IconComponent && (
-                          <IconComponent
-                            className="experience__tag-icon"
-                            style={{ color: iconInfo.fill }}
-                          />
-                        )}
-                        {t}
-                      </span>
-                    );
-                  })}
+    <section id="experience" ref={ref}>
+      <div className="outer">
+        <SectionRule number="05" title="Experience" date="PROFESSIONAL HISTORY" />
+        <div className="exp-layout">
+          <div className="exp-heading">
+            EX<br /><span style={{ color: "var(--gold)" }}>PE<br />RI<br />EN<br />CE</span>
+          </div>
+          <div className="exp-list">
+            <div className="exp-item">
+              <div className="exp-meta">
+                <div className="exp-period">Jun – Aug 2025</div>
+                <div className="exp-type">Internship</div>
+              </div>
+              <div className="exp-body">
+                <div className="exp-role">SOFTWARE ENGINEER INTERN</div>
+                <div className="exp-company">Syntactics Inc. — Cagayan de Oro</div>
+                <p className="exp-desc">
+                  Worked on production React applications with real users and real stakes.
+                  Took two problems seriously: messy initialization logic and a missing admin interface.
+                </p>
+                <div className="exp-highlight">
+                  Consolidated component initialization logic from <strong>23 pages into a single React hook</strong>,
+                  reducing code by ~90–95% and eliminating race conditions across{" "}
+                  <strong>20+ production deployments</strong>. Built a full-stack admin interface
+                  for a Laravel/Next.js training platform within a week.
                 </div>
               </div>
             </div>
-          </Reveal>
-        ))}
+            <div className="exp-item">
+              <div className="exp-meta">
+                <div className="exp-period">2022 – 2026</div>
+                <div className="exp-type">Education</div>
+              </div>
+              <div className="exp-body">
+                <div className="exp-role">BS COMPUTER SCIENCE</div>
+                <div className="exp-company">USTP-CDO — Dean's List</div>
+                <p className="exp-desc">
+                  Built the actual skills in parallel — started The Odin Project in sophomore year.
+                  Thesis: lightweight CAM-based plant disease severity estimation.
+                </p>
+                <div className="exp-highlight">
+                  Completed <strong>The Odin Project</strong> in full: 1,000+ hours, 30+ shipped projects.
+                  Thesis defended and revised. EigenCAM established as top-performing CAM method
+                  across Corn, Potato, and Tomato datasets.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,38 +1,17 @@
-import { ArrowUpRight } from "lucide-react";
-
 export function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__socials">
-        <a
-          href="mailto:contact@nethangabrielb.dev"
-          className="footer__link"
-          aria-label="Email"
-        >
-          Email <ArrowUpRight size={14} className="ml-1" />
-        </a>
-        <a
-          href="https://github.com/nethangabrielb"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="footer__link"
-          aria-label="GitHub"
-        >
-          GitHub <ArrowUpRight size={14} className="ml-1" />
-        </a>
-        <a
-          href="https://linkedin.com/in/nethangabrielb"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="footer__link"
-          aria-label="LinkedIn"
-        >
-          LinkedIn <ArrowUpRight size={14} className="ml-1" />
-        </a>
+    <footer>
+      <div className="footer-left">
+        <span className="footer-sig">NETHAN GABRIEL B.</span>
+        <span>Full-Stack Developer · Nasipit, PH</span>
       </div>
-      <p className="footer__copy">
-        © {new Date().getFullYear()} Nethan Bagasbas. All rights reserved.
-      </p>
+      <div>
+        <a href="https://github.com/nethangabrielb" target="_blank" rel="noopener noreferrer">GitHub</a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="https://linkedin.com/in/nethangabrielb" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="https://nethangabrielb.dev">Portfolio</a>
+      </div>
     </footer>
   );
 }
