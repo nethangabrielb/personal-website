@@ -82,7 +82,7 @@ export const Hero = () => {
           </div>
           <div className="stat-cell">
             <div className="stat-val">BS Computer Science</div>
-            <div className="stat-label">Graduating June 2026</div>
+            <div className="stat-label">Cum Laude · USTP-CDO 2026</div>
           </div>
         </div>
       </div>
