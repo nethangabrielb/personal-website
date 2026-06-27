@@ -24,8 +24,13 @@ export const About = () => {
             <div className="about-meta">
               <div className="meta-row">
                 <span className="meta-key">Education</span>
-                <span className="meta-val">BS Computer Science</span>
-                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>USTP-CDO · Dean's List</span>
+                <span className="meta-val">BS Computer Science, Cum Laude</span>
+                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>USTP-CDO · Dean's List (4 Semesters)</span>
+              </div>
+              <div className="meta-row">
+                <span className="meta-key">Awards</span>
+                <span className="meta-val">Best Thesis Award</span>
+                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>USTP-CDO · 2026</span>
               </div>
               <div className="meta-row">
                 <span className="meta-key">Internship</span>
