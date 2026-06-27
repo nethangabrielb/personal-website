@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import type { MouseEvent } from "react";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 
 import { SectionContext } from "@/CurrentSectionProvider";
 
@@ -16,6 +16,44 @@ export function Navbar() {
   const { currentSection, setSectionFromNav } = useContext(SectionContext)!;
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const linksContainerRef = useRef<HTMLUListElement>(null);
+  const linkRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+
+  const sectionMap: Record<string, string> = {
+    About: "About",
+    Skills: "Skills",
+    Projects: "Projects",
+    Experience: "Experience",
+    Contact: "Contact",
+  };
+  const activeLabel = sectionMap[currentSection] || "";
+
+  const updateIndicator = useCallback(() => {
+    const container = linksContainerRef.current;
+    const activeEl = linkRefs.current.get(activeLabel);
+    if (!container || !activeEl) {
+      setIndicator((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+    const containerRect = container.getBoundingClientRect();
+    const linkRect = activeEl.getBoundingClientRect();
+    setIndicator({
+      left: linkRect.left - containerRect.left,
+      width: linkRect.width,
+      opacity: 1,
+    });
+  }, [activeLabel]);
+
+  useEffect(() => {
+    updateIndicator();
+  }, [updateIndicator]);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [updateIndicator]);
+
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
     to: string,
@@ -30,23 +68,20 @@ export function Navbar() {
     section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const sectionMap: Record<string, string> = {
-    About: "About",
-    Skills: "Skills",
-    Projects: "Projects",
-    Experience: "Experience",
-    Contact: "Contact",
+  const setLinkRef = (label: string) => (el: HTMLAnchorElement | null) => {
+    if (el) linkRefs.current.set(label, el);
+    else linkRefs.current.delete(label);
   };
-  const activeLabel = sectionMap[currentSection] || "";
 
   return (
     <nav className="nav-bar">
       <div className="nav-index">NETHANGABRIELB.DEV</div>
-      <ul className="nav-links">
+      <ul className="nav-links" ref={linksContainerRef}>
         {links.map(({ to, label }) => (
           <li key={to}>
             <a
               href={to}
+              ref={setLinkRef(label)}
               className={`nav-link-item ${activeLabel === label ? "active" : ""}`}
               onClick={(event) => handleNavClick(event, to, label)}
             >
@@ -54,6 +89,14 @@ export function Navbar() {
             </a>
           </li>
         ))}
+        <span
+          className="nav-indicator"
+          style={{
+            transform: `translateX(${indicator.left}px)`,
+            width: `${indicator.width}px`,
+            opacity: indicator.opacity,
+          }}
+        />
       </ul>
       <div className="nav-status">
         <div className="status-dot" />
