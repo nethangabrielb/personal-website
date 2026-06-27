@@ -50,22 +50,27 @@ export const About = () => {
           </div>
           <div className="about-content">
             <p>
-              I build full-stack applications from database schema to deployment — focused
-              on performance, maintainability, and clean architecture.
+              I build full-stack web applications from database design to deployment, with a focus on
+              writing software that is maintainable, reliable, and performant.
             </p>
             <p>
-              I got into development through self-directed learning — 1,000+ hours through{" "}
-              <span className="highlight">The Odin Project</span> before I ever stepped into
-              a professional environment. That foundation is what I build on.
+              I started programming through self-directed learning, spending over 1,000 hours
+              completing <span className="highlight">The Odin Project</span> before entering a
+              professional environment. That experience taught me how to build complete applications
+              from scratch and solve problems independently.
             </p>
             <p>
-              I focus on performance: optimized queries, <span className="highlight">Redis caching</span>,
-              and lightweight UIs. On both the client and server, I write <span className="highlight">TypeScript</span> +{" "}
-              <span className="highlight">Zod</span> to enforce clean, type-safe contracts with zero
-              runtime surprises. Everything is designed around modular, maintainable patterns.
+              My primary stack is <span className="highlight">TypeScript</span>,{" "}
+              <span className="highlight">React</span>, <span className="highlight">Node.js</span>,{" "}
+              <span className="highlight">PostgreSQL</span>, <span className="highlight">Prisma</span>,{" "}
+              <span className="highlight">Redis</span>, and <span className="highlight">Zod</span>. I
+              enjoy building well-structured systems with clear boundaries between the frontend and
+              backend, while paying attention to performance and developer experience.
             </p>
             <p style={{ color: "var(--mid-gray)" }}>
-              Currently sharpening algorithms &amp; system design through structured LeetCode practice.
+              I am currently learning <span className="highlight">NestJS</span> and{" "}
+              <span className="highlight">NoSQL</span> while sharpening my data structures and
+              algorithms skills through LeetCode.
             </p>
 
             <div className="about-terminal">
