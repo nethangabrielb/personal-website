@@ -47,17 +47,10 @@ export const About = () => {
                 </div>
               </div>
               <div className="meta-row">
-                <span className="meta-key">Started</span>
-                <div className="meta-vals">
-                  <span className="meta-val">The Odin Project</span>
-                  <span className="meta-val-sub">Late 2023 · self-taught</span>
-                </div>
-              </div>
-              <div className="meta-row">
                 <span className="meta-key">Foundation</span>
                 <div className="meta-vals">
                   <span className="meta-val">The Odin Project</span>
-                  <span className="meta-val-sub">1,000+ hrs · 30+ projects</span>
+                  <span className="meta-val-sub">Late 2023 · 1,000+ hrs · 30+ projects</span>
                 </div>
               </div>
               <div className="meta-row">

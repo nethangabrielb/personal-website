@@ -99,7 +99,7 @@ section[id] { scroll-margin-top: 88px; }
 
 .section-head-no {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--accent-dark);
   border: 1px solid var(--rule);
@@ -124,7 +124,7 @@ section[id] { scroll-margin-top: 88px; }
 
 .section-head-caption {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--muted);
@@ -195,14 +195,14 @@ section[id] { scroll-margin-top: 88px; }
 
 .mono-caption {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .tag {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -248,7 +248,7 @@ section[id] { scroll-margin-top: 88px; }
 
 .nfp-sub {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   margin-bottom: 32px;
 }
