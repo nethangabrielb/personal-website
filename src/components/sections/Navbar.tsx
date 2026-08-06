@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import type { MouseEvent } from "react";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 
 import { SectionContext } from "@/CurrentSectionProvider";
 
@@ -16,10 +16,6 @@ export function Navbar() {
   const { currentSection, setSectionFromNav } = useContext(SectionContext)!;
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const linksContainerRef = useRef<HTMLUListElement>(null);
-  const linkRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
-  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
-
   const sectionMap: Record<string, string> = {
     About: "About",
     Skills: "Skills",
@@ -29,30 +25,11 @@ export function Navbar() {
   };
   const activeLabel = sectionMap[currentSection] || "";
 
-  const updateIndicator = useCallback(() => {
-    const container = linksContainerRef.current;
-    const activeEl = linkRefs.current.get(activeLabel);
-    if (!container || !activeEl) {
-      setIndicator((prev) => ({ ...prev, opacity: 0 }));
-      return;
-    }
-    const containerRect = container.getBoundingClientRect();
-    const linkRect = activeEl.getBoundingClientRect();
-    setIndicator({
-      left: linkRect.left - containerRect.left,
-      width: linkRect.width,
-      opacity: 1,
-    });
-  }, [activeLabel]);
-
-  useEffect(() => {
-    updateIndicator();
-  }, [updateIndicator]);
-
-  useEffect(() => {
-    window.addEventListener("resize", updateIndicator);
-    return () => window.removeEventListener("resize", updateIndicator);
-  }, [updateIndicator]);
+  const scrollTo = (selector: string) => {
+    const section = document.querySelector<HTMLElement>(selector);
+    if (!section) return;
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -62,26 +39,26 @@ export function Navbar() {
     event.preventDefault();
     setSectionFromNav(label);
     setMenuOpen(false);
-
-    const section = document.querySelector<HTMLElement>(to);
-    if (!section) return;
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollTo(to);
   };
 
-  const setLinkRef = (label: string) => (el: HTMLAnchorElement | null) => {
-    if (el) linkRefs.current.set(label, el);
-    else linkRefs.current.delete(label);
+  const handleBrandClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMenuOpen(false);
+    scrollTo("#hero");
   };
 
   return (
     <nav className="nav-bar">
-      <div className="nav-index">NETHANGABRIELB.DEV</div>
-      <ul className="nav-links" ref={linksContainerRef}>
+      <a href="#hero" className="nav-brand" onClick={handleBrandClick}>
+        Nethan Bagasbas<span className="nav-brand-dot">.</span>
+      </a>
+
+      <ul className="nav-links">
         {links.map(({ to, label }) => (
           <li key={to}>
             <a
               href={to}
-              ref={setLinkRef(label)}
               className={`nav-link-item ${activeLabel === label ? "active" : ""}`}
               onClick={(event) => handleNavClick(event, to, label)}
             >
@@ -89,40 +66,29 @@ export function Navbar() {
             </a>
           </li>
         ))}
-        <span
-          className="nav-indicator"
-          style={{
-            transform: `translateX(${indicator.left}px)`,
-            width: `${indicator.width}px`,
-            opacity: indicator.opacity,
-          }}
-        />
       </ul>
-      <div className="nav-status">
-        <div className="status-dot" />
-        Available for work
-      </div>
 
-      {/* Hamburger button */}
       <button
         className="nav-toggle"
         onClick={() => setMenuOpen((prev) => !prev)}
         aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+        aria-controls="nav-mobile-menu"
       >
         <span className="nav-toggle-bar" />
         <span className="nav-toggle-bar" />
         <span className="nav-toggle-bar" />
       </button>
 
-      {/* Mobile menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {menuOpen ? (
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
             className="nav-mobile nav-mobile--open"
+            id="nav-mobile-menu"
           >
             {links.map(({ to, label }) => (
               <a
@@ -135,7 +101,7 @@ export function Navbar() {
               </a>
             ))}
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </nav>
   );
