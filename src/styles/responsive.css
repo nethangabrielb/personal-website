@@ -71,6 +71,19 @@
   }
   .contact-right { padding: 20px; }
   .contact-heading { font-size: clamp(36px, 9vw, 44px); }
+
+  /* Caption drops to its own line instead of overflowing the page */
+  .section-head {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  .section-head-line { display: none; }
+  .section-head-caption {
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .project-desc,
   .exp-desc,
   .exp-bullets li { font-size: 14px; }
