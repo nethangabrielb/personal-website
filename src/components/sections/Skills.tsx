@@ -10,7 +10,15 @@ const skillGroups = [
   },
   {
     label: "Backend",
-    items: ["Node.js / Express", "PostgreSQL", "Prisma ORM", "Socket.IO", "Redis"],
+    items: [
+      "Node.js / Express",
+      "NestJS",
+      "PostgreSQL",
+      "MongoDB / NoSQL",
+      "Prisma ORM",
+      "Socket.IO",
+      "Redis",
+    ],
   },
   {
     label: "DevOps & Tooling",
@@ -19,6 +27,7 @@ const skillGroups = [
   {
     label: "AI / ML",
     items: [
+      "AI Agents",
       "Vercel AI SDK",
       "Python / TensorFlow",
       "llama.cpp / LLMs",

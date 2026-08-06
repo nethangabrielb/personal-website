@@ -47,6 +47,13 @@ export const About = () => {
                 </div>
               </div>
               <div className="meta-row">
+                <span className="meta-key">Started</span>
+                <div className="meta-vals">
+                  <span className="meta-val">The Odin Project</span>
+                  <span className="meta-val-sub">Late 2023 · self-taught</span>
+                </div>
+              </div>
+              <div className="meta-row">
                 <span className="meta-key">Foundation</span>
                 <div className="meta-vals">
                   <span className="meta-val">The Odin Project</span>
@@ -64,30 +71,34 @@ export const About = () => {
 
           <div className="about-content">
             <p className="about-lede">
-              I build full-stack web applications from database design to deployment.
+              I built my full-stack foundations from the ground up.
             </p>
             <p>
-              I focus on software that is maintainable, reliable, and performant —
-              the kind you don't dread coming back to. My journey started with
-              self-directed learning: over <span className="hl">1,000 hours</span> of
-              The Odin Project before entering a professional environment. That
-              foundation taught me to build complete applications from scratch and
-              solve problems on my own.
+              I started web development through The Odin Project in late 2023 and
+              learned the hard way — building a project alongside every new
+              concept, one step at a time. No copy-paste, no shortcuts. That
+              discipline is why my foundations still hold up today, and why they
+              carry over to whatever technology I pick up next.
             </p>
             <p>
               My primary stack is <span className="hl">TypeScript</span>,{" "}
               <span className="hl">React</span>, <span className="hl">Node.js</span>,{" "}
               <span className="hl">PostgreSQL</span>, <span className="hl">Prisma</span>,{" "}
-              <span className="hl">Redis</span>, and <span className="hl">Zod</span>. I
-              like clear boundaries between frontend and backend — well-structured
-              systems with clean types, built with performance and developer
-              experience in mind.
+              <span className="hl">Redis</span>, and <span className="hl">Zod</span> —
+              now joined by <span className="hl">NestJS</span> and{" "}
+              <span className="hl">MongoDB (NoSQL)</span>. I like clear boundaries
+              between frontend and backend: well-structured systems with clean
+              types, built for performance and developer experience.
             </p>
             <p>
-              Right now I'm learning <span className="hl">NestJS</span> and{" "}
-              <span className="hl">NoSQL</span> while sharpening data structures and
-              algorithms on LeetCode.
+              Right now I'm interested in, exploring, and learning{" "}
+              <span className="hl">AI agents</span> — using them to accelerate my
+              development workflow and learn faster.
             </p>
+            <blockquote className="about-quote">
+              "The hard way is the fast way."
+              <span className="about-quote-src">— my Odin Project approach</span>
+            </blockquote>
           </div>
         </div>
       </div>
