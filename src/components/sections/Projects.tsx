@@ -9,7 +9,7 @@ type ProjectData = {
   description: string;
   date: string;
   status: string;
-  screenshot?: { src: string; width: number; height: number };
+  screenshot?: { src: string; width: number; height: number; srcSet?: string };
   tags: string[];
   links: { live?: string; github: string };
 };
@@ -46,6 +46,8 @@ const projectsData: ProjectData[] = [
       src: "/personal-website.webp",
       width: 960,
       height: 482,
+      srcSet:
+        "/personal-website-480.webp 480w, /personal-website-768.webp 768w, /personal-website.webp 960w",
     },
     tags: ["React", "TypeScript", "Vite", "Vanilla CSS", "Motion"],
     links: {
@@ -64,6 +66,8 @@ const projectsData: ProjectData[] = [
       src: "/calibrate-screenshot.webp",
       width: 960,
       height: 554,
+      srcSet:
+        "/calibrate-screenshot-480.webp 480w, /calibrate-screenshot-768.webp 768w, /calibrate-screenshot.webp 960w",
     },
     tags: [
       "React",
@@ -91,6 +95,8 @@ const projectsData: ProjectData[] = [
       src: "/chirper-screenshot.webp",
       width: 960,
       height: 525,
+      srcSet:
+        "/chirper-screenshot-480.webp 480w, /chirper-screenshot-768.webp 768w, /chirper-screenshot.webp 960w",
     },
     tags: [
       "React",
@@ -142,6 +148,8 @@ export const Projects = () => {
                   <figure className="project-figure">
                     <img
                       src={project.screenshot.src}
+                      srcSet={project.screenshot.srcSet}
+                      sizes="(min-width: 768px) 560px, 92vw"
                       alt={`${project.title} screenshot`}
                       loading="lazy"
                       width={project.screenshot.width}

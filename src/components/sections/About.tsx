@@ -16,6 +16,8 @@ export const About = () => {
             <figure className="about-figure">
               <img
                 src="/hero-me-new.webp"
+                srcSet="/hero-me-new-540.webp 540w, /hero-me-new-768.webp 768w, /hero-me-new.webp 1086w"
+                sizes="(min-width: 1024px) 320px, (max-width: 767px) 320px, 92vw"
                 alt="Portrait of Nethan Gabriel Bagasbas"
                 width={1086}
                 height={1448}
