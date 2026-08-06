@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import { SectionRule } from "@/components/ui/SectionRule";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useContactForm } from "@/hooks/useContactForm";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
@@ -17,15 +17,12 @@ export const Contact = () => {
   return (
     <section id="contact" ref={ref}>
       <div className="outer">
-        <SectionRule number="06" title="Contact" date="LET'S BUILD SOMETHING" />
-        <div className="contact-bg-text">HIRE ME</div>
+        <SectionHeader number="06" title="Contact" caption="Let's build something" />
         <div className="contact-layout">
           <div className="contact-left">
-            <h2 className="contact-heading">
-              LET'S<br />
-              <span className="line2">WORK</span><br />
-              TOGETHER
-            </h2>
+            <p className="contact-heading">
+              Let's build something <em>together.</em>
+            </p>
             <p className="contact-sub">
               I'm a junior full-stack developer who ships, reads errors carefully,
               and understands what I've built. Let's build something together.
@@ -33,46 +30,71 @@ export const Contact = () => {
             <div className="contact-links">
               <a href="mailto:contact@nethangabrielb.dev" className="contact-link">
                 <span className="contact-link-label">contact@nethangabrielb.dev</span>
-                <span className="contact-link-arrow">→</span>
+                <span className="contact-link-arrow" aria-hidden="true">→</span>
               </a>
               <a href="https://github.com/nethangabrielb" className="contact-link" target="_blank" rel="noopener noreferrer">
                 <span className="contact-link-label">github.com/nethangabrielb</span>
-                <span className="contact-link-arrow">→</span>
+                <span className="contact-link-arrow" aria-hidden="true">→</span>
               </a>
               <a href="https://linkedin.com/in/nethangabrielb" className="contact-link" target="_blank" rel="noopener noreferrer">
                 <span className="contact-link-label">linkedin.com/in/nethangabrielb</span>
-                <span className="contact-link-arrow">→</span>
-              </a>
-              <a href="https://nethangabrielb.dev" className="contact-link" target="_blank" rel="noopener noreferrer">
-                <span className="contact-link-label">nethangabrielb.dev</span>
-                <span className="contact-link-arrow">→</span>
+                <span className="contact-link-arrow" aria-hidden="true">→</span>
               </a>
               <a href="/bagasbas-resume.pdf" className="contact-link" target="_blank" rel="noopener noreferrer">
-                <span className="contact-link-label">Download Resume (PDF)</span>
-                <span className="contact-link-arrow">→</span>
+                <span className="contact-link-label">Download resume (PDF)</span>
+                <span className="contact-link-arrow" aria-hidden="true">→</span>
               </a>
             </div>
           </div>
 
           <div className="contact-right">
+            <h3 className="contact-form-title">Send a message</h3>
             <form onSubmit={onSubmit}>
               <div className="form-row">
                 <label className="form-label" htmlFor="contact-name">Name</label>
-                <input id="contact-name" type="text" className="form-input" placeholder="Your name" {...register("name")} />
-                {errors.name && <span className="form-error">{errors.name.message}</span>}
+                <input
+                  id="contact-name"
+                  type="text"
+                  className="form-input"
+                  placeholder="Your name"
+                  autoComplete="name"
+                  {...register("name")}
+                />
+                {errors.name ? (
+                  <span className="form-error" role="alert">{errors.name.message}</span>
+                ) : null}
               </div>
               <div className="form-row">
                 <label className="form-label" htmlFor="contact-email">Email</label>
-                <input id="contact-email" type="email" className="form-input" placeholder="your@email.com" {...register("email")} />
-                {errors.email && <span className="form-error">{errors.email.message}</span>}
+                <input
+                  id="contact-email"
+                  type="email"
+                  className="form-input"
+                  placeholder="your@email.com"
+                  autoComplete="email"
+                  spellCheck={false}
+                  inputMode="email"
+                  {...register("email")}
+                />
+                {errors.email ? (
+                  <span className="form-error" role="alert">{errors.email.message}</span>
+                ) : null}
               </div>
               <div className="form-row">
                 <label className="form-label" htmlFor="contact-message">Message</label>
-                <textarea id="contact-message" className="form-textarea" placeholder="What do you need built?" {...register("message")} />
-                {errors.message && <span className="form-error">{errors.message.message}</span>}
+                <textarea
+                  id="contact-message"
+                  className="form-textarea"
+                  placeholder="What do you need built?"
+                  autoComplete="off"
+                  {...register("message")}
+                />
+                {errors.message ? (
+                  <span className="form-error" role="alert">{errors.message.message}</span>
+                ) : null}
               </div>
               <button type="submit" className="form-submit" disabled={isSubmitting}>
-                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                {isSubmitting ? "Sending…" : "Send message"}
               </button>
             </form>
           </div>

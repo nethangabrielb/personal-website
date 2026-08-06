@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import { SectionRule } from "@/components/ui/SectionRule";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
 export const About = () => {
@@ -10,94 +10,84 @@ export const About = () => {
   return (
     <section id="about" ref={ref}>
       <div className="outer">
-        <SectionRule number="02" title="About" date="CDO → NASIPIT" />
+        <SectionHeader number="02" title="About" caption="Who I am" />
         <div className="about-grid">
           <div className="about-label-col">
-            <div className="big-label">
-              WHO <span className="accent">I AM</span>
-            </div>
-
-            <div className="about-avatar-container">
-              <img src="/hero-me-new.png" alt="Nethan Gabriel Bagasbas" className="about-avatar" />
-            </div>
+            <figure className="about-figure">
+              <img
+                src="/hero-me-new.webp"
+                alt="Portrait of Nethan Gabriel Bagasbas"
+                width={1086}
+                height={1448}
+                loading="lazy"
+              />
+              <figcaption>Nethan Bagasbas — Nasipit, Philippines</figcaption>
+            </figure>
 
             <div className="about-meta">
               <div className="meta-row">
                 <span className="meta-key">Education</span>
-                <span className="meta-val">BS Computer Science, Cum Laude</span>
-                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>USTP-CDO · Dean's List (4 Semesters)</span>
+                <div className="meta-vals">
+                  <span className="meta-val">BS Computer Science, Cum Laude</span>
+                  <span className="meta-val-sub">USTP-CDO · Dean's List (4 semesters)</span>
+                </div>
               </div>
               <div className="meta-row">
                 <span className="meta-key">Awards</span>
-                <span className="meta-val">Best Thesis Award</span>
-                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>USTP-CDO · 2026</span>
+                <div className="meta-vals">
+                  <span className="meta-val">Best Thesis Award</span>
+                  <span className="meta-val-sub">USTP-CDO · 2026</span>
+                </div>
               </div>
               <div className="meta-row">
                 <span className="meta-key">Internship</span>
-                <span className="meta-val">Syntactics Inc.</span>
-                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>Jun–Aug 2025</span>
+                <div className="meta-vals">
+                  <span className="meta-val">Syntactics Inc.</span>
+                  <span className="meta-val-sub">Jun–Aug 2025</span>
+                </div>
               </div>
               <div className="meta-row">
                 <span className="meta-key">Foundation</span>
-                <span className="meta-val">The Odin Project</span>
-                <span className="meta-val" style={{ color: "var(--mid-gray)", fontSize: "11px" }}>1,000+ hrs · 30+ projects</span>
+                <div className="meta-vals">
+                  <span className="meta-val">The Odin Project</span>
+                  <span className="meta-val-sub">1,000+ hrs · 30+ projects</span>
+                </div>
               </div>
-              <div className="meta-row" style={{ borderBottom: "none" }}>
+              <div className="meta-row">
                 <span className="meta-key">Status</span>
-                <span className="meta-val" style={{ color: "#22c55e" }}>Open to Work</span>
+                <div className="meta-vals">
+                  <span className="meta-val status">Open to work</span>
+                </div>
               </div>
             </div>
           </div>
-          <div className="about-content">
-            <p>
-              I build full-stack web applications from database design to deployment, with a focus on
-              writing software that is maintainable, reliable, and performant.
-            </p>
-            <p>
-              I started programming through self-directed learning, spending over 1,000 hours
-              completing <span className="highlight">The Odin Project</span> before entering a
-              professional environment. That experience taught me how to build complete applications
-              from scratch and solve problems independently.
-            </p>
-            <p>
-              My primary stack is <span className="highlight">TypeScript</span>,{" "}
-              <span className="highlight">React</span>, <span className="highlight">Node.js</span>,{" "}
-              <span className="highlight">PostgreSQL</span>, <span className="highlight">Prisma</span>,{" "}
-              <span className="highlight">Redis</span>, and <span className="highlight">Zod</span>. I
-              enjoy building well-structured systems with clear boundaries between the frontend and
-              backend, while paying attention to performance and developer experience.
-            </p>
-            <p style={{ color: "var(--mid-gray)" }}>
-              I am currently learning <span className="highlight">NestJS</span> and{" "}
-              <span className="highlight">NoSQL</span> while sharpening my data structures and
-              algorithms skills through LeetCode.
-            </p>
 
-            <div className="about-terminal">
-              <div className="about-terminal-bar">
-                <span className="dot red" />
-                <span className="dot yellow" />
-                <span className="dot green" />
-                <span className="about-terminal-title">developer.json</span>
-              </div>
-              <pre className="about-terminal-code">{`{
-  "name": "Nethan Gabriel B. Bagasbas",
-  "role": "Full Stack Developer",
-  "location": "Philippines 🇵🇭",
-  "status": "Actively learning & building",
-  "focus": [
-    "Expanding full-stack development skills",
-    "Modern system design & scalable architecture",
-    "API Design & Contract-First Development"
-  ],
-  "interests": [
-    "Web Performance & Optimization",
-    "Clean, maintainable code",
-    "AI integrations"
-  ],
-  "open_to": "Collaborations, freelance, full-time roles"
-}`}</pre>
-            </div>
+          <div className="about-content">
+            <p className="about-lede">
+              I build full-stack web applications from database design to deployment.
+            </p>
+            <p>
+              I focus on software that is maintainable, reliable, and performant —
+              the kind you don't dread coming back to. My journey started with
+              self-directed learning: over <span className="hl">1,000 hours</span> of
+              The Odin Project before entering a professional environment. That
+              foundation taught me to build complete applications from scratch and
+              solve problems on my own.
+            </p>
+            <p>
+              My primary stack is <span className="hl">TypeScript</span>,{" "}
+              <span className="hl">React</span>, <span className="hl">Node.js</span>,{" "}
+              <span className="hl">PostgreSQL</span>, <span className="hl">Prisma</span>,{" "}
+              <span className="hl">Redis</span>, and <span className="hl">Zod</span>. I
+              like clear boundaries between frontend and backend — well-structured
+              systems with clean types, built with performance and developer
+              experience in mind.
+            </p>
+            <p>
+              Right now I'm learning <span className="hl">NestJS</span> and{" "}
+              <span className="hl">NoSQL</span> while sharpening data structures and
+              algorithms on LeetCode.
+            </p>
           </div>
         </div>
       </div>

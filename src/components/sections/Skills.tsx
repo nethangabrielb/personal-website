@@ -1,88 +1,59 @@
 import { useRef } from "react";
 
-import { SectionRule } from "@/components/ui/SectionRule";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useScrollSection } from "@/hooks/useScrollSection";
-import { useSkillBars } from "@/hooks/useSkillBars";
 
 const skillGroups = [
   {
     label: "Frontend",
-    items: [
-      { name: "React / Next.js", width: 95 },
-      { name: "TypeScript", width: 90 },
-      { name: "Tailwind CSS", width: 92 },
-      { name: "Framer Motion", width: 80 },
-      { name: "Vite", width: 88 },
-    ],
+    items: ["React / Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
   },
   {
     label: "Backend",
-    items: [
-      { name: "Node.js / Express", width: 90 },
-      { name: "PostgreSQL", width: 85 },
-      { name: "Prisma ORM", width: 88 },
-      { name: "Socket.IO", width: 82 },
-      { name: "Redis", width: 75 },
-    ],
+    items: ["Node.js / Express", "PostgreSQL", "Prisma ORM", "Socket.IO", "Redis"],
   },
   {
     label: "DevOps & Tooling",
-    items: [
-      { name: "Docker", width: 83 },
-      { name: "DigitalOcean", width: 78 },
-      { name: "Vercel", width: 90 },
-      { name: "Git / GitHub", width: 95 },
-      { name: "Linux / SSH", width: 80 },
-    ],
+    items: ["Docker", "DigitalOcean", "Vercel", "Git / GitHub", "Linux / SSH"],
   },
   {
     label: "AI / ML",
     items: [
-      { name: "Vercel AI SDK", width: 82 },
-      { name: "Python / TensorFlow", width: 75 },
-      { name: "llama.cpp / LLMs", width: 70 },
-      { name: "OpenCV / CAM", width: 72 },
-      { name: "Prompt Engineering", width: 85 },
+      "Vercel AI SDK",
+      "Python / TensorFlow",
+      "llama.cpp / LLMs",
+      "OpenCV / CAM",
+      "Prompt Engineering",
     ],
   },
 ];
 
 export const Skills = () => {
   const ref = useRef<HTMLElement>(null);
-  const { containerRef, animated } = useSkillBars();
   useScrollSection({ sectionName: "Skills", ref });
 
   return (
     <section id="skills" ref={ref}>
       <div className="outer">
-        <SectionRule number="04" title="Stack" date="TOOLS I ACTUALLY USE" />
+        <SectionHeader number="04" title="Stack" caption="Tools I actually use" />
         <div className="skills-layout">
-          <div className="skills-sidebar">
-            <div className="skills-heading">
-              TECH<br /><span style={{ color: "var(--gold)" }}>STACK</span>
-            </div>
+          <aside className="skills-sidebar">
             <p className="skills-note">
-              Not a list of things I've Googled once.<br />
-              These are what I reach for when building production software.
+              Not a list of things I've Googled once. These are what I reach for
+              when building production software.
             </p>
-          </div>
-          <div className="skills-grid" ref={containerRef}>
+          </aside>
+          <div className="skills-grid">
             {skillGroups.map((group) => (
               <div key={group.label} className="skill-group">
-                <div className="skill-group-label">{group.label}</div>
-                <div className="skill-items">
+                <h3 className="skill-group-label">{group.label}</h3>
+                <ul className="skill-list">
                   {group.items.map((item) => (
-                    <div key={item.name} className="skill-item">
-                      <span>{item.name}</span>
-                      <div className="skill-bar-track">
-                        <div
-                          className={`skill-bar-fill ${animated ? "animate" : ""}`}
-                          style={{ "--w": `${item.width}%` } as React.CSSProperties}
-                        />
-                      </div>
-                    </div>
+                    <li key={item} className="skill-name">
+                      {item}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             ))}
           </div>

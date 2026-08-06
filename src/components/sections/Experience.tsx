@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import { SectionRule } from "@/components/ui/SectionRule";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
 export const Experience = () => {
@@ -10,16 +10,14 @@ export const Experience = () => {
   return (
     <section id="experience" ref={ref}>
       <div className="outer">
-        <SectionRule number="05" title="Experience" date="PROFESSIONAL HISTORY" />
+        <SectionHeader number="05" title="Experience" caption="Professional history" />
         <div className="exp-layout">
-          <div className="exp-sidebar">
-            <div className="exp-heading">
-              WORK<br /><span style={{ color: "var(--gold)" }}>HISTORY</span>
-            </div>
+          <aside className="exp-sidebar">
             <p className="exp-note">
-              My professional timeline, spanning client-tailored freelance projects and enterprise development internships.
+              My professional timeline, spanning client-tailored freelance
+              projects and an enterprise development internship.
             </p>
-          </div>
+          </aside>
           <div className="exp-list">
             <div className="exp-item">
               <div className="exp-meta">
@@ -27,7 +25,7 @@ export const Experience = () => {
                 <div className="exp-type">Freelance</div>
               </div>
               <div className="exp-body">
-                <div className="exp-role">FREELANCE WEB DEVELOPER</div>
+                <div className="exp-role">Freelance Web Developer</div>
                 <div className="exp-company">Self-Employed</div>
                 <p className="exp-desc">
                   Designed and delivered tailored web solutions for various clients.
@@ -38,10 +36,10 @@ export const Experience = () => {
                   <li>Integrated headless CMS for content management</li>
                 </ul>
                 <div className="exp-tags">
-                  <span className="exp-tag">Astro</span>
-                  <span className="exp-tag">Sanity CMS</span>
-                  <span className="exp-tag">React</span>
-                  <span className="exp-tag">Tailwind CSS</span>
+                  <span className="tag">Astro</span>
+                  <span className="tag">Sanity CMS</span>
+                  <span className="tag">React</span>
+                  <span className="tag">Tailwind CSS</span>
                 </div>
               </div>
             </div>
@@ -51,10 +49,11 @@ export const Experience = () => {
                 <div className="exp-type">Internship</div>
               </div>
               <div className="exp-body">
-                <div className="exp-role">FULL-STACK DEVELOPER INTERN</div>
+                <div className="exp-role">Full-Stack Developer Intern</div>
                 <div className="exp-company">Syntactics Inc.</div>
                 <p className="exp-desc">
-                  Contributed to the development of enterprise systems and internal training platforms.
+                  Contributed to the development of enterprise systems and
+                  internal training platforms.
                 </p>
                 <ul className="exp-bullets">
                   <li>Developed and maintained enterprise web applications</li>
@@ -63,10 +62,10 @@ export const Experience = () => {
                   <li>Collaborated with team and shipped through code reviews</li>
                 </ul>
                 <div className="exp-tags">
-                  <span className="exp-tag">React</span>
-                  <span className="exp-tag">Next.js</span>
-                  <span className="exp-tag">Laravel</span>
-                  <span className="exp-tag">Tailwind CSS</span>
+                  <span className="tag">React</span>
+                  <span className="tag">Next.js</span>
+                  <span className="tag">Laravel</span>
+                  <span className="tag">Tailwind CSS</span>
                 </div>
               </div>
             </div>
