@@ -11,7 +11,7 @@ export const Hero = () => {
       <div className="outer hero-outer">
         <div className="hero-topline">
           <span className="hero-topline-name">Nethan Gabriel B. Bagasbas</span>
-          <span className="hero-topline-meta">Nasipit, Agusan del Norte — Open to remote</span>
+          <span className="hero-topline-meta">Nasipit, Agusan del Norte — Open to remote/relocate</span>
         </div>
 
         <div className="hero-main">
