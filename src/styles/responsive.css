@@ -14,10 +14,14 @@
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
 }
 
+/* Narrow nav: switch to the hamburger before the links get cramped */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: grid; }
+}
+
 @media (max-width: 767px) {
   :root { --gutter: 20px; }
-  .nav-links { display: none; }
-  .nav-toggle { display: block; }
   .nav-brand { padding: 0 20px; font-size: 20px; }
   .skills-grid { grid-template-columns: 1fr; }
   .hero-index { grid-template-columns: 1fr; }
@@ -39,4 +43,37 @@
     align-items: flex-start;
     gap: 8px;
   }
+
+  /* Tighter vertical rhythm on phones */
+  #about, #skills, #experience { padding: 72px 0; }
+  #projects { padding: 72px 0; }
+  #contact { padding: 72px 0 96px; }
+
+  /* Keep the portrait readable instead of full-bleed */
+  .about-figure { max-width: 320px; margin: 0 auto; }
+  .about-figure figcaption { text-align: center; }
+
+  /* Title / date / status on clean lines */
+  .project-date { width: 100%; }
+
+  /* Long labels (email) must never overflow */
+  .contact-link-label { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(44px, 11vw, 56px); }
+  .hero-deck { font-size: 17px; }
+  .hero-index-item { padding: 18px 16px; }
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+  .contact-right { padding: 20px; }
+  .contact-heading { font-size: clamp(36px, 9vw, 44px); }
+  .project-desc,
+  .exp-desc,
+  .exp-bullets li { font-size: 14px; }
+  .form-input,
+  .form-textarea { font-size: 16px; } /* prevent iOS zoom-on-focus */
 }

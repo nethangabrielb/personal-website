@@ -79,6 +79,9 @@
   border: none;
   cursor: pointer;
   padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
   align-self: center;
   margin-right: 24px;
 }

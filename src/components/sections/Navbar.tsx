@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import type { MouseEvent } from "react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import { SectionContext } from "@/CurrentSectionProvider";
 
@@ -16,6 +16,9 @@ export function Navbar() {
   const { currentSection, setSectionFromNav } = useContext(SectionContext)!;
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
   const sectionMap: Record<string, string> = {
     About: "About",
     Skills: "Skills",
@@ -25,7 +28,44 @@ export function Navbar() {
   };
   const activeLabel = sectionMap[currentSection] || "";
 
+  // Close the mobile menu on Escape or outside click while it is open
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [menuOpen]);
+
+  // Lock body scroll while the mobile menu is open
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   const scrollTo = (selector: string) => {
+    document.body.style.overflow = "";
     const section = document.querySelector<HTMLElement>(selector);
     if (!section) return;
     section.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -49,7 +89,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="nav-bar">
+    <nav className="nav-bar" ref={navRef}>
       <a href="#hero" className="nav-brand" onClick={handleBrandClick}>
         Nethan Bagasbas<span className="nav-brand-dot">.</span>
       </a>
@@ -69,6 +109,7 @@ export function Navbar() {
       </ul>
 
       <button
+        ref={toggleRef}
         className="nav-toggle"
         onClick={() => setMenuOpen((prev) => !prev)}
         aria-label="Toggle menu"
