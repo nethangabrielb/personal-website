@@ -11,20 +11,20 @@ const images = [
     widths: [540, 768, 1086],
   },
   {
-    input: "public/calibrate-screenshot.png",
-    output: "public/calibrate-screenshot.webp",
-    widths: [480, 768, 960],
-  },
-  {
-    input: "public/chirper-screenshot.png",
-    output: "public/chirper-screenshot.webp",
-    widths: [480, 768, 960],
-  },
-  {
     input: "public/personal-website.png",
     output: "public/personal-website.webp",
     widths: [480, 768, 960],
   },
+  { input: "public/calibrate-ai.png", output: "public/calibrate-ai.webp", widths: [480, 768, 960] },
+  { input: "public/calibrate-ai-1.png", output: "public/calibrate-ai-1.webp", widths: [480, 768, 960] },
+  { input: "public/calibrate-ai-2.png", output: "public/calibrate-ai-2.webp", widths: [480, 768, 960] },
+  { input: "public/chirper.png", output: "public/chirper.webp", widths: [480, 768, 960] },
+  { input: "public/chirper-1.png", output: "public/chirper-1.webp", widths: [480, 768, 960] },
+  { input: "public/chirper-2.png", output: "public/chirper-2.webp", widths: [480, 768, 960] },
+  { input: "public/devlog.png", output: "public/devlog.webp", widths: [480, 768, 960] },
+  { input: "public/devlog-1.png", output: "public/devlog-1.webp", widths: [480, 768, 960] },
+  { input: "public/devlog-2.png", output: "public/devlog-2.webp", widths: [480, 768, 960] },
+  { input: "public/devlog-3.png", output: "public/devlog-3.webp", widths: [480, 768, 960] },
 ];
 
 for (const { input, output, widths } of images) {

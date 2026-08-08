@@ -1,7 +1,15 @@
 import { useRef } from "react";
 
+import { ProjectCarousel } from "@/components/ui/ProjectCarousel";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useScrollSection } from "@/hooks/useScrollSection";
+
+type ProjectScreenshot = {
+  src: string;
+  width: number;
+  height: number;
+  srcSet?: string;
+};
 
 type ProjectData = {
   number: string;
@@ -9,7 +17,7 @@ type ProjectData = {
   description: string;
   date: string;
   status: string;
-  screenshot?: { src: string; width: number; height: number; srcSet?: string };
+  screenshots?: ProjectScreenshot[];
   tags: string[];
   links: { live?: string; github: string };
 };
@@ -22,6 +30,36 @@ const projectsData: ProjectData[] = [
       "Developer activity tracker that logs time sessions against projects, DSA problems, articles, and snippets, then turns that raw activity into streaks, statistics, charts, and daily reports. Built as a pnpm monorepo with a decoupled NestJS REST API and React SPA sharing a common types package, JWT + Google OAuth authentication, and BullMQ + Redis background report generation.",
     date: "Jul 2026 – Aug 2026",
     status: "Completed",
+    screenshots: [
+      {
+        src: "/devlog.webp",
+        width: 960,
+        height: 501,
+        srcSet:
+          "/devlog-480.webp 480w, /devlog-768.webp 768w, /devlog.webp 960w",
+      },
+      {
+        src: "/devlog-1.webp",
+        width: 960,
+        height: 503,
+        srcSet:
+          "/devlog-1-480.webp 480w, /devlog-1-768.webp 768w, /devlog-1.webp 960w",
+      },
+      {
+        src: "/devlog-2.webp",
+        width: 960,
+        height: 498,
+        srcSet:
+          "/devlog-2-480.webp 480w, /devlog-2-768.webp 768w, /devlog-2.webp 960w",
+      },
+      {
+        src: "/devlog-3.webp",
+        width: 960,
+        height: 501,
+        srcSet:
+          "/devlog-3-480.webp 480w, /devlog-3-768.webp 768w, /devlog-3.webp 960w",
+      },
+    ],
     tags: [
       "React",
       "TypeScript",
@@ -42,13 +80,15 @@ const projectsData: ProjectData[] = [
       "This portfolio — React + Vite + TypeScript + Vanilla CSS. Verified by Google PageSpeed Insights (90+ Performance, 96 Accessibility, 100 Best Practices, 100 SEO) and Seobility (88% On-Page score).",
     date: "Apr 2026",
     status: "Live",
-    screenshot: {
-      src: "/personal-website.webp",
-      width: 960,
-      height: 482,
-      srcSet:
-        "/personal-website-480.webp 480w, /personal-website-768.webp 768w, /personal-website.webp 960w",
-    },
+    screenshots: [
+      {
+        src: "/personal-website.webp",
+        width: 960,
+        height: 497,
+        srcSet:
+          "/personal-website-480.webp 480w, /personal-website-768.webp 768w, /personal-website.webp 960w",
+      },
+    ],
     tags: ["React", "TypeScript", "Vite", "Vanilla CSS", "Motion"],
     links: {
       live: "https://nethangabrielb.dev",
@@ -62,13 +102,29 @@ const projectsData: ProjectData[] = [
       "AI-powered job application tracker with resume scoring, match analysis, and Zod-validated JSON output via Mistral AI. Features anti-inflation rubric, Upstash Redis rate limiting, and resume versioning with duplicate detection.",
     date: "Mar 2026 – Jun 2026",
     status: "Live",
-    screenshot: {
-      src: "/calibrate-screenshot.webp",
-      width: 960,
-      height: 554,
-      srcSet:
-        "/calibrate-screenshot-480.webp 480w, /calibrate-screenshot-768.webp 768w, /calibrate-screenshot.webp 960w",
-    },
+    screenshots: [
+      {
+        src: "/calibrate-ai.webp",
+        width: 960,
+        height: 502,
+        srcSet:
+          "/calibrate-ai-480.webp 480w, /calibrate-ai-768.webp 768w, /calibrate-ai.webp 960w",
+      },
+      {
+        src: "/calibrate-ai-1.webp",
+        width: 960,
+        height: 497,
+        srcSet:
+          "/calibrate-ai-1-480.webp 480w, /calibrate-ai-1-768.webp 768w, /calibrate-ai-1.webp 960w",
+      },
+      {
+        src: "/calibrate-ai-2.webp",
+        width: 960,
+        height: 498,
+        srcSet:
+          "/calibrate-ai-2-480.webp 480w, /calibrate-ai-2-768.webp 768w, /calibrate-ai-2.webp 960w",
+      },
+    ],
     tags: [
       "React",
       "TypeScript",
@@ -91,13 +147,29 @@ const projectsData: ProjectData[] = [
       "Full-stack Twitter/X clone with real-time messaging via Socket.IO. Built as a pnpm monorepo with Controller→Service→Repository architecture, cursor-based pagination, and Google OAuth. Docker-deployed on DigitalOcean; Next.js frontend on Vercel.",
     date: "Oct 2025 – Mar 2026",
     status: "Live",
-    screenshot: {
-      src: "/chirper-screenshot.webp",
-      width: 960,
-      height: 525,
-      srcSet:
-        "/chirper-screenshot-480.webp 480w, /chirper-screenshot-768.webp 768w, /chirper-screenshot.webp 960w",
-    },
+    screenshots: [
+      {
+        src: "/chirper.webp",
+        width: 960,
+        height: 498,
+        srcSet:
+          "/chirper-480.webp 480w, /chirper-768.webp 768w, /chirper.webp 960w",
+      },
+      {
+        src: "/chirper-1.webp",
+        width: 960,
+        height: 501,
+        srcSet:
+          "/chirper-1-480.webp 480w, /chirper-1-768.webp 768w, /chirper-1.webp 960w",
+      },
+      {
+        src: "/chirper-2.webp",
+        width: 960,
+        height: 497,
+        srcSet:
+          "/chirper-2-480.webp 480w, /chirper-2-768.webp 768w, /chirper-2.webp 960w",
+      },
+    ],
     tags: [
       "React",
       "TypeScript",
@@ -144,21 +216,33 @@ export const Projects = () => {
                   <span className="project-status">{project.status}</span>
                 </div>
                 <p className="project-desc">{project.description}</p>
-                {project.screenshot ? (
-                  <figure className="project-figure">
-                    <img
-                      src={project.screenshot.src}
-                      srcSet={project.screenshot.srcSet}
-                      sizes="(min-width: 768px) 560px, 92vw"
-                      alt={`${project.title} screenshot`}
-                      loading="lazy"
-                      width={project.screenshot.width}
-                      height={project.screenshot.height}
-                    />
-                    <figcaption>
-                      fig. {project.number} — {project.title}
-                    </figcaption>
-                  </figure>
+                {project.screenshots ? (
+                  project.screenshots.length > 1 ? (
+                    <figure className="project-figure">
+                      <ProjectCarousel
+                        slides={project.screenshots}
+                        alt={`${project.title} screenshot`}
+                      />
+                      <figcaption>
+                        fig. {project.number} — {project.title}
+                      </figcaption>
+                    </figure>
+                  ) : (
+                    <figure className="project-figure">
+                      <img
+                        src={project.screenshots[0].src}
+                        srcSet={project.screenshots[0].srcSet}
+                        sizes="(min-width: 768px) 560px, 92vw"
+                        alt={`${project.title} screenshot`}
+                        loading="lazy"
+                        width={project.screenshots[0].width}
+                        height={project.screenshots[0].height}
+                      />
+                      <figcaption>
+                        fig. {project.number} — {project.title}
+                      </figcaption>
+                    </figure>
+                  )
                 ) : (
                   <figure className="project-figure">
                     <div
