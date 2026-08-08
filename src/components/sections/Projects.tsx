@@ -222,6 +222,12 @@ export const Projects = () => {
                       <ProjectCarousel
                         slides={project.screenshots}
                         alt={`${project.title} screenshot`}
+                        href={project.links.live ?? project.links.github}
+                        linkLabel={
+                          project.links.live
+                            ? `Open ${project.title} live site`
+                            : `Open ${project.title} source code`
+                        }
                       />
                       <figcaption>
                         fig. {project.number} — {project.title}
@@ -229,15 +235,26 @@ export const Projects = () => {
                     </figure>
                   ) : (
                     <figure className="project-figure">
-                      <img
-                        src={project.screenshots[0].src}
-                        srcSet={project.screenshots[0].srcSet}
-                        sizes="(min-width: 768px) 560px, 92vw"
-                        alt={`${project.title} screenshot`}
-                        loading="lazy"
-                        width={project.screenshots[0].width}
-                        height={project.screenshots[0].height}
-                      />
+                      <a
+                        href={project.links.live ?? project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={
+                          project.links.live
+                            ? `Open ${project.title} live site`
+                            : `Open ${project.title} source code`
+                        }
+                      >
+                        <img
+                          src={project.screenshots[0].src}
+                          srcSet={project.screenshots[0].srcSet}
+                          sizes="(min-width: 768px) 560px, 92vw"
+                          alt={`${project.title} screenshot`}
+                          loading="lazy"
+                          width={project.screenshots[0].width}
+                          height={project.screenshots[0].height}
+                        />
+                      </a>
                       <figcaption>
                         fig. {project.number} — {project.title}
                       </figcaption>

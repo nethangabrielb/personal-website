@@ -16,9 +16,13 @@ const prefersReducedMotion = () =>
 export const ProjectCarousel = ({
   slides,
   alt,
+  href,
+  linkLabel,
 }: {
   slides: ProjectScreenshot[];
   alt: string;
+  href: string;
+  linkLabel: string;
 }) => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -51,24 +55,32 @@ export const ProjectCarousel = ({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div
-        className="project-carousel-track"
-        style={{ transform: `translateX(-${index * 100}%)` }}
+      <a
+        className="project-carousel-link"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={linkLabel}
       >
-        {slides.map((slide) => (
-          <div className="project-carousel-slide" key={slide.src}>
-            <img
-              src={slide.src}
-              srcSet={slide.srcSet}
-              sizes="(min-width: 768px) 560px, 92vw"
-              alt={alt}
-              loading="lazy"
-              width={slide.width}
-              height={slide.height}
-            />
-          </div>
-        ))}
-      </div>
+        <div
+          className="project-carousel-track"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {slides.map((slide) => (
+            <div className="project-carousel-slide" key={slide.src}>
+              <img
+                src={slide.src}
+                srcSet={slide.srcSet}
+                sizes="(min-width: 768px) 560px, 92vw"
+                alt={alt}
+                loading="lazy"
+                width={slide.width}
+                height={slide.height}
+              />
+            </div>
+          ))}
+        </div>
+      </a>
 
       {showControls && (
         <>

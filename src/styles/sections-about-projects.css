@@ -263,6 +263,20 @@
 .project-figure {
   margin-top: 28px;
   max-width: 560px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-figure:hover {
+  transform: translateY(-2px);
+}
+
+.project-figure:hover .project-carousel,
+.project-figure:hover img {
+  border-color: var(--accent);
+}
+
+.project-figure a {
+  display: block;
 }
 
 .project-figure img {
@@ -271,6 +285,7 @@
   display: block;
   border: 1px solid var(--rule);
   background: var(--paper);
+  transition: border-color 0.15s;
 }
 
 .project-placeholder {
@@ -315,6 +330,12 @@
   aspect-ratio: 1919 / 994;
   border: 1px solid var(--rule);
   background: var(--paper);
+  transition: border-color 0.15s;
+}
+
+.project-carousel-link {
+  display: block;
+  height: 100%;
 }
 
 .project-carousel-track {
