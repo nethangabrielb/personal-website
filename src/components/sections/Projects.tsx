@@ -29,7 +29,7 @@ const projectsData: ProjectData[] = [
     description:
       "Developer activity tracker that logs time sessions against projects, DSA problems, articles, and snippets, then turns that raw activity into streaks, statistics, charts, and daily reports. Built as a pnpm monorepo with a decoupled NestJS REST API and React SPA sharing a common types package, JWT + Google OAuth authentication, and BullMQ + Redis background report generation.",
     date: "Jul 2026 – Aug 2026",
-    status: "Completed",
+    status: "Live",
     screenshots: [
       {
         src: "/devlog.webp",
@@ -70,6 +70,7 @@ const projectsData: ProjectData[] = [
       "TanStack Query",
     ],
     links: {
+      live: "https://developer-logs.netlify.app",
       github: "https://github.com/nethangabrielb/dev-log",
     },
   },
@@ -194,14 +195,18 @@ export const Projects = () => {
   return (
     <section id="projects" ref={ref}>
       <div className="outer">
-        <SectionHeader number="03" title="Selected work" caption="Production deployed" />
+        <SectionHeader
+          number="03"
+          title="Selected work"
+          caption="Production deployed"
+        />
         <div className="projects-header">
           <p className="projects-heading">
             Built to <em>ship.</em>
           </p>
           <p className="projects-subtext">
-            Live, production-deployed, and built to a spec I wrote myself.
-            No tutorials. No YouTube clones.
+            Live, production-deployed, and built to a spec I wrote myself. No
+            tutorials. No YouTube clones.
           </p>
         </div>
 
@@ -296,7 +301,10 @@ export const Projects = () => {
                     rel="noopener noreferrer"
                     aria-label={`Open ${project.title} live site`}
                   >
-                    Live <span className="arrow" aria-hidden="true">↗</span>
+                    Live{" "}
+                    <span className="arrow" aria-hidden="true">
+                      ↗
+                    </span>
                   </a>
                 )}
                 <a
@@ -306,7 +314,10 @@ export const Projects = () => {
                   rel="noopener noreferrer"
                   aria-label={`Open ${project.title} source code`}
                 >
-                  Source <span className="arrow" aria-hidden="true">↗</span>
+                  Source{" "}
+                  <span className="arrow" aria-hidden="true">
+                    ↗
+                  </span>
                 </a>
               </div>
             </article>
