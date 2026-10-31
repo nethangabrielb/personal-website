@@ -1,85 +1,64 @@
-# Nethan Bagasbas — Personal Portfolio
+# Nethan Bagasbas - Personal Portfolio
 
-🌐 [nethangabrielb.dev](https://nethangabrielb.dev)
+Website: [nethangabrielb.dev](https://nethangabrielb.dev)
 
-A personal portfolio showcasing my experience, projects, and tech stack as a Full-Stack Developer based in the Philippines.
+Interactive engineering portfolio for **Nethan Gabriel B. Bagasbas** (**Junior Web Developer @ Inventra Inc.**), built with React 19, TypeScript, Vite 8, Motion, and a dual-theme tactile Bento CSS design system.
 
-## 🚀 Tech Stack
+## Tech Stack
 
-- **Framework:** React 19 + TypeScript
-- **Bundler:** Vite 8 (Rolldown)
-- **Styling:** Tailwind CSS v4
+- **Framework:** React 19 + TypeScript 5.7 (strict mode)
+- **Bundler:** Vite 8 (Rolldown) + `vite-prerender-plugin`
+- **Styling:** Custom Vanilla CSS Design System (`Dark Atelier` & `Warm Daylight` themes)
+- **Typography:** Geist Variable (geometric UI & body), Fraunces (editorial display & emphasis), IBM Plex Mono (telemetry, badges, chips, shortcuts)
+- **Motion & Icons:** Motion v12 (`motion/react`) + Lucide React
 - **Routing:** React Router v7
-- **Animations:** Motion (Framer Motion)
-- **Forms & Validation:** React Hook Form + Zod
-- **Notifications:** Sonner
-- **State Management & Data Fetching:** Context API, TanStack Query
-- **Icons:** React Simple Icons & Lucide React
-- **UI Components:** Custom CSS Design System with Radix UI / Shadcn
+- **Forms & Validation:** React Hook Form + Zod + Sonner
 
-## 📂 Sections
+## Key Features
 
-1. **Hero** — Introduction and background
-2. **About & Skills** — Biography, educational background, and tech stack
-3. **Experience** — Professional and freelance work
-4. **Projects** — Featured highlights including **Calibrate AI** and **Chirper**
-5. **Contact** — Functional contact form
+- **Floating Precision Dock & Live PHT Clock:** Spring-animated section pill navigation (`0`-`4` shortcuts), live `Asia/Manila` clock, and persistent Dark/Light theme switcher (`T` shortcut).
+- **`⌘K` Command Palette:** Keyboard-driven command palette (`⌘K` / `Ctrl+K`) to copy email, open Resume PDF, switch themes, jump across sections, or launch live project deployments.
+- **Interactive Dual-Mode Project Workbench:** Each flagship project (**DevLog**, **Calibrate AI**, **Chirper**) switches seamlessly between named **UI Preview** screenshots (with fullscreen keyboard-navigable Lightbox) and a 3-tier **System Architecture Blueprint**.
+- **Interactive Stack & Systems Matrix:** Filterable capability matrix across Frontend, Backend & Data, DevOps & Infrastructure, and AI & Workflow with production verification tags.
 
-## ✨ Features
+## Getting Started
 
-- Scroll-triggered animations via Framer Motion
-- Responsive across mobile, tablet, and desktop
-- Prerendered HTML for SEO via `vite-prerender-plugin`
-- Strict TypeScript environment
-
-## 🛠️ Getting Started
-
-### Prerequisites
-
-- Node.js v18+
-- npm or pnpm
-
-### Installation
-
-1. Clone the repository:
+1. Install dependencies:
 ```bash
-   git clone https://github.com/nethangabrielb/personal-website.git
-   cd personal-website
+pnpm install
 ```
 
-2. Install dependencies:
+2. Configure environment variables:
 ```bash
-   pnpm install
+cp .env.example .env.local
 ```
 
-3. Set up environment variables:
+3. Start the dev server:
 ```bash
-   cp .env.example .env.local
-```
-   Set `VITE_CONTACT_FORM_ENDPOINT` if you want to test the contact form.
-
-4. Start the development server:
-```bash
-   pnpm dev
+pnpm dev
 ```
 
-   Running at `http://localhost:5173/`
-
-## 📦 Project Structure
+## Project Structure
 
 ```text
 src/
 ├── components/
-│   ├── sections/    # Hero, AboutStack, Experience, Projects, Contact
-│   ├── ui/          # Reusable UI components
-│   └── layout/      # Navbar, Footer
-├── hooks/           # Custom React hooks
-├── lib/             # Utility functions and providers
-├── pages/           # Page components
-├── styles/          # Global styles and Tailwind entry point
-└── types/           # Shared TypeScript definitions
+│   ├── layout/      # RootLayout, FloatingDock
+│   ├── sections/    # Overview (Hero Bento), Projects, Experience, Skills, Contact
+│   └── ui/          # CommandPalette, ProjectCarousel (UI Preview + Blueprint stage)
+├── data/
+│   └── portfolio.ts # Centralized typed copy, blueprints, experience, education, stack
+├── hooks/
+│   └── useContactForm.ts
+├── pages/
+│   ├── Home.tsx     # Scroll-spy, theme manager, shortcuts (0-4, T, Cmd+K)
+│   └── NotFoundPage.tsx
+├── styles/
+│   ├── globals.css
+│   ├── base.css     # Dual-theme tokens, ambient dot canvas, tactile primitives
+│   ├── layout.css   # Floating dock, section headers, Command Palette modal
+│   ├── views.css    # Hero Bento, dual-mode project stage, lightbox, timeline, contact
+│   └── responsive.css
+└── types/
+    └── index.ts
 ```
-
-## 🤝 Let's Connect
-
-Reach out through the contact form on the site or find me on [GitHub](https://github.com/nethangabrielb) and [LinkedIn](https://linkedin.com/in/nethangabrielb).
