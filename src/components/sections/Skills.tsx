@@ -1,72 +1,111 @@
-import { useRef } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { useScrollSection } from "@/hooks/useScrollSection";
-
-const skillGroups = [
-  {
-    label: "Frontend",
-    items: ["React / Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
-  },
-  {
-    label: "Backend",
-    items: [
-      "Node.js / Express",
-      "NestJS",
-      "PostgreSQL",
-      "MongoDB / NoSQL",
-      "Prisma ORM",
-      "Socket.IO",
-      "Redis",
-    ],
-  },
-  {
-    label: "DevOps & Tooling",
-    items: ["Docker", "DigitalOcean", "Vercel", "Git / GitHub", "Linux / SSH"],
-  },
-  {
-    label: "AI / ML",
-    items: [
-      "AI Agents",
-      "Vercel AI SDK",
-      "Python / TensorFlow",
-      "llama.cpp / LLMs",
-      "OpenCV / CAM",
-      "Prompt Engineering",
-    ],
-  },
-];
+import { STACK_SPECS } from "@/data/portfolio";
 
 export const Skills = () => {
-  const ref = useRef<HTMLElement>(null);
-  useScrollSection({ sectionName: "Skills", ref });
+  const [selectedDomain, setSelectedDomain] = useState<string>("all");
+
+  const filters = [
+    { id: "all", label: "All Domains" },
+    ...STACK_SPECS.map((s) => ({ id: s.id, label: s.category })),
+  ];
+
+  const visibleSpecs =
+    selectedDomain === "all"
+      ? STACK_SPECS
+      : STACK_SPECS.filter((s) => s.id === selectedDomain);
 
   return (
-    <section id="skills" ref={ref}>
-      <div className="outer">
-        <SectionHeader number="04" title="Stack" caption="Tools I actually use" />
-        <div className="skills-layout">
-          <aside className="skills-sidebar">
-            <p className="skills-note">
-              Not a list of things I've Googled once. These are what I reach for
-              when building production software.
-            </p>
-          </aside>
-          <div className="skills-grid">
-            {skillGroups.map((group) => (
-              <div key={group.label} className="skill-group">
-                <h3 className="skill-group-label">{group.label}</h3>
-                <ul className="skill-list">
-                  {group.items.map((item) => (
-                    <li key={item} className="skill-name">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+    <section id="stack" className="page-section">
+      <div className="container">
+        <div className="section-heading-bar">
+          <div className="section-heading-left">
+            <span className="section-index">03</span>
+            <div>
+              <h2 className="section-title">Stack &amp; Systems</h2>
+              <p className="section-subtitle">
+                Production tools and architectural layers applied across active
+                team development at Inventra Inc. and deployed monorepo
+                applications.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="domain-filter-bar"
+            role="tablist"
+            aria-label="Filter stack by engineering domain"
+          >
+            {filters.map((filter) => {
+              const active = selectedDomain === filter.id;
+              return (
+                <button
+                  key={filter.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  className={`domain-filter-btn${active ? " is-active" : ""}`}
+                  onClick={() => setSelectedDomain(filter.id)}
+                >
+                  {active ? (
+                    <motion.span
+                      layoutId="stack-filter-pill"
+                      className="domain-filter-bg"
+                      transition={{
+                        type: "spring",
+                        stiffness: 450,
+                        damping: 35,
+                      }}
+                    />
+                  ) : null}
+                  <span className="domain-filter-label">{filter.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
+
+        <motion.div
+          layout
+          className={`stack-bento-grid${selectedDomain !== "all" ? " is-single" : ""}`}
+        >
+          <AnimatePresence mode="popLayout">
+            {visibleSpecs.map((group) => (
+              <motion.article
+                layout
+                key={group.id}
+                className="bento-card stack-domain-card"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="stack-card-head">
+                  <span className="stack-card-no">{group.index}</span>
+                  <h3 className="stack-card-title">{group.category}</h3>
+                </div>
+
+                <p className="stack-card-scope">{group.scope}</p>
+
+                <div className="chip-group stack-chip-group">
+                  {group.items.map((item) => (
+                    <span key={item} className="tech-chip tech-chip-lg">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="stack-verified-bar">
+                  <span className="verified-label">Applied in:</span>
+                  <span className="verified-list">
+                    {group.verifiedIn.join(" · ")}
+                  </span>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

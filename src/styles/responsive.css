@@ -1,92 +1,135 @@
-/* ─── Responsive ─── */
-@media (max-width: 1023px) {
-  :root { --gutter: 48px; }
-  .hero-topline-meta { display: none; }
-  .hero-index { grid-template-columns: 1fr 1fr 1fr; }
-  .projects-header { grid-template-columns: 1fr; gap: 16px; }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-label-col { position: static; }
-  .skills-layout { grid-template-columns: 1fr; gap: 40px; }
-  .skills-sidebar { position: static; }
-  .exp-layout { grid-template-columns: 1fr; gap: 40px; }
-  .exp-sidebar { position: static; }
-  .exp-item { grid-template-columns: 1fr; gap: 8px; }
-  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
-}
-
-/* Narrow nav: switch to the hamburger before the links get cramped */
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .nav-toggle { display: grid; }
-}
-
-@media (max-width: 767px) {
-  :root { --gutter: 20px; }
-  .nav-brand { padding: 0 20px; font-size: 20px; }
-  .skills-grid { grid-template-columns: 1fr; }
-  .hero-index { grid-template-columns: 1fr; }
-  .hero-index-item {
-    border-right: none;
-    border-bottom: 1px solid var(--rule);
-  }
-  .hero-index-item:last-child { border-bottom: none; }
-  .project-row { grid-template-columns: 1fr; }
-  .project-actions {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 0;
-  }
-  .contact-right { padding: 24px; }
-  .footer-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+/* ─── Responsive Breakpoints ─── */
+@media (max-width: 1040px) {
+  .hero-bento {
+    grid-template-columns: 1fr;
   }
 
-  /* Tighter vertical rhythm on phones */
-  #about, #skills, #experience { padding: 72px 0; }
-  #projects { padding: 72px 0; }
-  #contact { padding: 72px 0 96px; }
-
-  /* Keep the portrait readable instead of full-bleed */
-  .about-figure { max-width: 320px; margin: 0 auto; }
-  .about-figure figcaption { text-align: center; }
-
-  /* Title / date / status on clean lines */
-  .project-date { width: 100%; }
-
-  /* Long labels (email) must never overflow */
-  .contact-link-label { overflow-wrap: anywhere; }
-}
-
-@media (max-width: 480px) {
-  .hero-title { font-size: clamp(44px, 11vw, 56px); }
-  .hero-deck { font-size: 17px; }
-  .hero-index-item { padding: 18px 16px; }
-  .hero-ctas .btn-primary,
-  .hero-ctas .btn-ghost {
+  .hero-portrait-card {
+    max-width: 460px;
     width: 100%;
-    justify-content: center;
+    margin: 0 auto;
   }
-  .contact-right { padding: 20px; }
-  .contact-heading { font-size: clamp(36px, 9vw, 44px); }
 
-  /* Caption drops to its own line instead of overflowing the page */
-  .section-head {
+  .telemetry-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .work-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .exp-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credentials-column {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-bento {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .dock-wrapper {
+    top: 8px;
+    padding: 8px 16px 0;
+  }
+
+  .dock-bar {
     flex-wrap: wrap;
     row-gap: 8px;
   }
-  .section-head-line { display: none; }
-  .section-head-caption {
+
+  .dock-nav {
+    order: 3;
     width: 100%;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-x: auto;
+    justify-content: space-between;
+    scrollbar-width: none;
   }
 
-  .project-desc,
-  .exp-desc,
-  .exp-bullets li { font-size: 14px; }
-  .form-input,
-  .form-textarea { font-size: 16px; } /* prevent iOS zoom-on-focus */
+  .dock-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dock-nav-btn {
+    flex: 1;
+    text-align: center;
+    padding: 6px 10px;
+  }
+
+  .dock-cmd-text,
+  .dock-kbd {
+    display: none;
+  }
+
+  .dock-cmd-btn {
+    width: 34px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  .hero-primary-card {
+    padding: 28px 24px;
+  }
+
+  .section-heading-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .stack-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credentials-column {
+    grid-template-columns: 1fr;
+  }
+
+  .channel-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .telemetry-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .work-card,
+  .timeline-card,
+  .stack-domain-card,
+  .form-workbench-card {
+    padding: 20px;
+  }
+
+  .blueprint-nodes {
+    grid-template-columns: 1fr;
+  }
+
+  .form-split-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .hero-shortcut-bar {
+    display: none;
+  }
+
+  /* Prevent iOS zoom on focus */
+  .field-input,
+  .field-textarea,
+  .cmd-input {
+    font-size: 16px;
+  }
 }

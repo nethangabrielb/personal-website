@@ -1,7 +1,6 @@
 import { renderToString } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 
-import { SectionProvider } from "./src/CurrentSectionProvider";
 import App from "./src/App";
 
 export async function prerender(data) {
@@ -10,9 +9,7 @@ export async function prerender(data) {
 
   const html = renderToString(
     <MemoryRouter initialEntries={[url]}>
-      <SectionProvider>
-        <App />
-      </SectionProvider>
+      <App />
     </MemoryRouter>,
   );
 
@@ -21,7 +18,7 @@ export async function prerender(data) {
     head: {
       lang: "en",
       ...(is404 && {
-        title: "404 — Page Not Found | Nethan Bagasbas",
+        title: "404 | Nethan Bagasbas",
         elements: new Set([
           {
             type: "meta",

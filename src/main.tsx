@@ -6,33 +6,28 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "sonner";
 
-import { SectionProvider } from "@/CurrentSectionProvider";
-
 import App from "./App";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <SectionProvider>
+      <MotionConfig reducedMotion="user">
         <Toaster
-          position="top-center"
+          position="bottom-right"
           toastOptions={{
             style: {
-              background: "var(--paper)",
-              color: "var(--ink)",
-              border: "1px solid var(--rule)",
-              fontFamily: "var(--font-body)",
+              background: "var(--surface-2)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--border-strong)",
+              fontFamily: "var(--font-mono)",
               fontSize: "0.75rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-              borderRadius: "2px",
+              letterSpacing: "0.02em",
+              borderRadius: "10px",
             },
           }}
         />
-        <MotionConfig reducedMotion="user">
-          <App />
-        </MotionConfig>
-      </SectionProvider>
+        <App />
+      </MotionConfig>
     </BrowserRouter>
   </StrictMode>,
 );

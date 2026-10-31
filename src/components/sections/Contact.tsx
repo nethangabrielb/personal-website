@@ -1,104 +1,227 @@
-import { useRef } from "react";
+import { ArrowUpRight, Check, Copy, Mail, MapPin } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { IDENTITY, NAV_SECTIONS, QUICK_LINKS } from "@/data/portfolio";
 import { useContactForm } from "@/hooks/useContactForm";
-import { useScrollSection } from "@/hooks/useScrollSection";
+import type { SectionId } from "@/types";
 
-export const Contact = () => {
+interface ContactProps {
+  onNavigate: (id: SectionId) => void;
+}
+
+export const Contact = ({ onNavigate }: ContactProps) => {
   const { form, onSubmit } = useContactForm();
   const {
     register,
     formState: { errors, isSubmitting },
   } = form;
 
-  const ref = useRef<HTMLElement>(null);
-  useScrollSection({ sectionName: "Contact", ref });
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard?.writeText(IDENTITY.email);
+    setCopied(true);
+    toast.success(`Copied ${IDENTITY.email}`);
+    window.setTimeout(() => setCopied(false), 2200);
+  };
+
+  const directoryLinks = QUICK_LINKS.filter((l) => l.label !== "Email");
 
   return (
-    <section id="contact" ref={ref}>
-      <div className="outer">
-        <SectionHeader number="06" title="Contact" caption="Let's build something" />
-        <div className="contact-layout">
-          <div className="contact-left">
-            <p className="contact-heading">
-              Let's build something <em>together.</em>
-            </p>
-            <p className="contact-sub">
-              I'm a junior full-stack developer who ships, reads errors carefully,
-              and understands what I've built. Let's build something together.
-            </p>
-            <div className="contact-links">
-              <a href="mailto:contact@nethangabrielb.dev" className="contact-link">
-                <span className="contact-link-label">contact@nethangabrielb.dev</span>
-                <span className="contact-link-arrow" aria-hidden="true">→</span>
-              </a>
-              <a href="https://github.com/nethangabrielb" className="contact-link" target="_blank" rel="noopener noreferrer">
-                <span className="contact-link-label">github.com/nethangabrielb</span>
-                <span className="contact-link-arrow" aria-hidden="true">→</span>
-              </a>
-              <a href="https://linkedin.com/in/nethangabrielb" className="contact-link" target="_blank" rel="noopener noreferrer">
-                <span className="contact-link-label">linkedin.com/in/nethangabrielb</span>
-                <span className="contact-link-arrow" aria-hidden="true">→</span>
-              </a>
-              <a href="/bagasbas-resume.pdf" className="contact-link" target="_blank" rel="noopener noreferrer">
-                <span className="contact-link-label">Download resume (PDF)</span>
-                <span className="contact-link-arrow" aria-hidden="true">→</span>
-              </a>
+    <section id="contact" className="page-section contact-section">
+      <div className="container">
+        <div className="section-heading-bar">
+          <div className="section-heading-left">
+            <span className="section-index">04</span>
+            <div>
+              <h2 className="section-title">Contact</h2>
+              <p className="section-subtitle">
+                For engineering inquiries, technical collaboration, or
+                correspondence, copy my direct email or send a message below.
+              </p>
+            </div>
+          </div>
+          <span className="section-badge">{IDENTITY.shortLocation}</span>
+        </div>
+
+        <div className="contact-bento">
+          <div className="contact-channels">
+            <button
+              type="button"
+              className="bento-card email-copy-card"
+              onClick={handleCopyEmail}
+            >
+              <div className="email-card-top">
+                <span className="channel-kicker">
+                  <Mail size={13} strokeWidth={2} aria-hidden="true" />
+                  Direct Email · Click to Copy
+                </span>
+                <span className="copy-state-pill">
+                  {copied ? (
+                    <>
+                      <Check size={12} strokeWidth={2.3} />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={12} strokeWidth={2} />
+                      Copy
+                    </>
+                  )}
+                </span>
+              </div>
+              <p className="email-address-display">{IDENTITY.email}</p>
+            </button>
+
+            <div className="channel-cards-grid">
+              {directoryLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="bento-card channel-card"
+                  {...(link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  <div className="channel-card-top">
+                    <span className="channel-label">{link.label}</span>
+                    <ArrowUpRight
+                      size={14}
+                      strokeWidth={2}
+                      className="channel-arrow"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="channel-value">{link.value}</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="bento-card location-card">
+              <div className="location-card-row">
+                <MapPin size={15} strokeWidth={1.9} aria-hidden="true" />
+                <div>
+                  <p className="location-primary">{IDENTITY.location}</p>
+                  <p className="location-sub">
+                    {IDENTITY.coordinates} · {IDENTITY.status}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="contact-right">
-            <h3 className="contact-form-title">Send a message</h3>
-            <form onSubmit={onSubmit}>
-              <div className="form-row">
-                <label className="form-label" htmlFor="contact-name">Name</label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  className="form-input"
-                  placeholder="Your name"
-                  autoComplete="name"
-                  {...register("name")}
-                />
-                {errors.name ? (
-                  <span className="form-error" role="alert">{errors.name.message}</span>
-                ) : null}
+          <div className="bento-card form-workbench-card">
+            <h3 className="workbench-form-title">Send a Direct Message</h3>
+            <form className="workbench-form" onSubmit={onSubmit} noValidate>
+              <div className="form-split-row">
+                <div className="field-group">
+                  <label className="field-label" htmlFor="contact-name">
+                    Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    className="field-input"
+                    placeholder="Your name"
+                    autoComplete="name"
+                    {...register("name")}
+                  />
+                  {errors.name ? (
+                    <span className="field-error" role="alert">
+                      {errors.name.message}
+                    </span>
+                  ) : null}
+                </div>
+
+                <div className="field-group">
+                  <label className="field-label" htmlFor="contact-email">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    className="field-input"
+                    placeholder="name@domain.com"
+                    autoComplete="email"
+                    spellCheck={false}
+                    inputMode="email"
+                    {...register("email")}
+                  />
+                  {errors.email ? (
+                    <span className="field-error" role="alert">
+                      {errors.email.message}
+                    </span>
+                  ) : null}
+                </div>
               </div>
-              <div className="form-row">
-                <label className="form-label" htmlFor="contact-email">Email</label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  className="form-input"
-                  placeholder="your@email.com"
-                  autoComplete="email"
-                  spellCheck={false}
-                  inputMode="email"
-                  {...register("email")}
-                />
-                {errors.email ? (
-                  <span className="form-error" role="alert">{errors.email.message}</span>
-                ) : null}
-              </div>
-              <div className="form-row">
-                <label className="form-label" htmlFor="contact-message">Message</label>
+
+              <div className="field-group">
+                <label className="field-label" htmlFor="contact-message">
+                  Message
+                </label>
                 <textarea
                   id="contact-message"
-                  className="form-textarea"
-                  placeholder="What do you need built?"
+                  className="field-textarea"
+                  placeholder="Tell me about the role, system, or project..."
                   autoComplete="off"
                   {...register("message")}
                 />
                 {errors.message ? (
-                  <span className="form-error" role="alert">{errors.message.message}</span>
+                  <span className="field-error" role="alert">
+                    {errors.message.message}
+                  </span>
                 ) : null}
               </div>
-              <button type="submit" className="form-submit" disabled={isSubmitting}>
-                {isSubmitting ? "Sending…" : "Send message"}
+
+              <button
+                type="submit"
+                className="btn-tactile btn-tactile-primary form-submit-btn"
+                disabled={isSubmitting}
+              >
+                <span>{isSubmitting ? "Sending Message..." : "Send Message"}</span>
               </button>
             </form>
           </div>
         </div>
+
+        <footer className="site-footer">
+          <div className="footer-top">
+            <div className="footer-identity">
+              <span className="dock-monogram">{IDENTITY.monogram}</span>
+              <div>
+                <p className="footer-name">{IDENTITY.fullName}</p>
+                <p className="footer-role">{IDENTITY.status}</p>
+              </div>
+            </div>
+
+            <div className="footer-nav">
+              {NAV_SECTIONS.map((sec) => (
+                <button
+                  key={sec.id}
+                  type="button"
+                  className="footer-nav-link"
+                  onClick={() => onNavigate(sec.id)}
+                >
+                  {sec.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p className="footer-colophon">
+              © 2026 {IDENTITY.name} · {IDENTITY.colophon}
+            </p>
+            <button
+              type="button"
+              className="footer-top-btn"
+              onClick={() => onNavigate("overview")}
+            >
+              Back to top ↑
+            </button>
+          </div>
+        </footer>
       </div>
     </section>
   );

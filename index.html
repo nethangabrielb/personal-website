@@ -14,26 +14,34 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
   <title>Nethan Bagasbas | Full-Stack Developer</title>
   <meta name="description"
-    content="Full-stack developer building high-performance web apps with React, Next.js, and Node.js. Explore my projects and technical expertise." />
+    content="Full-Stack Developer building maintainable web applications and distributed backends with TypeScript, React, and Node.js. Currently Junior Web Developer at Inventra Inc." />
   <meta name="keywords"
-    content="Nethan Gabriel B. Bagasbas, full-stack developer, React developer, Next.js, Node.js, TypeScript, web developer portfolio, full stack web applications, JavaScript, software engineer, web development projects" />
+    content="Nethan Gabriel B. Bagasbas, full-stack developer, Junior Web Developer, Inventra Inc., React, Next.js, Node.js, NestJS, TypeScript, Firebase, PostgreSQL, software engineer" />
   <meta name="author" content="Nethan Gabriel B. Bagasbas" />
   <meta name="robots" content="index, follow" />
-  <meta name="color-scheme" content="light" />
-  <meta name="theme-color" content="#F7F1E5" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0b0b0d" />
   <link rel="canonical" href="%VITE_SITE_URL%/" />
+  <script>
+    try {
+      var t = localStorage.getItem("nb-theme");
+      document.documentElement.dataset.theme = t === "light" ? "light" : "dark";
+    } catch (_) {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Nethan Gabriel B. Bagasbas | Full-Stack Developer Portfolio" />
+  <meta property="og:title" content="Nethan Gabriel B. Bagasbas | Full-Stack Developer" />
   <meta property="og:description"
-    content="Full-stack developer portfolio featuring React, Next.js, and Node.js projects, experience, and contact details." />
+    content="Full-Stack Developer building maintainable web applications and distributed backends with TypeScript, React, and Node.js. Junior Web Developer at Inventra Inc." />
   <meta property="og:url" content="%VITE_SITE_URL%/" />
   <meta property="og:image" content="%VITE_SITE_URL%/personal-website.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Nethan Gabriel B. Bagasbas | Full-Stack Developer Portfolio" />
+  <meta name="twitter:title" content="Nethan Gabriel B. Bagasbas | Full-Stack Developer" />
   <meta name="twitter:description"
-    content="Full-stack developer portfolio featuring React, Next.js, and Node.js projects, experience, and contact details." />
+    content="Full-Stack Developer building maintainable web applications and distributed backends with TypeScript, React, and Node.js. Junior Web Developer at Inventra Inc." />
   <meta name="twitter:image" content="%VITE_SITE_URL%/personal-website.png" />
 
   <script type="application/ld+json">
@@ -41,7 +49,15 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Nethan Gabriel B. Bagasbas",
-        "jobTitle": "Full-Stack Developer",
+        "jobTitle": "Junior Web Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Inventra Inc."
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Science and Technology of Southern Philippines"
+        },
         "url": "%VITE_SITE_URL%/",
         "image": "%VITE_SITE_URL%/favicon-192.png",
         "sameAs": [
