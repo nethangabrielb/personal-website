@@ -313,6 +313,11 @@
 .work-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+}
+
+.work-visual {
+  min-width: 0;
 }
 
 .work-meta-bar {
