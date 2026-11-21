@@ -1,0 +1,225 @@
+---
+import "@fontsource-variable/geist";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@/styles/global.css";
+
+import { ClientRouter, fade } from "astro:transitions";
+
+import { SITE } from "@/data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title = SITE.defaultTitle,
+  description = SITE.defaultDescription,
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, SITE.siteUrl).toString();
+const ogImageUrl = new URL(SITE.ogImage, SITE.siteUrl).toString();
+const isAbout = Astro.url.pathname === "/about" || Astro.url.pathname === "/about/";
+const isWork = Astro.url.pathname.startsWith("/work");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.fullName} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/svg+xml" href="/nethan-icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/favicon-192.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <ClientRouter />
+  </head>
+
+  <body class="min-h-dvh flex flex-col">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-[4px] focus:border focus:border-border-strong focus:bg-bg focus:px-3 focus:py-2 focus:text-sm focus:text-ink"
+    >
+      Skip to content
+    </a>
+
+    <header class="w-full max-w-[1080px] mx-auto px-6 sm:px-10">
+      <div class="flex items-center justify-between gap-4 border-b border-border py-5">
+        <a
+          href="/"
+          class="font-mono text-[0.84375rem] text-ink-secondary transition-colors duration-150 hover:text-ink"
+        >
+          nethangabrielb.dev
+        </a>
+
+        <nav aria-label="Primary" class="flex items-center gap-6">
+          <a
+            href="/#work"
+            class:list={[
+              "text-[0.875rem] transition-colors duration-150",
+              isWork
+                ? "text-ink font-medium"
+                : "text-ink-secondary hover:text-ink",
+            ]}
+          >
+            Work
+          </a>
+          <a
+            href="/about"
+            aria-current={isAbout ? "page" : undefined}
+            class:list={[
+              "text-[0.875rem] transition-colors duration-150",
+              isAbout
+                ? "text-ink font-medium"
+                : "text-ink-secondary hover:text-ink",
+            ]}
+          >
+            About
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main
+      id="main-content"
+      tabindex="-1"
+      class="flex-1 outline-none"
+      transition:animate={fade({ duration: "0.16s" })}
+    >
+      <slot />
+    </main>
+
+    <footer class="w-full max-w-[1080px] mx-auto px-6 sm:px-10 mt-16 sm:mt-20 pb-10">
+      <div class="border-t border-border pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-[0.84375rem] text-ink-muted">
+        <p class="m-0">
+          {SITE.name} &middot; {SITE.location}
+        </p>
+        <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+          <a href={`mailto:${SITE.email}`} class="quiet-link">
+            {SITE.email}
+          </a>
+          <span aria-hidden="true">&middot;</span>
+          <a
+            href={SITE.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="quiet-link"
+          >
+            GitHub
+          </a>
+          <span aria-hidden="true">&middot;</span>
+          <a
+            href={SITE.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="quiet-link"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="live-status" role="status" aria-live="polite" class="sr-only"></div>
+
+    <script>
+      function bindCopyButtons() {
+        const copyButtons =
+          document.querySelectorAll<HTMLButtonElement>("[data-copy-email]");
+        copyButtons.forEach((button) => {
+          if (button.dataset.bound) return;
+          button.dataset.bound = "true";
+
+          let resetTimer: number | undefined;
+
+          button.addEventListener("click", async () => {
+            const email = button.dataset.copyEmail;
+            if (!email) return;
+
+            let copied = false;
+            try {
+              await navigator.clipboard.writeText(email);
+              copied = true;
+            } catch {
+              const helper = document.createElement("textarea");
+              helper.value = email;
+              helper.setAttribute("readonly", "");
+              helper.style.position = "fixed";
+              helper.style.opacity = "0";
+              document.body.appendChild(helper);
+              helper.select();
+              copied = document.execCommand("copy");
+              document.body.removeChild(helper);
+            }
+
+            if (!copied) return;
+
+            const labelEl = button.querySelector<HTMLElement>("[data-copy-label]");
+            const copyIcon = button.querySelector<HTMLElement>("[data-copy-icon]");
+            const checkIcon = button.querySelector<HTMLElement>("[data-check-icon]");
+
+            const originalText = button.dataset.originalText || email;
+            button.dataset.originalText = originalText;
+
+            if (labelEl) {
+              labelEl.textContent = "Copied";
+            } else {
+              button.textContent = "Copied";
+            }
+            if (copyIcon && checkIcon) {
+              copyIcon.classList.add("opacity-0", "scale-75");
+              checkIcon.classList.remove("opacity-0", "scale-75");
+            }
+
+            const status = document.getElementById("live-status");
+            if (status) {
+              status.textContent = "Email address copied to clipboard.";
+            }
+
+            if (resetTimer) {
+              window.clearTimeout(resetTimer);
+            }
+            resetTimer = window.setTimeout(() => {
+              if (labelEl) {
+                labelEl.textContent = originalText;
+              } else {
+                button.textContent = originalText;
+              }
+              if (copyIcon && checkIcon) {
+                copyIcon.classList.remove("opacity-0", "scale-75");
+                checkIcon.classList.add("opacity-0", "scale-75");
+              }
+              if (status) {
+                status.textContent = "";
+              }
+            }, 1500);
+          });
+        });
+      }
+
+      document.addEventListener("astro:page-load", bindCopyButtons);
+    </script>
+  </body>
+</html>

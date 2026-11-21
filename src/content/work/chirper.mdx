@@ -1,0 +1,88 @@
+---
+order: 3
+title: "Chirper"
+year: "2025 – 2026"
+dateRange: "Oct 2025 – Mar 2026"
+subtitle: "Real-time social platform with layered Express 5 services and containerized deployment."
+summary: "Real-time social publishing platform with direct messaging and cursor-paginated feeds. Structured as a pnpm monorepo with a layered Express 5 API containerized in Docker on DigitalOcean and a Next.js frontend on Vercel."
+archNote: "pnpm monorepo · Layered Express 5 in Docker · Socket.IO + PostgreSQL cursors"
+stack:
+  - "Next.js"
+  - "Express 5"
+  - "TypeScript"
+  - "PostgreSQL"
+  - "Prisma"
+  - "Socket.IO"
+  - "Docker"
+metaStack: "Next.js, Express 5, PostgreSQL, Prisma, Socket.IO, Docker"
+liveUrl: "https://chirper-frontend.vercel.app"
+sourceUrl: "https://github.com/nethangabrielb/chirper"
+problem: "Built as my final project for The Odin Project's Odin-Book assignment. Rather than stopping at the base brief, I used it to push further: splitting a layered Express 5 API in Docker from a Next.js frontend, adding real-time direct messaging over Socket.IO, and implementing cursor-based feed pagination."
+primaryImage:
+  src: "/chirper-1.webp"
+  srcSet: "/chirper-1-480.webp 480w, /chirper-1-768.webp 768w, /chirper-1.webp 960w"
+  width: 960
+  height: 501
+  alt: "Chirper timeline feed displaying live posts, composer, and suggested accounts sidebar"
+  caption: "Cursor-paginated timeline feed served by the layered Express 5 API with real-time engagement counts."
+gallery:
+  - src: "/chirper-2.webp"
+    srcSet: "/chirper-2-480.webp 480w, /chirper-2-768.webp 768w, /chirper-2.webp 960w"
+    width: 960
+    height: 497
+    alt: "Chirper conversation thread view displaying nested replies and reply composer"
+    caption: "Conversation thread view with nested replies and live event delivery over Socket.IO."
+diagram:
+  ariaLabel: "Chirper distributed architecture from Next.js client on Vercel to Express 5 API in Docker, Passport.js OAuth, Socket.IO event bus, and PostgreSQL"
+  nodes:
+    - id: "client"
+      label: "Next.js Client (Vercel)"
+      lines: ["Next.js Client", "(Vercel)"]
+      detail: "Renders timelines, threads, and direct message views while maintaining a persistent Socket.IO connection for live events."
+      col: 0
+      row: 0
+    - id: "api"
+      label: "Express 5 Layered API (Docker / DigitalOcean)"
+      lines: ["Express 5 API", "(Docker / DO)"]
+      detail: "Separates HTTP transport, business logic, and data access via Controller → Service → Repository layers."
+      col: 1
+      row: 0
+    - id: "auth"
+      label: "Passport.js + Google OAuth"
+      lines: ["Passport.js +", "Google OAuth"]
+      detail: "Manages session authentication shared across REST endpoints and WebSocket handshakes."
+      col: 1
+      row: 1
+    - id: "socket"
+      label: "Socket.IO Event Bus"
+      lines: ["Socket.IO", "Event Bus"]
+      detail: "Delivers direct messages and live engagement updates without client polling."
+      col: 0
+      row: 1
+    - id: "db"
+      label: "PostgreSQL + Prisma"
+      lines: ["PostgreSQL", "+ Prisma"]
+      detail: "Serves indexed cursor-based pagination queries so feed scroll latency stays flat as post volume grows."
+      col: 2
+      row: 0
+  edges:
+    - from: "client"
+      to: "api"
+      label: "REST"
+    - from: "client"
+      to: "socket"
+      label: "WS"
+    - from: "api"
+      to: "auth"
+      label: "Sessions"
+    - from: "auth"
+      to: "socket"
+      label: "Handshake"
+    - from: "api"
+      to: "db"
+      label: "Cursors"
+---
+
+- **Controller → Service → Repository separation:** Keeping Express route handlers thin made database queries and domain logic independently testable.
+- **Cursor-based pagination:** Avoids duplicate or skipped posts when new items arrive mid-scroll—a common failure mode of offset pagination.
+- **Accepted tradeoff:** Hosting the Next.js frontend on Vercel separately from the Dockerized Express 5 and Socket.IO API on DigitalOcean adds cross-origin session and WebSocket handshake complexity compared to a monolith, accepted to practice decoupled production deployments.

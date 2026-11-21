@@ -1,0 +1,88 @@
+---
+order: 2
+title: "Calibrate AI"
+year: "2026"
+dateRange: "Mar – Jun 2026"
+subtitle: "Schema-validated resume evaluation and job application pipeline tracker."
+summary: "Job application pipeline tracker and resume evaluator built around deterministic LLM outputs. Uses Zod runtime schemas, an anti-inflation scoring rubric, and Upstash Redis rate limiting to keep Mistral AI evaluations predictable and bounded."
+archNote: "Next.js App Router · Zod validation gate · Upstash Redis rate-limited Mistral AI"
+stack:
+  - "Next.js"
+  - "TypeScript"
+  - "PostgreSQL"
+  - "Prisma"
+  - "Mistral AI"
+  - "Upstash Redis"
+  - "Better Auth"
+metaStack: "Next.js, PostgreSQL, Prisma, Mistral AI, Upstash Redis"
+liveUrl: "https://calibrate-ai.vercel.app"
+sourceUrl: "https://github.com/nethangabrielb/calibrate-ai"
+problem: "Most LLM resume tools return uncalibrated praise in free-form markdown that breaks UI layouts and inflates match scores. Calibrate AI treats LLM inference as an untrusted external boundary that must pass strict structural and scoring rules before reaching the database."
+primaryImage:
+  src: "/calibrate-ai-1.webp"
+  srcSet: "/calibrate-ai-1-480.webp 480w, /calibrate-ai-1-768.webp 768w, /calibrate-ai-1.webp 960w"
+  width: 960
+  height: 497
+  alt: "Calibrate AI application detail view pairing job description with Zod-validated Mistral AI fit score and matching and missing skills"
+  caption: "Application detail view pairing full job requirements with Zod-validated Mistral AI fit scoring and skill gaps."
+gallery:
+  - src: "/calibrate-ai-2.webp"
+    srcSet: "/calibrate-ai-2-480.webp 480w, /calibrate-ai-2-768.webp 768w, /calibrate-ai-2.webp 960w"
+    width: 960
+    height: 498
+    alt: "Calibrate AI Resume Enhancer showing staged resume parsing and job requirement alignment progress"
+    caption: "Resume Enhancer stepping through document extraction, requirement matching, and structured tailoring."
+diagram:
+  ariaLabel: "Calibrate AI evaluation pipeline from Next.js App Router through Upstash Redis, Mistral AI, Zod validation gate, and PostgreSQL"
+  nodes:
+    - id: "app"
+      label: "Next.js App Router + Better Auth"
+      lines: ["Next.js App Router", "+ Better Auth"]
+      detail: "Handles authenticated application pipelines and resume uploads with server-side session checks."
+      col: 0
+      row: 0
+    - id: "limiter"
+      label: "Upstash Redis Rate Limiter"
+      lines: ["Upstash Redis", "Rate Limiter"]
+      detail: "Sliding-window limits guard every inference endpoint against accidental retries and burst token spend."
+      col: 1
+      row: 0
+    - id: "mistral"
+      label: "Mistral AI Inference"
+      lines: ["Mistral AI", "Inference"]
+      detail: "Evaluates resumes against pasted job requirements using an explicit anti-inflation scoring rubric."
+      col: 2
+      row: 0
+    - id: "zod"
+      label: "Zod Validation Gate"
+      lines: ["Zod Validation", "Gate"]
+      detail: "Parses every LLM payload against runtime schemas at the boundary; malformed outputs fail fast instead of corrupting stored evaluations."
+      col: 2
+      row: 1
+    - id: "db"
+      label: "PostgreSQL + Prisma"
+      lines: ["PostgreSQL", "+ Prisma"]
+      detail: "Stores application stages and content-hashed resume versions to detect duplicates and preserve historical scores."
+      col: 0
+      row: 1
+  edges:
+    - from: "app"
+      to: "limiter"
+      label: "Eval req"
+    - from: "limiter"
+      to: "mistral"
+      label: "Allowed"
+    - from: "mistral"
+      to: "zod"
+      label: "JSON"
+    - from: "zod"
+      to: "db"
+      label: "Validated"
+    - from: "app"
+      to: "db"
+      label: "CRUD"
+---
+
+- **Anti-inflation rubric + Zod gate:** Constraining the model to structured JSON with calibrated scoring tiers turned vague feedback into comparable, queryable records.
+- **Content-hashed resume versioning:** Hashing uploaded resumes prevents duplicate storage and ties every job evaluation to the exact resume revision submitted.
+- **Accepted tradeoff:** Strict Zod schema rejection means malformed LLM payloads fail immediately and require a retry rather than falling back to unvalidated free-form text, prioritizing stored data integrity over partial output.

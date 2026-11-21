@@ -1,0 +1,74 @@
+---
+import { ABOUT, PORTRAIT, SITE } from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title={`About — ${SITE.name}`}
+  description="Background, technical stack, and colophon for Nethan Bagasbas."
+  canonicalPath="/about"
+>
+  <article class="w-full max-w-[1080px] mx-auto px-6 sm:px-10">
+    <section class="pt-10 pb-12 sm:pt-14 sm:pb-16 grid grid-cols-1 gap-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="lg:sticky lg:top-10 self-start">
+        <h1 class="m-0 text-[1.5rem] sm:text-[1.625rem] font-medium leading-[1.2] tracking-[-0.025em] text-ink">
+          About
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_220px] md:gap-10 items-start">
+        <div class="min-w-0 max-w-[60ch] space-y-4 text-[0.96875rem] leading-[1.65] text-ink-secondary">
+          {
+            ABOUT.paragraphs.map((paragraph) => (
+              <p class="m-0 text-pretty">{paragraph}</p>
+            ))
+          }
+        </div>
+
+        <div class="max-w-[220px] w-full aspect-[4/5] overflow-hidden rounded-[6px] border border-border-strong bg-surface">
+          <img
+            src={PORTRAIT.src}
+            srcset={PORTRAIT.srcSet}
+            sizes="220px"
+            width={PORTRAIT.width}
+            height={PORTRAIT.height}
+            alt={PORTRAIT.alt}
+            loading="eager"
+            decoding="sync"
+            class="block h-full w-full object-cover object-[50%_18%]"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-border py-12 sm:py-16 grid grid-cols-1 gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="lg:sticky lg:top-10 self-start">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Stack</h2>
+      </div>
+
+      <div class="min-w-0 divide-y divide-border">
+        {
+          ABOUT.stack.map((row) => (
+            <div class="grid grid-cols-1 gap-y-1.5 py-5 first:pt-0 last:pb-0 sm:grid-cols-[170px_minmax(0,1fr)] sm:gap-x-6">
+              <div class="text-[0.9375rem] font-medium text-ink">
+                {row.category}
+              </div>
+              <div class="min-w-0 max-w-[60ch] text-[0.9375rem] text-ink-secondary text-pretty">
+                {row.items}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="border-t border-border pt-12 sm:pt-16 grid grid-cols-1 gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="self-start">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Colophon</h2>
+      </div>
+      <p class="m-0 max-w-[68ch] text-[0.9375rem] text-ink-secondary text-pretty">
+        {ABOUT.colophon}
+      </p>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,192 @@
+---
+import { getCollection } from "astro:content";
+
+import WorkShowcase, { type ShowcaseProject } from "@/components/WorkShowcase";
+import { EDUCATION, EXPERIENCE, SITE } from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const projects = (await getCollection("work")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const showcaseProjects: ShowcaseProject[] = projects.map((entry) => ({
+  slug: entry.id,
+  title: entry.data.title,
+  year: entry.data.year,
+  subtitle: entry.data.subtitle,
+  archNote: entry.data.archNote,
+  liveUrl: entry.data.liveUrl,
+  sourceUrl: entry.data.sourceUrl,
+  image: {
+    src: entry.data.primaryImage.src,
+    srcSet: entry.data.primaryImage.srcSet,
+    width: entry.data.primaryImage.width,
+    height: entry.data.primaryImage.height,
+    alt: entry.data.primaryImage.alt,
+  },
+}));
+---
+
+<BaseLayout
+  title={SITE.defaultTitle}
+  description={SITE.defaultDescription}
+  canonicalPath="/"
+>
+  <div class="w-full max-w-[1080px] mx-auto px-6 sm:px-10">
+    <!-- Compact Deadpan Intro -->
+    <section class="pt-10 pb-10 sm:pt-14 sm:pb-12">
+      <h1 class="m-0 text-[1.5rem] sm:text-[1.625rem] font-medium leading-[1.2] tracking-[-0.025em] text-ink">
+        {SITE.name}
+      </h1>
+
+      <p class="mt-2.5 mb-0 max-w-[62ch] text-[0.96875rem] sm:text-[1rem] leading-[1.6] text-ink-secondary text-pretty">
+        Full-stack developer at <span class="text-ink">Inventra Inc.</span> in
+        Cagayan de Oro. Building TypeScript monorepos, background job queues,
+        and real-time web applications.
+      </p>
+
+      <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.84375rem]">
+        <button
+          type="button"
+          data-copy-email={SITE.email}
+          class="inline-flex cursor-pointer items-center gap-2 rounded-[4px] bg-ink px-3 py-1.5 font-medium text-bg transition-[opacity,transform] duration-150 ease-out hover:opacity-85 active:scale-[0.96] motion-reduce:active:scale-100"
+          style="-webkit-tap-highlight-color: transparent;"
+        >
+          <span
+            class="relative inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center"
+            aria-hidden="true"
+          >
+            <svg
+              data-copy-icon
+              class="absolute h-3.5 w-3.5 transition-[opacity,transform] duration-200 ease-out"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg
+              data-check-icon
+              class="absolute h-3.5 w-3.5 opacity-0 scale-75 transition-[opacity,transform] duration-200 ease-out"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </span>
+          <span data-copy-label>{SITE.email}</span>
+        </button>
+
+        <a
+          href={SITE.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-link"
+        >
+          GitHub &#8599;
+        </a>
+        <a
+          href={SITE.linkedinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-link"
+        >
+          LinkedIn &#8599;
+        </a>
+        <a
+          href={SITE.resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-link"
+        >
+          Resume &#8599;
+        </a>
+      </div>
+    </section>
+
+    <!-- Selected work -->
+    <section id="work" class="border-t border-border py-10 sm:py-12">
+      <h2 class="m-0 mb-4 text-[0.875rem] font-medium text-ink">
+        Selected work
+      </h2>
+      <WorkShowcase client:load projects={showcaseProjects} />
+    </section>
+
+    <!-- Experience -->
+    <section class="border-t border-border py-12 sm:py-16 grid grid-cols-1 gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="lg:sticky lg:top-10 self-start">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Experience</h2>
+      </div>
+
+      <div class="min-w-0 divide-y divide-border">
+        {
+          EXPERIENCE.map((item) => (
+            <div class="py-6 first:pt-0 last:pb-0">
+              <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                <h3 class="m-0 text-[0.96875rem] font-medium text-ink">
+                  {item.role}
+                  {item.company ? (
+                    <span class="font-normal text-ink-secondary">
+                      {" "}
+                      &mdash; {item.company}
+                    </span>
+                  ) : null}
+                </h3>
+                <span class="mono-data shrink-0 text-ink-muted">
+                  {item.period}
+                </span>
+              </div>
+              <p class="mt-0.5 mb-0 text-[0.84375rem] text-ink-muted">
+                {item.location}
+              </p>
+              <p class="mt-2.5 mb-0 max-w-[64ch] text-[0.9375rem] leading-[1.6] text-ink-secondary text-pretty">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="border-t border-border pt-12 sm:pt-16 grid grid-cols-1 gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="lg:sticky lg:top-10 self-start">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Education</h2>
+      </div>
+
+      <div class="min-w-0 divide-y divide-border">
+        {
+          EDUCATION.map((item) => (
+            <div class="py-6 first:pt-0 last:pb-0">
+              <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                <h3 class="m-0 text-[0.96875rem] font-medium text-ink">
+                  {item.title}
+                  {item.institution ? (
+                    <span class="font-normal text-ink-secondary">
+                      {" "}
+                      &mdash; {item.institution}
+                    </span>
+                  ) : null}
+                </h3>
+                <span class="mono-data shrink-0 text-ink-muted">
+                  {item.period}
+                </span>
+              </div>
+              <p class="mt-2.5 mb-0 max-w-[64ch] text-[0.9375rem] leading-[1.6] text-ink-secondary text-pretty">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,155 @@
+---
+import { getCollection, render } from "astro:content";
+
+import ArchitectureDiagram from "@/components/ArchitectureDiagram";
+import { SITE } from "@/data/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("work");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<BaseLayout
+  title={`${data.title} — ${SITE.name}`}
+  description={data.subtitle}
+  canonicalPath={`/work/${entry.id}`}
+>
+  <article class="w-full max-w-[1080px] mx-auto px-6 sm:px-10">
+    <header class="pt-10 pb-10 sm:pt-14 sm:pb-12">
+      <a href="/#work" class="quiet-link text-[0.875rem]">
+        &larr; Back to index
+      </a>
+
+      <h1 class="mt-6 mb-0 text-[1.75rem] sm:text-[2.25rem] font-medium leading-[1.15] tracking-[-0.025em] text-ink text-balance">
+        {data.title}
+      </h1>
+
+      <p class="mt-3 mb-0 max-w-[62ch] text-[1rem] leading-[1.6] text-ink-secondary text-pretty">
+        {data.subtitle}
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-border pt-4 text-[0.875rem] text-ink-muted">
+        <span class="mono-data text-ink-muted">{data.dateRange}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span class="text-ink-secondary">{data.metaStack}</span>
+        <span aria-hidden="true">&middot;</span>
+        <a
+          href={data.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-link"
+        >
+          Live &#8599;
+        </a>
+        <span aria-hidden="true">&middot;</span>
+        <a
+          href={data.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-link"
+        >
+          Source &#8599;
+        </a>
+      </div>
+    </header>
+
+    <figure class="m-0">
+      <div class="rounded-[6px] border border-border bg-surface p-4 sm:p-6">
+        <img
+          src={data.primaryImage.src}
+          srcset={data.primaryImage.srcSet}
+          sizes="(min-width: 1080px) 950px, (min-width: 640px) calc(100vw - 128px), calc(100vw - 80px)"
+          width={data.primaryImage.width}
+          height={data.primaryImage.height}
+          alt={data.primaryImage.alt}
+          loading="eager"
+          decoding="sync"
+          class="block w-full h-auto rounded-[4px] border border-border-strong shadow-[0_4px_20px_-8px_rgba(9,9,11,0.12)]"
+        />
+      </div>
+      <figcaption class="mt-3 max-w-[68ch] text-[0.875rem] text-ink-muted">
+        {data.primaryImage.caption}
+      </figcaption>
+    </figure>
+
+    <section class="mt-14 sm:mt-18 border-t border-border pt-12 sm:pt-14 grid grid-cols-1 gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="lg:sticky lg:top-10 self-start">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Context</h2>
+      </div>
+      <p class="m-0 max-w-[68ch] text-ink-secondary text-pretty">
+        {data.problem}
+      </p>
+    </section>
+
+    <section class="mt-14 sm:mt-18 border-t border-border pt-12 sm:pt-14">
+      <div class="mb-6 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Architecture</h2>
+        <p class="m-0 text-[0.84375rem] text-ink-muted">
+          Interactive system flow and boundary tradeoffs.
+        </p>
+      </div>
+      <ArchitectureDiagram
+        client:visible
+        ariaLabel={data.diagram.ariaLabel}
+        nodes={data.diagram.nodes}
+        edges={data.diagram.edges}
+      />
+    </section>
+
+    <section class="mt-14 sm:mt-18 border-t border-border pt-12 sm:pt-14 grid grid-cols-1 gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+      <div class="lg:sticky lg:top-10 self-start">
+        <h2 class="m-0 text-[0.875rem] font-medium text-ink">Key decisions</h2>
+      </div>
+      <div class="prose-decisions max-w-[68ch]">
+        <Content />
+      </div>
+    </section>
+
+    {
+      data.gallery.length > 0 && (
+        <section class="mt-14 sm:mt-18 border-t border-border pt-12 sm:pt-14">
+          <div class="mb-8 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+            <h2 class="m-0 text-[0.875rem] font-medium text-ink">
+              Interface views
+            </h2>
+            <p class="m-0 text-[0.84375rem] text-ink-muted">
+              Production application screens.
+            </p>
+          </div>
+
+          <div class="space-y-12 sm:space-y-14">
+            {data.gallery.map((shot) => (
+              <figure class="m-0">
+                <div class="rounded-[6px] border border-border bg-surface p-4 sm:p-6">
+                  <img
+                    src={shot.src}
+                    srcset={shot.srcSet}
+                    sizes="(min-width: 1080px) 950px, (min-width: 640px) calc(100vw - 128px), calc(100vw - 80px)"
+                    width={shot.width}
+                    height={shot.height}
+                    alt={shot.alt}
+                    loading="lazy"
+                    decoding="async"
+                    class="block w-full h-auto rounded-[4px] border border-border-strong shadow-[0_4px_20px_-8px_rgba(9,9,11,0.12)]"
+                  />
+                </div>
+                <figcaption class="mt-3 max-w-[68ch] text-[0.875rem] text-ink-muted">
+                  {shot.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>

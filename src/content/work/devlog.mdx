@@ -1,0 +1,85 @@
+---
+order: 1
+title: "DevLog"
+year: "2026"
+dateRange: "Jul – Aug 2026"
+subtitle: "Developer telemetry, streak aggregation, and scheduled daily reports in a TypeScript monorepo."
+summary: "Developer activity tracker that turns coding sessions, DSA problems, and reading logs into streak analytics and automated daily reports. Built as a pnpm monorepo pairing a NestJS API with BullMQ and Redis background workers."
+archNote: "pnpm monorepo · NestJS REST API · BullMQ + Redis daily digest workers"
+stack:
+  - "NestJS"
+  - "React"
+  - "TypeScript"
+  - "MongoDB"
+  - "BullMQ"
+  - "Redis"
+  - "TanStack Query"
+metaStack: "NestJS, React, MongoDB, BullMQ, Redis"
+liveUrl: "https://developer-logs.netlify.app"
+sourceUrl: "https://github.com/nethangabrielb/dev-log"
+problem: "I wanted one place to track coding sessions, DSA practice, and technical reading instead of scattering notes across tools, and I used the build as a hands-on project to learn NestJS and MongoDB (NoSQL) from the ground up along the way."
+primaryImage:
+  src: "/devlog-1.webp"
+  srcSet: "/devlog-1-480.webp 480w, /devlog-1-768.webp 768w, /devlog-1.webp 960w"
+  width: 960
+  height: 503
+  alt: "DevLog Sessions Overview dashboard displaying logged coding time, category bar chart, and streak metrics"
+  caption: "Sessions Overview dashboard aggregating logged coding time, category distributions, and streaks."
+gallery:
+  - src: "/devlog-2.webp"
+    srcSet: "/devlog-2-480.webp 480w, /devlog-2-768.webp 768w, /devlog-2.webp 960w"
+    width: 960
+    height: 498
+    alt: "DevLog DSA Tracker interface showing solved problems filtered by difficulty and algorithmic pattern"
+    caption: "DSA Tracker recording solved problems with difficulty and algorithmic pattern breakdowns."
+  - src: "/devlog-3.webp"
+    srcSet: "/devlog-3-480.webp 480w, /devlog-3-768.webp 768w, /devlog-3.webp 960w"
+    width: 960
+    height: 501
+    alt: "DevLog Projects Overview dashboard showing tracked projects, logged hours, and status distribution"
+    caption: "Projects Overview summarizing active repositories, total logged time, and completed tasks."
+diagram:
+  ariaLabel: "DevLog system architecture from React SPA through NestJS API to MongoDB and BullMQ workers"
+  nodes:
+    - id: "client"
+      label: "React SPA + TanStack Query"
+      lines: ["React SPA +", "TanStack Query"]
+      detail: "Client queries share strict request/response DTOs from a workspace package, catching contract drift at compile time rather than runtime."
+      col: 0
+      row: 0
+    - id: "api"
+      label: "NestJS REST API"
+      lines: ["NestJS", "REST API"]
+      detail: "Enforces JWT and Google OAuth 2.0 auth with scoped session guards before any telemetry write or aggregation query executes."
+      col: 1
+      row: 0
+    - id: "mongo"
+      label: "MongoDB"
+      lines: ["MongoDB"]
+      detail: "Flexible document schemas fit heterogeneous activity logs (sessions, DSA problems, articles, snippets) without sparse relational join tables."
+      col: 2
+      row: 0
+    - id: "workers"
+      label: "Redis + BullMQ Workers"
+      lines: ["Redis +", "BullMQ Workers"]
+      detail: "Decouples daily report compilation and streak recalculation from HTTP request latency, allowing retries if a scheduled job fails."
+      col: 2
+      row: 1
+  edges:
+    - from: "client"
+      to: "api"
+      label: "Shared DTOs"
+    - from: "api"
+      to: "mongo"
+      label: "Telemetry"
+    - from: "api"
+      to: "workers"
+      label: "Enqueue"
+    - from: "workers"
+      to: "mongo"
+      label: "Rollups"
+---
+
+- **Shared pnpm workspace contracts:** Keeping API DTOs and client validation types in one monorepo eliminated silent payload mismatches between the NestJS backend and React SPA.
+- **Asynchronous report generation:** Offloading streak rollups and daily report assembly to BullMQ workers kept logging endpoints snappy regardless of history depth.
+- **Accepted tradeoff:** Running Redis and BullMQ alongside MongoDB adds extra infrastructure overhead for a single-user tracker, kept deliberately to practice queue retries and async job boundaries.
