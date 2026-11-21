@@ -2,64 +2,62 @@
 
 ## 1. Aesthetic Direction
 
-**Editorial Engineering Index.** Calm, warm, light-first typographic portfolio modeled after technical monographs and indexical engineering sites—not SaaS dashboards, Bento grids, or Swiss-mono agency templates. Restraint is the primary design signal.
+**Light-Only Stark Monochrome Precision.** Pure achromatic engineering portfolio set strictly on a stark white (`#FFFFFF`) canvas with deep carbon ink (`#09090B`) and zero chrome accent color, so real product UI screenshots carry the only color on screen. Restraint, exact `1px` structure, and immediate above-the-fold software interaction are the primary design signals.
 
 ## 2. Tech Stack & Constraints
 
 - **Framework:** Astro (latest stable, static output) + MDX + Content Layer API (`astro/zod`)
-- **Styling:** Tailwind CSS v4 via `@tailwindcss/vite` (do NOT use deprecated `@astrojs/tailwind`). Define all tokens in `src/styles/global.css` via `@theme` and CSS custom properties.
+- **Styling:** Tailwind CSS v4 via `@tailwindcss/vite` (do NOT use deprecated `@astrojs/tailwind`). Define all tokens in `src/styles/global.css` via `@theme inline` and `:root` CSS custom properties.
 - **Package Manager:** `pnpm`
-- **Client JavaScript Budget:** Near-zero. Use tiny inline vanilla JS only for theme persistence (anti-FOUC `<head>` script) and click-to-copy email. Use a single React island (`client:visible`) _only_ for the interactive SVG architecture diagram on `/work/[slug]`.
-- **Navigation Transitions:** Astro `<ClientRouter />` with subtle cross-fade (no dramatic slide/zoom animations).
+- **Client JavaScript Budget:** Minimal and intentional. Tiny vanilla JS handles click-to-copy email (`astro:page-load`). No theme toggle or dark-mode runtime script. React islands hydrate only for `WorkShowcase.tsx` (`client:load` on `/`) and `ArchitectureDiagram.tsx` (`client:visible` on `/work/[slug]`).
+- **Navigation Transitions:** Astro `<ClientRouter />` with subtle `160ms` cross-fade.
 
 ## 3. Color System
 
-Warm archival paper by default; warm carbon in dark mode. No pure `#FFFFFF`, no pure `#000000`, no blue-purple gradients, no glassmorphism, no glowing shadows.
+Light-only pure monochrome luminance hierarchy—zero accent color in UI chrome, no dark mode, no hue gradients, no glassmorphism, no glowing shadows.
 
-| Token         | Light Mode (Default)     | Dark Mode (`html.dark`)     | Strict Usage                                      |
-| ------------- | ------------------------ | --------------------------- | ------------------------------------------------- |
-| `--bg`        | `#F9F7F4`                | `#111110`                   | Page canvas                                       |
-| `--surface`   | `#F1EEE8`                | `#1A1A18`                   | Image mats & SVG diagram canvas ONLY              |
-| `--ink`       | `#161614`                | `#ECEAE4`                   | Headings, primary body text                       |
-| `--ink-muted` | `#62605A`                | `#94928B`                   | Dates, metadata, secondary captions               |
-| `--border`    | `rgba(22, 22, 20, 0.11)` | `rgba(236, 234, 228, 0.12)` | `1px` hairline rules & image frames               |
-| `--accent`    | `#2E5B45`                | `#7DA891`                   | Link underline/hover, active SVG path, focus ring |
+| Token | Light Mode (`:root`) | Strict Usage |
+| --- | --- | --- |
+| `--bg` | `#FFFFFF` | Page canvas |
+| `--surface` | `#F6F6F6` | Preview stage & SVG diagram canvas |
+| `--surface-hover` | `#EFEFEF` | Interactive list item hover/active fill |
+| `--ink` | `#09090B` | Primary headings, active states, primary button fill |
+| `--ink-secondary` | `#52525B` | Body copy, descriptions, interactive links |
+| `--ink-muted` | `#71717A` | Tabular dates, quiet metadata |
+| `--border` | `rgba(9, 9, 11, 0.10)` | `1px` hairline rules & stage frames |
+| `--border-strong` | `rgba(9, 9, 11, 0.22)` | Active borders, screenshot frames, portrait frame |
 
 ## 4. Typography
 
-Keep the three-font pairing, but cut monospace usage by ~80% compared to typical developer sites.
+Two-font pairing only: **100% Geist** for headings, UI, and prose; **IBM Plex Mono** strictly for the top-left domain link, tabular dates, technical specs, and SVG architecture diagram labels.
 
-- **Display (`Fraunces`):**
-    - Used ONLY for the homepage opening statement (`clamp(1.85rem, 3.2vw, 2.35rem)`, weight `400`, line-height `1.2`, tracking `-0.02em`, `font-variation-settings: "opsz" 72, "SOFT" 20, "WONK" 0`) and `/work/[slug]` page H1.
-    - Never used for nav, section headings, or buttons.
-- **UI & Prose (`Geist`):**
-    - Body text: `15.5px` (`0.96875rem`), weight `400`, line-height `1.65`.
-    - Section headings (`H2`): `14px`, weight `500`, sentence case (e.g., `Selected work`, `Experience`), muted ink (`--ink-muted`), separated from previous section by generous whitespace or a `1px` `--border` hairline.
-    - Project/role titles (`H3`): `16px`, weight `500`, primary ink (`--ink`).
+- **UI & Headings (`Geist Variable`):**
+  - Homepage, `/about`, and `/404` H1: `24px–26px` (`1.5rem`–`1.625rem`), weight `500`, line-height `1.2`, tracking `-0.025em`.
+  - Case study `/work/[slug]` H1: `28px–36px` (`1.75rem`–`2.25rem`), weight `500`, line-height `1.15`, tracking `-0.025em`.
+  - Section headings (`Selected work`, `Experience`, `Education`, case study/about rails): `14px` (`0.875rem`), weight `500`, primary ink (`--ink`).
+  - Body text: `15.5px` (`0.96875rem`)–`16px`, weight `400`, line-height `1.6`–`1.65`, capped at `60–68ch`.
 - **Data (`IBM Plex Mono`):**
-    - Strictly limited to: tabular dates (`font-variant-numeric: tabular-nums`), SVG architecture node labels, and inline code snippets at `12.5px`.
-    - Never used for marketing copy, section eyebrows, or skill lists.
+  - Strictly limited to: top-left `nethangabrielb.dev` nav link (`13.5px`), tabular dates (`font-variant-numeric: tabular-nums`), SVG architecture node/edge labels, and inline code snippets at `12.5px`.
+  - Never used for marketing copy, section eyebrows, or skill tag clouds.
 
 ## 5. Layout & Spacing Grid
 
-- **Reading Column:** `max-w-[680px]` centered (`px-6`). Applies to header, intro, section headings, project captions, experience ledger, case-study prose, `/about`, and footer.
-- **Media Breakout Column:** `max-w-[1000px]` centered (`px-4 sm:px-6`). Applies ONLY to project showcase visuals on `/` and diagrams/screenshots on `/work/[slug]`.
-- **Vertical Rhythm:**
-    - Top of page to intro: `pt-14 sm:pt-20`
-    - Major sections: `mt-24 sm:mt-28`
-    - Between flagship projects on `/`: `space-y-20 sm:space-y-24`
-    - Border radius: `6px` (`rounded-md`) on image mats and diagrams; `4px` on inner screenshots. Nothing larger.
+- **Global Grid:** `max-w-[1080px]` centered (`px-6 sm:px-10`). Applies uniformly to top nav, compact intro, split showcase, asymmetric sections, case studies, `/about`, and footer.
+- **Compact Top Intro (`/`):** Tight deadpan header (`pt-10 sm:pt-14 pb-10 sm:pb-12`) with `H1` (`Nethan Bagasbas`), 2-sentence bio (`max-w-[62ch]`), high-contrast click-to-copy email control, and quiet underlined external links so the interactive work showcase starts above the fold.
+- **Interactive Split Showcase (`/` desktop `lg+`):** `grid-cols-[340px_minmax(0,1fr)] gap-10 items-start`. Left column holds 3 hairline-separated interactive project rows; right column holds the live product stage frame (`--surface`, `rounded-[6px]`). Below `lg`, stacks cleanly as 3 vertical showcase entries.
+- **Asymmetric Ledgers (`Experience`, `Education`, `/about`, `/work/[slug]`):** `grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10` with sticky left-rail `14px` Geist Medium labels and borderless `1px`-divided static rows (zero hover wash on non-interactive text rows).
+- **Border Radius:** `6px` on showcase stage, diagram frame, and portrait frame; `4px` on inner screenshots and primary copy button.
 
 ## 6. Component Specifications
 
-- **Navigation:** Single non-sticky row inside `max-w-[680px]`. Left: plain text `Nethan Bagasbas` linking to `/`. Right: `Work`, `About`, `Notes` (optional if populated), and a minimal 16px sun/moon theme toggle. No monogram logo box, no live clock, no `⌘K` button.
-- **Homepage Project Entry:**
-    - Breakout mat (`--surface`, `p-5 sm:p-10`, `1px solid var(--border)`, `rounded-md`) framing ONE crisp, high-DPI UI screenshot with subtle `1px` border and no fake browser toolbar.
-    - Directly below inside `max-w-[680px]`: title + right-aligned mono year on line 1; max 2-sentence description on line 2; muted plain-text stack separated by middots (`·`) on line 3; `Read case study →`, `Live ↗`, `Source ↗` links on line 4.
-- **Experience & Education Ledger:** Borderless 2-column grid (`160px 1fr` on desktop, stacked on mobile) with `1px` `--border` top hairlines between rows. Left column: mono date range. Right column: bold role + company, muted location, and concise 1–2 sentence scope.
-- **Interactive SVG Architecture Diagram (`/work/[slug]` only):**
-    - Custom, clean right-angle SVG node graph styled strictly with `--bg`, `--surface`, `--ink`, `--ink-muted`, `--border`, and `--accent`.
-    - Clicking or hovering a node highlights its connected path in `--accent`, dims unrelated edges to `25%` opacity, and updates a clean 1–2 sentence engineering tradeoff note directly below the SVG canvas. Keyboard accessible (`Tab` + `Enter`/`Space`).
+- **Navigation:** Single non-sticky row aligned to `max-w-[1080px]` with a `1px` `--border` bottom hairline. Left: `nethangabrielb.dev` (`13.5px`, IBM Plex Mono, `--ink-secondary` hover `--ink`) linking to `/` so `Nethan Bagasbas` anchors the H1 without duplication. Right: `Work` and `About`.
+- **Interactive Split Work Showcase (`src/components/WorkShowcase.tsx`):**
+  - Hovering, clicking, or keyboard navigating (`Tab`, `ArrowUp`, `ArrowDown`, `Home`, `End`) selects a project immediately.
+  - Active row renders a `2px` `--ink` left bar, `--surface-hover` fill, and `--ink` title; clicking an active row (or `Read case study →`) navigates to `/work/[slug]`.
+  - Right stage pre-renders all three responsive `.webp` in-app UI screenshots with a `180ms ease-out` opacity crossfade (`prefers-reduced-motion` respected). Inner screenshot frames carry `1px solid var(--border-strong)` plus `shadow-[0_4px_20px_-8px_rgba(9,9,11,0.12)]` so bright white UI screens separate crisply from the `#F6F6F6` stage.
+- **Interactive SVG Architecture Diagram (`src/components/ArchitectureDiagram.tsx`, `/work/[slug]` only):**
+  - Right-angle orthographic SVG styled purely in monochrome light tokens.
+  - Active node inverts (`fill: var(--ink)`, text `fill: var(--bg)`); active paths use `1.5px` `var(--ink)`; unrelated edges dim to `20%` opacity; bottom readout sits on `#FFFFFF`.
 
 ## 7. HARD BANS (Zero Tolerance)
 
