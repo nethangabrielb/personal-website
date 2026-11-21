@@ -1,9 +1,4 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Cpu,
-  Maximize2,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
@@ -33,124 +28,113 @@ export const ProjectCarousel = ({
     <div className="workbench-stage">
       <div className="stage-chrome">
         <div className="stage-chrome-left">
-          <span className="chrome-dots" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
           <span className="chrome-domain">{project.domainUrl}</span>
         </div>
 
-        <div className="stage-mode-switch" role="tablist" aria-label={`${project.title} view mode`}>
+        <div
+          className="stage-mode-switch"
+          role="group"
+          aria-label={`${project.title} view mode`}
+        >
           <button
             type="button"
-            role="tab"
-            aria-selected={mode === "preview"}
+            aria-pressed={mode === "preview"}
             className={`mode-tab${mode === "preview" ? " is-active" : ""}`}
             onClick={() => setMode("preview")}
           >
-            {mode === "preview" ? (
-              <motion.span
-                layoutId={`stage-mode-${project.slug}`}
-                className="mode-tab-bg"
-                transition={{ type: "spring", stiffness: 450, damping: 35 }}
-              />
-            ) : null}
-            <span className="mode-tab-label">UI Preview</span>
+            <span className="mode-tab-label">Live UI</span>
           </button>
 
           <button
             type="button"
-            role="tab"
-            aria-selected={mode === "blueprint"}
+            aria-pressed={mode === "blueprint"}
             className={`mode-tab${mode === "blueprint" ? " is-active" : ""}`}
             onClick={() => setMode("blueprint")}
           >
-            {mode === "blueprint" ? (
-              <motion.span
-                layoutId={`stage-mode-${project.slug}`}
-                className="mode-tab-bg"
-                transition={{ type: "spring", stiffness: 450, damping: 35 }}
-              />
-            ) : null}
-            <span className="mode-tab-label">
-              <Cpu size={12} strokeWidth={2} aria-hidden="true" />
-              Blueprint
-            </span>
+            <span className="mode-tab-label">Blueprint</span>
           </button>
         </div>
       </div>
 
       {mode === "preview" && activeSlide ? (
-        <div className="stage-preview-wrap">
+        <>
           <div className="stage-viewport">
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
                 key={activeSlide.src}
                 src={activeSlide.src}
                 srcSet={activeSlide.srcSet}
-                sizes="(min-width: 1024px) 680px, 94vw"
+                sizes="(min-width: 1040px) 640px, 94vw"
                 alt={`${project.title} - ${activeSlide.label}`}
                 loading="lazy"
                 width={activeSlide.width}
                 height={activeSlide.height}
                 className="stage-image"
-                initial={{ opacity: 0.25 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0.25 }}
-                transition={{ duration: 0.18 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.16 }}
                 onClick={() => onOpenLightbox(project, index)}
               />
             </AnimatePresence>
-
-            <button
-              type="button"
-              className="stage-zoom-btn"
-              onClick={() => onOpenLightbox(project, index)}
-              aria-label={`Inspect ${project.title} screenshot in fullscreen`}
-              title="Inspect fullscreen"
-            >
-              <Maximize2 size={14} strokeWidth={2} />
-            </button>
           </div>
 
           <div className="stage-filmstrip">
-            <div className="filmstrip-tabs">
+            <div
+              className="filmstrip-tabs"
+              role="group"
+              aria-label="Choose screenshot"
+            >
               {slides.map((slide, idx) => (
                 <button
                   key={slide.src}
                   type="button"
-                  className={`filmstrip-pill${idx === index ? " is-active" : ""}`}
+                  aria-pressed={idx === index}
+                  className={`filmstrip-tab${idx === index ? " is-active" : ""}`}
                   onClick={() => setIndex(idx)}
                 >
-                  <span className="filmstrip-no">0{idx + 1}</span>
+                  <span className="filmstrip-no">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                   <span>{slide.label}</span>
                 </button>
               ))}
             </div>
 
-            {count > 1 ? (
-              <div className="filmstrip-arrows">
-                <button
-                  type="button"
-                  className="filmstrip-arrow"
-                  onClick={() => goTo(index - 1)}
-                  aria-label="Previous screenshot"
-                >
-                  <ChevronLeft size={14} strokeWidth={2} />
-                </button>
-                <button
-                  type="button"
-                  className="filmstrip-arrow"
-                  onClick={() => goTo(index + 1)}
-                  aria-label="Next screenshot"
-                >
-                  <ChevronRight size={14} strokeWidth={2} />
-                </button>
-              </div>
-            ) : null}
+            <div className="filmstrip-actions">
+              <button
+                type="button"
+                className="filmstrip-expand"
+                onClick={() => onOpenLightbox(project, index)}
+                aria-label={`Inspect ${project.title} screenshot in fullscreen`}
+                title="Inspect fullscreen"
+              >
+                <Maximize2 size={14} strokeWidth={1.75} />
+              </button>
+
+              {count > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    className="filmstrip-arrow"
+                    onClick={() => goTo(index - 1)}
+                    aria-label="Previous screenshot"
+                  >
+                    <ChevronLeft size={14} strokeWidth={1.75} />
+                  </button>
+                  <button
+                    type="button"
+                    className="filmstrip-arrow"
+                    onClick={() => goTo(index + 1)}
+                    aria-label="Next screenshot"
+                  >
+                    <ChevronRight size={14} strokeWidth={1.75} />
+                  </button>
+                </>
+              ) : null}
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <div className="stage-blueprint">
           <div className="blueprint-grid">
@@ -158,7 +142,7 @@ export const ProjectCarousel = ({
               <div key={layer.tier} className="blueprint-tier">
                 <div className="blueprint-tier-head">
                   <span className="blueprint-tier-step">
-                    TIER 0{tierIdx + 1}
+                    Tier {tierIdx + 1}
                   </span>
                   <span className="blueprint-tier-name">{layer.tier}</span>
                 </div>

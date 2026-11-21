@@ -15,38 +15,38 @@
   --surface-1: #121216;
   --surface-2: #18181e;
   --surface-3: #22222a;
-  --surface-glass: rgba(18, 18, 22, 0.82);
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
-  --specular-top: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  --card-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.65);
-  --elevated-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.78);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --shadow-elevated: 0 24px 64px -24px rgba(0, 0, 0, 0.8);
 
   --text-primary: #f3f2ee;
   --text-secondary: #a5a39d;
-  --text-muted: #6e6c66;
+  --text-muted: #85837d;
 
   --accent: #ee6c35;
-  --accent-soft: rgba(238, 108, 53, 0.13);
-  --accent-border: rgba(238, 108, 53, 0.34);
-
   --signal: #34d399;
   --signal-soft: rgba(52, 211, 153, 0.12);
-  --signal-border: rgba(52, 211, 153, 0.28);
-
   --error: #f87171;
-  --dot-color: rgba(255, 255, 255, 0.055);
-  --ambient-glow: rgba(238, 108, 53, 0.11);
+
+  --dot-color: rgba(255, 255, 255, 0.045);
+  --primary-hover: #ffffff;
+
+  --mark-bg: #262019;
+  --mark-ink: #f7f1e5;
+  --mark-border: rgba(255, 255, 255, 0.14);
 
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
 
-  --radius-card: 16px;
-  --radius-inner: 11px;
-  --radius-sm: 8px;
+  --radius-card: 12px;
+  --radius-inner: 8px;
+  --radius-control: 8px;
+  --radius-chip: 6px;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="light"] {
@@ -56,54 +56,51 @@
   --surface-1: #ffffff;
   --surface-2: #f0eee9;
   --surface-3: #e5e2db;
-  --surface-glass: rgba(255, 255, 255, 0.85);
 
-  --border-subtle: rgba(20, 19, 16, 0.09);
-  --border-strong: rgba(20, 19, 16, 0.17);
-  --specular-top: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --card-shadow: 0 10px 28px -16px rgba(24, 22, 18, 0.12);
-  --elevated-shadow: 0 22px 48px -16px rgba(24, 22, 18, 0.18);
+  --border-subtle: rgba(20, 19, 16, 0.1);
+  --border-strong: rgba(20, 19, 16, 0.2);
+  --shadow-elevated: 0 24px 60px -28px rgba(24, 22, 18, 0.25);
 
   --text-primary: #171614;
   --text-secondary: #57544e;
-  --text-muted: #858178;
+  --text-muted: #6f6b63;
 
-  --accent: #c94e1b;
-  --accent-soft: rgba(201, 78, 27, 0.1);
-  --accent-border: rgba(201, 78, 27, 0.28);
-
+  --accent: #b44416;
   --signal: #059669;
   --signal-soft: rgba(5, 150, 105, 0.1);
-  --signal-border: rgba(5, 150, 105, 0.26);
-
   --error: #dc2626;
-  --dot-color: rgba(20, 19, 16, 0.075);
-  --ambient-glow: rgba(201, 78, 27, 0.09);
+
+  --dot-color: rgba(20, 19, 16, 0.055);
+  --primary-hover: #2b2925;
+
+  --mark-bg: #262019;
+  --mark-ink: #f7f1e5;
+  --mark-border: rgba(20, 19, 16, 0.16);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: 80px;
 }
 
 body {
   background-color: var(--bg-canvas);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 200ms ease, color 200ms ease;
+  transition: background-color 200ms var(--ease), color 200ms var(--ease);
 }
 
 ::selection {
   background-color: var(--accent);
-  color: #ffffff;
+  color: var(--bg-canvas);
 }
 
-/* ─── Ambient Architectural Canvas ─── */
+/* ─── Ambient Paper Grid ─── */
 .workbench-app {
   position: relative;
   min-height: 100vh;
@@ -114,18 +111,13 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: radial-gradient(
-      960px 460px at 50% -110px,
-      var(--ambient-glow),
-      transparent 70%
-    ),
-    radial-gradient(var(--dot-color) 1px, transparent 1px);
-  background-size: 100% 100%, 24px 24px;
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.45) 55%,
-    rgba(0, 0, 0, 0.15) 100%
+    rgba(0, 0, 0, 0.55) 48%,
+    rgba(0, 0, 0, 0) 100%
   );
 }
 
@@ -134,7 +126,7 @@ body {
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 32px;
 }
 
 /* ─── Accessibility & Primitives ─── */
@@ -144,15 +136,15 @@ body {
   left: 12px;
   z-index: 400;
   transform: translateY(-220%);
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  border-radius: var(--radius-control);
   background-color: var(--surface-2);
   color: var(--text-primary);
   border: 1px solid var(--border-strong);
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
   text-decoration: none;
-  transition: transform 140ms ease;
+  transition: transform 140ms var(--ease);
 }
 
 .skip-link:focus-visible {
@@ -183,48 +175,35 @@ kbd {
   justify-content: center;
   min-width: 20px;
   height: 20px;
-  padding: 0 5px;
-  border-radius: 5px;
+  padding: 0 6px;
+  border-radius: 4px;
   background-color: var(--surface-2);
   border: 1px solid var(--border-strong);
-  box-shadow: var(--specular-top);
   font-family: var(--font-mono);
   font-size: 10.5px;
   line-height: 1;
   color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
 }
 
-/* ─── Tactile Bento Card ─── */
+/* ─── Flat Bento Card ─── */
 .bento-card {
   background-color: var(--surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-card);
-  box-shadow: var(--specular-top), var(--card-shadow);
-  transition: border-color 180ms ease, background-color 180ms ease,
-    box-shadow 180ms ease;
+  transition: border-color 160ms var(--ease), background-color 160ms var(--ease);
 }
 
-/* ─── Live Signal Dot ─── */
-@keyframes signal-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 var(--signal-soft);
-  }
-  50% {
-    box-shadow: 0 0 0 5px transparent;
-  }
-}
-
+/* ─── Static Signal Dot ─── */
 .signal-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: var(--signal);
   flex-shrink: 0;
-  animation: signal-pulse 2.6s infinite;
 }
 
-/* ─── Tactile Hardware Buttons ─── */
+/* ─── Quiet Hardware Buttons ─── */
 .btn-tactile {
   display: inline-flex;
   align-items: center;
@@ -232,17 +211,16 @@ kbd {
   gap: 8px;
   height: 40px;
   padding: 0 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-control);
   background-color: var(--surface-2);
   color: var(--text-primary);
   border: 1px solid var(--border-strong);
-  box-shadow: var(--specular-top);
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  transition: background-color 150ms ease, border-color 150ms ease,
-    transform 120ms ease;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease),
+    color 160ms var(--ease), transform 120ms var(--ease);
 }
 
 .btn-tactile:hover {
@@ -251,20 +229,19 @@ kbd {
 }
 
 .btn-tactile:active {
-  transform: scale(0.985);
+  transform: scale(0.99);
 }
 
 .btn-tactile-primary {
   background-color: var(--text-primary);
   color: var(--bg-canvas);
   border-color: var(--text-primary);
-  box-shadow: none;
 }
 
 .btn-tactile-primary:hover {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--bg-canvas);
 }
 
 .btn-kbd {
@@ -274,9 +251,10 @@ kbd {
   width: 18px;
   height: 18px;
   border-radius: 4px;
-  background-color: rgba(128, 128, 128, 0.22);
+  background-color: rgba(128, 128, 128, 0.18);
   font-family: var(--font-mono);
   font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ─── Technical Chips ─── */
@@ -289,26 +267,14 @@ kbd {
 .tech-chip {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
-  border-radius: 7px;
+  padding: 4px 8px;
+  border-radius: var(--radius-chip);
   background-color: var(--surface-2);
   border: 1px solid var(--border-subtle);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-family: var(--font-sans);
+  font-size: 12px;
   line-height: 1.3;
   color: var(--text-secondary);
-  transition: border-color 140ms ease, color 140ms ease;
-}
-
-.tech-chip:hover {
-  border-color: var(--border-strong);
-  color: var(--text-primary);
-}
-
-.tech-chip-lg {
-  padding: 6px 12px;
-  font-size: 12px;
-  color: var(--text-primary);
 }
 
 /* ─── Scrollbar ─── */
@@ -342,16 +308,15 @@ kbd {
 .nfp-inner {
   max-width: 440px;
   width: 100%;
-  padding: 36px;
+  padding: 32px;
   text-align: center;
 }
 
 .nfp-code {
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .nfp-title {
@@ -359,7 +324,7 @@ kbd {
   font-size: 30px;
   font-weight: 500;
   line-height: 1.15;
-  margin: 12px 0 10px;
+  margin: 12px 0 8px;
 }
 
 .nfp-sub {

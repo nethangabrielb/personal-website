@@ -60,9 +60,8 @@ export const CommandPalette = ({
     const actions: CommandItem[] = [
       {
         id: "copy-email",
-        group: "Quick Actions",
-        label: `Copy Email (${IDENTITY.email})`,
-        hint: "Clipboard",
+        group: "Quick actions",
+        label: `Copy email (${IDENTITY.email})`,
         icon: "copy",
         onSelect: () => {
           navigator.clipboard?.writeText(IDENTITY.email);
@@ -72,8 +71,8 @@ export const CommandPalette = ({
       },
       {
         id: "open-resume",
-        group: "Quick Actions",
-        label: "Open Resume (PDF)",
+        group: "Quick actions",
+        label: "Open resume (PDF)",
         hint: "bagasbas-resume.pdf",
         icon: "file",
         onSelect: () => {
@@ -83,11 +82,11 @@ export const CommandPalette = ({
       },
       {
         id: "toggle-theme",
-        group: "Quick Actions",
+        group: "Quick actions",
         label:
           theme === "dark"
-            ? "Switch to Warm Daylight Theme"
-            : "Switch to Dark Atelier Theme",
+            ? "Switch to light theme"
+            : "Switch to dark theme",
         hint: "T",
         icon: "theme",
         onSelect: () => {
@@ -99,7 +98,7 @@ export const CommandPalette = ({
 
     const navItems: CommandItem[] = NAV_SECTIONS.map((sec) => ({
       id: `nav-${sec.id}`,
-      group: "Jump to Section",
+      group: "Jump to section",
       label: `${sec.index} · ${sec.label}`,
       hint: sec.shortcut,
       icon: "section",
@@ -114,8 +113,8 @@ export const CommandPalette = ({
       if (proj.links.live) {
         entries.push({
           id: `live-${proj.slug}`,
-          group: "Flagship Deployments",
-          label: `${proj.title} · Open Live App`,
+          group: "Projects",
+          label: `${proj.title} · Open live app`,
           hint: proj.domainUrl,
           icon: "external",
           onSelect: () => {
@@ -126,8 +125,8 @@ export const CommandPalette = ({
       }
       entries.push({
         id: `repo-${proj.slug}`,
-        group: "Flagship Deployments",
-        label: `${proj.title} · View Source Code`,
+        group: "Projects",
+        label: `${proj.title} · View source`,
         hint: "GitHub",
         icon: "code",
         onSelect: () => {
@@ -143,7 +142,6 @@ export const CommandPalette = ({
         id: "github-profile",
         group: "Profiles",
         label: "GitHub · @nethangabrielb",
-        hint: "External",
         icon: "external",
         onSelect: () => {
           window.open(IDENTITY.githubUrl, "_blank", "noopener,noreferrer");
@@ -154,7 +152,6 @@ export const CommandPalette = ({
         id: "linkedin-profile",
         group: "Profiles",
         label: "LinkedIn · Nethan Gabriel Bagasbas",
-        hint: "External",
         icon: "external",
         onSelect: () => {
           window.open(IDENTITY.linkedinUrl, "_blank", "noopener,noreferrer");
@@ -204,21 +201,21 @@ export const CommandPalette = ({
   const renderIcon = (kind: CommandItem["icon"]) => {
     switch (kind) {
       case "copy":
-        return <Copy size={14} strokeWidth={1.9} />;
+        return <Copy size={14} strokeWidth={1.75} />;
       case "file":
-        return <FileText size={14} strokeWidth={1.9} />;
+        return <FileText size={14} strokeWidth={1.75} />;
       case "theme":
         return theme === "dark" ? (
-          <Sun size={14} strokeWidth={1.9} />
+          <Sun size={14} strokeWidth={1.75} />
         ) : (
-          <Moon size={14} strokeWidth={1.9} />
+          <Moon size={14} strokeWidth={1.75} />
         );
       case "section":
-        return <Layers size={14} strokeWidth={1.9} />;
+        return <Layers size={14} strokeWidth={1.75} />;
       case "code":
-        return <Terminal size={14} strokeWidth={1.9} />;
+        return <Terminal size={14} strokeWidth={1.75} />;
       case "external":
-        return <ArrowUpRight size={14} strokeWidth={1.9} />;
+        return <ArrowUpRight size={14} strokeWidth={1.75} />;
     }
   };
 
@@ -251,7 +248,7 @@ export const CommandPalette = ({
             <div className="cmd-search-bar">
               <Search
                 size={15}
-                strokeWidth={2}
+                strokeWidth={1.75}
                 className="cmd-search-icon"
                 aria-hidden="true"
               />
@@ -259,7 +256,7 @@ export const CommandPalette = ({
                 ref={inputRef}
                 type="text"
                 className="cmd-input"
-                placeholder="Type a command, project, or section..."
+                placeholder="Search commands"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 aria-label="Filter commands"
@@ -270,13 +267,13 @@ export const CommandPalette = ({
                 onClick={onClose}
                 aria-label="Close command palette"
               >
-                <X size={14} strokeWidth={2} />
+                <X size={14} strokeWidth={1.75} />
               </button>
             </div>
 
             <div className="cmd-list" role="listbox">
               {filtered.length === 0 ? (
-                <p className="cmd-empty">No matching commands found.</p>
+                <p className="cmd-empty">No matching commands</p>
               ) : (
                 filtered.map((item, idx) => {
                   const prevGroup = idx > 0 ? filtered[idx - 1]?.group : null;
@@ -311,9 +308,15 @@ export const CommandPalette = ({
             </div>
 
             <div className="cmd-footer">
-              <span>↑↓ Navigate</span>
-              <span>↵ Execute</span>
-              <span>ESC Close</span>
+              <span>
+                <kbd>↑</kbd> <kbd>↓</kbd> Navigate
+              </span>
+              <span>
+                <kbd>↵</kbd> Select
+              </span>
+              <span>
+                <kbd>Esc</kbd> Close
+              </span>
             </div>
           </motion.div>
         </div>

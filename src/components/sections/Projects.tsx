@@ -1,12 +1,6 @@
-import {
-  ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
-  Terminal,
-  X,
-} from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ProjectCarousel } from "@/components/ui/ProjectCarousel";
 import { PROJECTS } from "@/data/portfolio";
@@ -19,6 +13,29 @@ interface LightboxState {
 
 export const Projects = () => {
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  const openLightbox = (project: ProjectEntry, index: number) => {
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+    setLightbox({ project, index });
+  };
+
+  const isLightboxOpen = lightbox !== null;
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const previouslyFocused = previousFocusRef.current;
+    const frame = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus();
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      previouslyFocused?.focus();
+    };
+  }, [isLightboxOpen]);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -53,33 +70,24 @@ export const Projects = () => {
           <div className="section-heading-left">
             <span className="section-index">01</span>
             <div>
-              <h2 className="section-title">Selected Work</h2>
+              <h2 className="section-title">Selected work</h2>
               <p className="section-subtitle">
-                Production-deployed systems engineered end-to-end. Switch any
-                card between live UI screenshots and its 3-tier system
-                blueprint.
+                Three deployed systems, shown as live UI and as the architecture
+                behind them.
               </p>
             </div>
           </div>
-          <span className="section-badge">03 Flagship Deployments</span>
         </div>
 
         <div className="work-stack">
           {PROJECTS.map((project) => (
-            <motion.article
-              key={project.slug}
-              className="bento-card work-card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <article key={project.slug} className="bento-card work-card">
               <div className="work-info">
                 <div className="work-meta-bar">
                   <span className="work-number">{project.number}</span>
-                  <span className="live-badge">
+                  <span className="live-label">
                     <span className="signal-dot" aria-hidden="true" />
-                    Live Production
+                    Live
                   </span>
                   <span className="work-date">{project.date}</span>
                 </div>
@@ -108,12 +116,12 @@ export const Projects = () => {
                       href={project.links.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-tactile btn-tactile-primary"
+                      className="work-link"
                     >
-                      <span>Live Deployment</span>
+                      <span>Live site</span>
                       <ArrowUpRight
                         size={14}
-                        strokeWidth={2.1}
+                        strokeWidth={1.75}
                         aria-hidden="true"
                       />
                     </a>
@@ -122,13 +130,12 @@ export const Projects = () => {
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-tactile"
+                    className="work-link"
                   >
-                    <Terminal size={14} strokeWidth={1.9} aria-hidden="true" />
-                    <span>Source Code</span>
+                    <span>Source</span>
                     <ArrowUpRight
-                      size={13}
-                      strokeWidth={2}
+                      size={14}
+                      strokeWidth={1.75}
                       aria-hidden="true"
                     />
                   </a>
@@ -138,12 +145,10 @@ export const Projects = () => {
               <div className="work-visual">
                 <ProjectCarousel
                   project={project}
-                  onOpenLightbox={(proj, slideIndex) =>
-                    setLightbox({ project: proj, index: slideIndex })
-                  }
+                  onOpenLightbox={openLightbox}
                 />
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>
@@ -167,9 +172,9 @@ export const Projects = () => {
 
             <motion.div
               className="lightbox-frame"
-              initial={{ opacity: 0, scale: 0.96 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
+              exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="lightbox-bar">
@@ -192,8 +197,8 @@ export const Projects = () => {
                       rel="noopener noreferrer"
                       className="lightbox-ext"
                     >
-                      <span>Open Live</span>
-                      <ArrowUpRight size={13} strokeWidth={2} />
+                      <span>Open live</span>
+                      <ArrowUpRight size={13} strokeWidth={1.75} />
                     </a>
                   ) : null}
                   {lightbox.project.screenshots.length > 1 ? (
@@ -217,7 +222,7 @@ export const Projects = () => {
                         }
                         aria-label="Previous image"
                       >
-                        <ChevronLeft size={15} strokeWidth={2} />
+                        <ChevronLeft size={15} strokeWidth={1.75} />
                       </button>
                       <button
                         type="button"
@@ -236,17 +241,18 @@ export const Projects = () => {
                         }
                         aria-label="Next image"
                       >
-                        <ChevronRight size={15} strokeWidth={2} />
+                        <ChevronRight size={15} strokeWidth={1.75} />
                       </button>
                     </>
                   ) : null}
                   <button
+                    ref={closeButtonRef}
                     type="button"
                     className="filmstrip-arrow"
                     onClick={() => setLightbox(null)}
                     aria-label="Close preview"
                   >
-                    <X size={15} strokeWidth={2} />
+                    <X size={15} strokeWidth={1.75} />
                   </button>
                 </div>
               </div>

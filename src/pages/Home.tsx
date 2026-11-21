@@ -29,6 +29,13 @@ export const HomePage = () => {
     const current = document.documentElement.dataset.theme;
     if (current === "light" || current === "dark") {
       setTheme(current);
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute(
+          "content",
+          current === "light" ? "#f5f4f0" : "#0b0b0d",
+        );
+      }
     }
   }, []);
 
@@ -42,7 +49,7 @@ export const HomePage = () => {
     }
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute("content", next === "light" ? "#f6f5f2" : "#0b0b0d");
+      metaTheme.setAttribute("content", next === "light" ? "#f5f4f0" : "#0b0b0d");
     }
   }, []);
 

@@ -9,7 +9,7 @@ import type {
 } from "@/types";
 
 export const IDENTITY = {
-  monogram: "NB",
+  monogram: "N",
   name: "Nethan Bagasbas",
   fullName: "Nethan Gabriel B. Bagasbas",
   role: "Full-Stack Developer",
@@ -22,9 +22,9 @@ export const IDENTITY = {
   coordinates: "08°29'N 124°39'E",
   shortLocation: "Cagayan de Oro, PH",
   location: "Cagayan de Oro / Nasipit, PH",
-  headlineLead: "Full-stack engineer building ",
+  headlineLead: "Full-stack developer building ",
   headlineEmphasis: "resilient backends",
-  headlineTail: " & tactile web applications.",
+  headlineTail: " and tactile web applications.",
   portrait: {
     src: "/hero-me-new-768.webp",
     srcSet:
@@ -33,11 +33,11 @@ export const IDENTITY = {
     height: 1024,
     alt: "Portrait of Nethan Gabriel Bagasbas",
   },
-  bio: "Full-Stack Developer building maintainable web applications and distributed backends with TypeScript, React, and Node.js. Currently Junior Web Developer at Inventra Inc. BS Computer Science, Cum Laude & Best Thesis Award.",
+  bio: "I work across TypeScript, React, and Node.js, with an emphasis on backend integrity, clear contracts, and interfaces that hold up in daily use. BS Computer Science, Cum Laude, Best Thesis Award.",
   aboutSummary:
-    "I build software end-to-end with an emphasis on backend integrity, strict contracts, and clean data models. My foundation combines a CS degree (Cum Laude, Best Thesis) with over 1,000 hours of project-driven full-stack study through The Odin Project.",
+    "I build software end to end, with an emphasis on backend integrity, strict contracts, and clean data models.",
   colophon:
-    "Set in Fraunces, Geist & IBM Plex Mono · Built with React, TypeScript & Vite",
+    "Set in Fraunces, Geist and IBM Plex Mono · Built with React, TypeScript and Vite",
 } as const;
 
 export const NAV_SECTIONS: NavSection[] = [
@@ -51,27 +51,27 @@ export const NAV_SECTIONS: NavSection[] = [
 export const CREDENTIALS: CredentialItem[] = [
   {
     index: "01",
-    label: "Active Role",
+    label: "Current role",
     value: "Inventra Inc.",
     sub: "Junior Web Developer · Oct 2026",
   },
   {
     index: "02",
-    label: "Academic Degree",
+    label: "Degree",
     value: "B.S. Computer Science",
     sub: "USTP-CDO · Cum Laude (2026)",
   },
   {
     index: "03",
-    label: "Research Distinction",
+    label: "Honors",
     value: "Best Thesis Award",
     sub: "Dean's List · 4 Semesters",
   },
   {
     index: "04",
-    label: "Engineering Rigor",
-    value: "1,000+ Hours",
-    sub: "30+ Shipped Odin Projects",
+    label: "Foundation",
+    value: "1,000+ hours",
+    sub: "30+ shipped Odin projects",
   },
 ];
 
@@ -89,7 +89,7 @@ export const QUICK_LINKS: ExternalLink[] = [
     external: true,
   },
   {
-    label: "Resume PDF",
+    label: "Resume",
     value: "bagasbas-resume.pdf",
     href: "/bagasbas-resume.pdf",
     external: true,
@@ -109,7 +109,7 @@ export const PROJECTS: ProjectEntry[] = [
     title: "DevLog",
     date: "Jul 2026 – Aug 2026",
     domainUrl: "developer-logs.netlify.app",
-    tagline: "Monorepo developer telemetry, streak analytics & BullMQ daily reports",
+    tagline: "Monorepo developer telemetry, streak analytics, and BullMQ daily reports",
     summary:
       "Developer activity tracker that logs coding sessions across projects, DSA problems, articles, and snippets, transforming raw telemetry into streaks, visual analytics, and automated daily reports.",
     architecture: [
@@ -119,7 +119,7 @@ export const PROJECTS: ProjectEntry[] = [
     ],
     blueprint: [
       {
-        tier: "Client & Contracts",
+        tier: "Client & contracts",
         nodes: [
           {
             name: "React 19 SPA",
@@ -132,7 +132,7 @@ export const PROJECTS: ProjectEntry[] = [
         ],
       },
       {
-        tier: "API & Auth Gateway",
+        tier: "API & auth gateway",
         nodes: [
           {
             name: "NestJS REST API",
@@ -145,7 +145,7 @@ export const PROJECTS: ProjectEntry[] = [
         ],
       },
       {
-        tier: "Data & Async Workers",
+        tier: "Data & async workers",
         nodes: [
           {
             name: "BullMQ + Redis",
@@ -170,7 +170,7 @@ export const PROJECTS: ProjectEntry[] = [
     screenshots: [
       {
         src: "/devlog.webp",
-        label: "Overview Dashboard",
+        label: "Overview dashboard",
         width: 960,
         height: 501,
         srcSet:
@@ -178,7 +178,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/devlog-1.webp",
-        label: "Activity Sessions",
+        label: "Activity sessions",
         width: 960,
         height: 503,
         srcSet:
@@ -186,7 +186,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/devlog-2.webp",
-        label: "Analytics & Streaks",
+        label: "Analytics and streaks",
         width: 960,
         height: 498,
         srcSet:
@@ -194,7 +194,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/devlog-3.webp",
-        label: "Daily Reports",
+        label: "Daily reports",
         width: 960,
         height: 501,
         srcSet:
@@ -212,7 +212,7 @@ export const PROJECTS: ProjectEntry[] = [
     title: "Calibrate AI",
     date: "Mar 2026 – Jun 2026",
     domainUrl: "calibrate-ai.vercel.app",
-    tagline: "Schema-validated Mistral AI resume scoring & job pipeline tracker",
+    tagline: "Schema-validated Mistral AI resume scoring and job pipeline tracker",
     summary:
       "AI-powered job application tracker featuring resume scoring, requirement match analysis, and deterministic Zod-validated JSON evaluation outputs powered by Mistral AI.",
     architecture: [
@@ -222,7 +222,7 @@ export const PROJECTS: ProjectEntry[] = [
     ],
     blueprint: [
       {
-        tier: "Application & Auth",
+        tier: "Application & auth",
         nodes: [
           {
             name: "Next.js Full-Stack App",
@@ -235,7 +235,7 @@ export const PROJECTS: ProjectEntry[] = [
         ],
       },
       {
-        tier: "Guard & AI Inference",
+        tier: "Guard & AI inference",
         nodes: [
           {
             name: "Upstash Redis Limiter",
@@ -248,7 +248,7 @@ export const PROJECTS: ProjectEntry[] = [
         ],
       },
       {
-        tier: "Relational Persistence",
+        tier: "Relational persistence",
         nodes: [
           {
             name: "Prisma ORM",
@@ -274,7 +274,7 @@ export const PROJECTS: ProjectEntry[] = [
     screenshots: [
       {
         src: "/calibrate-ai.webp",
-        label: "Landing & Overview",
+        label: "Landing and overview",
         width: 960,
         height: 502,
         srcSet:
@@ -282,7 +282,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/calibrate-ai-1.webp",
-        label: "Application Tracker",
+        label: "Application tracker",
         width: 960,
         height: 497,
         srcSet:
@@ -290,7 +290,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/calibrate-ai-2.webp",
-        label: "AI Match Analysis",
+        label: "AI match analysis",
         width: 960,
         height: 498,
         srcSet:
@@ -308,7 +308,7 @@ export const PROJECTS: ProjectEntry[] = [
     title: "Chirper",
     date: "Oct 2025 – Mar 2026",
     domainUrl: "chirper-frontend.vercel.app",
-    tagline: "Real-time Socket.IO social platform & Dockerized Express 5 backend",
+    tagline: "Real-time Socket.IO social platform and Dockerized Express 5 backend",
     summary:
       "Full-stack social publishing platform with real-time messaging via Socket.IO, cursor-based feed pagination, Google OAuth, and decoupled Docker deployment on DigitalOcean.",
     architecture: [
@@ -318,7 +318,7 @@ export const PROJECTS: ProjectEntry[] = [
     ],
     blueprint: [
       {
-        tier: "Edge Client Tier",
+        tier: "Edge client tier",
         nodes: [
           {
             name: "Next.js Client (Vercel)",
@@ -331,7 +331,7 @@ export const PROJECTS: ProjectEntry[] = [
         ],
       },
       {
-        tier: "Layered API & Auth",
+        tier: "Layered API & auth",
         nodes: [
           {
             name: "Express 5 Service",
@@ -344,7 +344,7 @@ export const PROJECTS: ProjectEntry[] = [
         ],
       },
       {
-        tier: "Cloud Runtime",
+        tier: "Cloud runtime",
         nodes: [
           {
             name: "Socket.IO Event Bus",
@@ -370,7 +370,7 @@ export const PROJECTS: ProjectEntry[] = [
     screenshots: [
       {
         src: "/chirper.webp",
-        label: "Timeline Feed",
+        label: "Timeline feed",
         width: 960,
         height: 498,
         srcSet:
@@ -378,7 +378,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/chirper-1.webp",
-        label: "Thread & Engagement",
+        label: "Thread and engagement",
         width: 960,
         height: 501,
         srcSet:
@@ -386,7 +386,7 @@ export const PROJECTS: ProjectEntry[] = [
       },
       {
         src: "/chirper-2.webp",
-        label: "Real-Time Messaging",
+        label: "Real-time messaging",
         width: 960,
         height: 497,
         srcSet:
@@ -459,7 +459,7 @@ export const EDUCATION: EducationEntry = {
     "Graduated Cum Laude and received the Computer Science Best Thesis Award.",
   foundation: {
     title: "The Odin Project",
-    metrics: "Late 2023 · 1,000+ Hours · 30+ Full-Stack Projects",
+    metrics: "Late 2023 · 1,000+ hours · 30+ full-stack projects",
     description:
       "Built end-to-end full-stack foundations through intensive project-based engineering across TypeScript, React, Node.js, relational databases, and authentication.",
   },
@@ -490,7 +490,7 @@ export const STACK_SPECS: StackCategory[] = [
   {
     index: "02",
     id: "backend",
-    category: "Backend & Data",
+    category: "Backend & data",
     scope:
       "Layered REST APIs, Firebase BaaS workflows, relational & document modeling, background job queues, and WebSockets.",
     verifiedIn: ["Inventra Inc.", "DevLog", "Calibrate AI", "Chirper"],
@@ -511,7 +511,7 @@ export const STACK_SPECS: StackCategory[] = [
   {
     index: "03",
     id: "devops",
-    category: "DevOps & Infrastructure",
+    category: "DevOps & infrastructure",
     scope:
       "Dockerized Linux deployments, pnpm monorepo workspaces, cloud VPS hosting, and automated edge delivery.",
     verifiedIn: ["DevLog", "Calibrate AI", "Chirper"],
@@ -519,7 +519,7 @@ export const STACK_SPECS: StackCategory[] = [
       "Docker",
       "DigitalOcean",
       "Vercel",
-      "pnpm Workspaces",
+      "pnpm workspaces",
       "Git / GitHub",
       "Linux / SSH",
     ],
@@ -527,15 +527,15 @@ export const STACK_SPECS: StackCategory[] = [
   {
     index: "04",
     id: "ai",
-    category: "AI & Workflow",
+    category: "AI & workflow",
     scope:
       "Deterministic schema-validated LLM inference, anti-inflation prompt rubrics, computer vision research, and agentic workflows.",
     verifiedIn: ["Calibrate AI", "USTP Thesis"],
     items: [
       "Vercel AI SDK",
       "Mistral AI",
-      "Structured LLM Outputs",
-      "AI Coding Agents",
+      "Structured LLM outputs",
+      "AI coding agents",
       "Python / TensorFlow",
       "llama.cpp",
       "OpenCV",

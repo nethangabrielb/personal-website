@@ -1,6 +1,5 @@
-import { Command, Moon, Sun } from "lucide-react";
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { Command, Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { IDENTITY, NAV_SECTIONS } from "@/data/portfolio";
 import type { SectionId, ThemeMode } from "@/types";
@@ -21,6 +20,9 @@ export const FloatingDock = ({
   onToggleTheme,
 }: FloatingDockProps) => {
   const [phtTime, setPhtTime] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const updateClock = () => {
@@ -42,16 +44,50 @@ export const FloatingDock = ({
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [menuOpen]);
+
+  const handleNavigate = (id: SectionId) => {
+    setMenuOpen(false);
+    onNavigate(id);
+  };
+
   return (
-    <header className="dock-wrapper">
+    <header className="dock-wrapper" ref={headerRef}>
       <div className="dock-bar">
         <button
           type="button"
           className="dock-brand"
-          onClick={() => onNavigate("overview")}
+          onClick={() => handleNavigate("overview")}
           aria-label="Scroll to top"
         >
-          <span className="dock-monogram">{IDENTITY.monogram}</span>
+          <span className="dock-monogram" aria-hidden="true">
+            {IDENTITY.monogram}
+          </span>
           <span className="dock-brand-text">
             <span className="dock-brand-name">{IDENTITY.name}</span>
             {phtTime ? <span className="dock-clock">{phtTime}</span> : null}
@@ -66,16 +102,9 @@ export const FloatingDock = ({
                 key={section.id}
                 type="button"
                 className={`dock-nav-btn${isActive ? " is-active" : ""}`}
-                onClick={() => onNavigate(section.id)}
+                onClick={() => handleNavigate(section.id)}
                 aria-current={isActive ? "true" : undefined}
               >
-                {isActive ? (
-                  <motion.span
-                    layoutId="dock-active-pill"
-                    className="dock-active-pill"
-                    transition={{ type: "spring", stiffness: 440, damping: 36 }}
-                  />
-                ) : null}
                 <span className="dock-nav-label">{section.label}</span>
               </button>
             );
@@ -89,7 +118,7 @@ export const FloatingDock = ({
             onClick={onOpenPalette}
             aria-label="Open command palette (Ctrl+K or Command+K)"
           >
-            <Command size={13} strokeWidth={2} aria-hidden="true" />
+            <Command size={14} strokeWidth={1.75} aria-hidden="true" />
             <span className="dock-cmd-text">Command</span>
             <kbd className="dock-kbd">⌘K</kbd>
           </button>
@@ -106,13 +135,66 @@ export const FloatingDock = ({
             title="Toggle theme (T)"
           >
             {theme === "dark" ? (
-              <Sun size={15} strokeWidth={1.9} aria-hidden="true" />
+              <Sun size={16} strokeWidth={1.75} aria-hidden="true" />
             ) : (
-              <Moon size={15} strokeWidth={1.9} aria-hidden="true" />
+              <Moon size={16} strokeWidth={1.75} aria-hidden="true" />
+            )}
+          </button>
+
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className="dock-menu-btn"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            title={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? (
+              <X size={18} strokeWidth={1.75} aria-hidden="true" />
+            ) : (
+              <Menu size={18} strokeWidth={1.75} aria-hidden="true" />
             )}
           </button>
         </div>
       </div>
+
+      {menuOpen ? (
+        <nav
+          id="mobile-navigation"
+          className="dock-mobile-panel"
+          aria-label="Mobile navigation"
+        >
+          {NAV_SECTIONS.map((section) => {
+            const isActive = activeSection === section.id;
+            return (
+              <button
+                key={section.id}
+                type="button"
+                className={`dock-mobile-link${isActive ? " is-active" : ""}`}
+                onClick={() => handleNavigate(section.id)}
+                aria-current={isActive ? "true" : undefined}
+              >
+                {section.label}
+              </button>
+            );
+          })}
+
+          <button
+            type="button"
+            className="dock-mobile-command"
+            onClick={() => {
+              setMenuOpen(false);
+              onOpenPalette();
+            }}
+          >
+            <Command size={16} strokeWidth={1.75} aria-hidden="true" />
+            <span>Command palette</span>
+            <kbd>⌘K</kbd>
+          </button>
+        </nav>
+      ) : null}
     </header>
   );
 };

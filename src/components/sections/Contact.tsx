@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check, Copy, Mail, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Check, Copy, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -37,12 +37,11 @@ export const Contact = ({ onNavigate }: ContactProps) => {
             <div>
               <h2 className="section-title">Contact</h2>
               <p className="section-subtitle">
-                For engineering inquiries, technical collaboration, or
-                correspondence, copy my direct email or send a message below.
+                For roles, collaboration, or a question, email me directly or
+                send a message.
               </p>
             </div>
           </div>
-          <span className="section-badge">{IDENTITY.shortLocation}</span>
         </div>
 
         <div className="contact-bento">
@@ -51,21 +50,22 @@ export const Contact = ({ onNavigate }: ContactProps) => {
               type="button"
               className="bento-card email-copy-card"
               onClick={handleCopyEmail}
+              aria-label={`Copy email ${IDENTITY.email}`}
             >
               <div className="email-card-top">
-                <span className="channel-kicker">
-                  <Mail size={13} strokeWidth={2} aria-hidden="true" />
-                  Direct Email · Click to Copy
-                </span>
-                <span className="copy-state-pill">
+                <span className="email-label">Email</span>
+                <span
+                  className={`copy-state${copied ? " is-copied" : ""}`}
+                  aria-live="polite"
+                >
                   {copied ? (
                     <>
-                      <Check size={12} strokeWidth={2.3} />
+                      <Check size={12} strokeWidth={1.75} aria-hidden="true" />
                       Copied
                     </>
                   ) : (
                     <>
-                      <Copy size={12} strokeWidth={2} />
+                      <Copy size={12} strokeWidth={1.75} aria-hidden="true" />
                       Copy
                     </>
                   )}
@@ -88,7 +88,7 @@ export const Contact = ({ onNavigate }: ContactProps) => {
                     <span className="channel-label">{link.label}</span>
                     <ArrowUpRight
                       size={14}
-                      strokeWidth={2}
+                      strokeWidth={1.75}
                       className="channel-arrow"
                       aria-hidden="true"
                     />
@@ -100,11 +100,11 @@ export const Contact = ({ onNavigate }: ContactProps) => {
 
             <div className="bento-card location-card">
               <div className="location-card-row">
-                <MapPin size={15} strokeWidth={1.9} aria-hidden="true" />
+                <MapPin size={15} strokeWidth={1.75} aria-hidden="true" />
                 <div>
                   <p className="location-primary">{IDENTITY.location}</p>
                   <p className="location-sub">
-                    {IDENTITY.coordinates} · {IDENTITY.status}
+                    {IDENTITY.coordinates} · UTC+8
                   </p>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export const Contact = ({ onNavigate }: ContactProps) => {
           </div>
 
           <div className="bento-card form-workbench-card">
-            <h3 className="workbench-form-title">Send a Direct Message</h3>
+            <h3 className="workbench-form-title">Send a message</h3>
             <form className="workbench-form" onSubmit={onSubmit} noValidate>
               <div className="form-split-row">
                 <div className="field-group">
@@ -163,7 +163,7 @@ export const Contact = ({ onNavigate }: ContactProps) => {
                 <textarea
                   id="contact-message"
                   className="field-textarea"
-                  placeholder="Tell me about the role, system, or project..."
+                  placeholder="Tell me about the role, system, or project"
                   autoComplete="off"
                   {...register("message")}
                 />
@@ -179,7 +179,7 @@ export const Contact = ({ onNavigate }: ContactProps) => {
                 className="btn-tactile btn-tactile-primary form-submit-btn"
                 disabled={isSubmitting}
               >
-                <span>{isSubmitting ? "Sending Message..." : "Send Message"}</span>
+                <span>{isSubmitting ? "Sending message..." : "Send message"}</span>
               </button>
             </form>
           </div>
@@ -188,7 +188,9 @@ export const Contact = ({ onNavigate }: ContactProps) => {
         <footer className="site-footer">
           <div className="footer-top">
             <div className="footer-identity">
-              <span className="dock-monogram">{IDENTITY.monogram}</span>
+              <span className="dock-monogram" aria-hidden="true">
+                {IDENTITY.monogram}
+              </span>
               <div>
                 <p className="footer-name">{IDENTITY.fullName}</p>
                 <p className="footer-role">{IDENTITY.status}</p>
@@ -218,7 +220,8 @@ export const Contact = ({ onNavigate }: ContactProps) => {
               className="footer-top-btn"
               onClick={() => onNavigate("overview")}
             >
-              Back to top ↑
+              <ArrowUp size={14} strokeWidth={1.75} aria-hidden="true" />
+              Back to top
             </button>
           </div>
         </footer>

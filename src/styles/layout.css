@@ -1,39 +1,34 @@
-/* ─── Floating Precision Dock ─── */
+/* ─── Running Header ─── */
 .dock-wrapper {
   position: sticky;
-  top: 14px;
+  top: 0;
   z-index: 120;
-  padding: 14px 28px 0;
+  background-color: var(--bg-canvas);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .dock-bar {
-  max-width: 1144px;
+  max-width: 1200px;
   margin: 0 auto;
+  height: 64px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 7px 10px;
-  border-radius: 14px;
-  background-color: var(--surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--specular-top), var(--elevated-shadow);
+  gap: 24px;
 }
 
 .dock-brand {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 3px 6px 3px 3px;
-  border-radius: 10px;
+  padding: 4px 4px 4px 0;
+  border-radius: 6px;
   text-align: left;
-  transition: background-color 140ms ease;
 }
 
-.dock-brand:hover {
-  background-color: var(--surface-2);
+.dock-brand:hover .dock-brand-name {
+  color: var(--text-secondary);
 }
 
 .dock-monogram {
@@ -43,12 +38,13 @@
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  background-color: var(--text-primary);
-  color: var(--bg-canvas);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
+  background-color: var(--mark-bg);
+  border: 1px solid var(--mark-border);
+  color: var(--mark-ink);
+  font-family: var(--font-display);
+  font-size: 17px;
   font-weight: 500;
-  letter-spacing: -0.02em;
+  line-height: 1;
   flex-shrink: 0;
 }
 
@@ -61,38 +57,40 @@
 .dock-brand-name {
   font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
   white-space: nowrap;
+  transition: color 160ms var(--ease);
 }
 
 .dock-clock {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-muted);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .dock-nav {
   display: flex;
   align-items: center;
   gap: 2px;
-  padding: 3px;
-  border-radius: 10px;
-  background-color: var(--surface-2);
-  border: 1px solid var(--border-subtle);
 }
 
 .dock-nav-btn {
   position: relative;
-  padding: 6px 13px;
-  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 6px;
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
+  line-height: 1;
   color: var(--text-secondary);
   white-space: nowrap;
-  transition: color 140ms ease;
+  transition: color 160ms var(--ease);
 }
 
 .dock-nav-btn:hover,
@@ -100,13 +98,14 @@
   color: var(--text-primary);
 }
 
-.dock-active-pill {
+.dock-nav-btn.is-active::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  border-radius: 7px;
-  background-color: var(--surface-1);
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--specular-top);
+  left: 12px;
+  right: 12px;
+  bottom: 3px;
+  height: 1px;
+  background-color: currentColor;
 }
 
 .dock-nav-label {
@@ -117,70 +116,78 @@
 .dock-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .dock-cmd-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  height: 34px;
-  padding: 0 10px;
-  border-radius: 9px;
-  background-color: var(--surface-2);
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--radius-control);
+  background-color: transparent;
   border: 1px solid var(--border-subtle);
   font-family: var(--font-sans);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
-  transition: background-color 140ms ease, border-color 140ms ease,
-    color 140ms ease;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease),
+    color 160ms var(--ease);
 }
 
 .dock-cmd-btn:hover {
-  background-color: var(--surface-3);
+  background-color: var(--surface-2);
   border-color: var(--border-strong);
   color: var(--text-primary);
 }
 
 .dock-kbd {
-  height: 19px;
-  font-size: 10px;
-  background-color: var(--surface-1);
+  height: 20px;
+  font-size: 10.5px;
+  background-color: var(--surface-2);
 }
 
-.dock-icon-btn {
+.dock-icon-btn,
+.dock-menu-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background-color: var(--surface-2);
-  border: 1px solid var(--border-subtle);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-control);
+  background-color: transparent;
+  border: 1px solid transparent;
   color: var(--text-secondary);
-  transition: background-color 140ms ease, border-color 140ms ease,
-    color 140ms ease;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease),
+    color 160ms var(--ease);
 }
 
-.dock-icon-btn:hover {
-  background-color: var(--surface-3);
-  border-color: var(--border-strong);
+.dock-icon-btn:hover,
+.dock-menu-btn:hover {
+  background-color: var(--surface-2);
+  border-color: var(--border-subtle);
   color: var(--text-primary);
+}
+
+.dock-menu-btn {
+  display: none;
+}
+
+.dock-mobile-panel {
+  display: none;
 }
 
 /* ─── Section Framing ─── */
 .page-section {
-  padding: 56px 0 28px;
+  padding: 64px 0 32px;
 }
 
 .section-heading-bar {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 24px;
-  padding-bottom: 18px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -191,51 +198,33 @@
 }
 
 .section-index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 28px;
-  padding: 0 9px;
-  margin-top: 5px;
-  border-radius: 7px;
-  background-color: var(--accent-soft);
-  border: 1px solid var(--accent-border);
+  display: inline-block;
+  min-width: 24px;
+  margin-top: 10px;
   font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
   color: var(--accent);
+  font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
 
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(28px, 3.2vw, 38px);
-  line-height: 1.1;
+  line-height: 1.08;
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
 }
 
 .section-subtitle {
-  margin-top: 6px;
-  max-width: 66ch;
+  margin-top: 8px;
+  max-width: 62ch;
   font-family: var(--font-sans);
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--text-secondary);
-}
-
-.section-badge {
-  padding: 5px 11px;
-  border-radius: 999px;
-  background-color: var(--surface-2);
-  border: 1px solid var(--border-subtle);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  white-space: nowrap;
 }
 
 /* ─── Command Palette (⌘K) ─── */
@@ -246,15 +235,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 11vh 20px 24px;
+  padding: 12vh 24px 24px;
 }
 
 .cmd-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.62);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .cmd-dialog {
@@ -262,10 +251,10 @@
   z-index: 1;
   width: 100%;
   max-width: 560px;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   background-color: var(--surface-1);
   border: 1px solid var(--border-strong);
-  box-shadow: var(--specular-top), var(--elevated-shadow);
+  box-shadow: var(--shadow-elevated);
   overflow: hidden;
 }
 
@@ -273,8 +262,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border-subtle);
+  transition: box-shadow 160ms var(--ease);
+}
+
+.cmd-search-bar:focus-within {
+  box-shadow: inset 0 -2px 0 var(--accent);
 }
 
 .cmd-search-icon {
@@ -288,7 +282,7 @@
   border: none;
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 14.5px;
+  font-size: 15px;
   outline: none;
 }
 
@@ -302,9 +296,9 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 7px;
+  border-radius: 6px;
   color: var(--text-muted);
-  transition: background-color 120ms ease, color 120ms ease;
+  transition: background-color 120ms var(--ease), color 120ms var(--ease);
 }
 
 .cmd-close-btn:hover {
@@ -321,16 +315,15 @@
 .cmd-empty {
   padding: 28px 16px;
   text-align: center;
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-muted);
 }
 
 .cmd-group-heading {
-  padding: 10px 10px 5px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 12px 12px 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
   color: var(--text-muted);
 }
 
@@ -339,10 +332,10 @@
   align-items: center;
   gap: 10px;
   width: 100%;
-  padding: 9px 11px;
-  border-radius: 9px;
+  padding: 8px 12px;
+  border-radius: 6px;
   text-align: left;
-  transition: background-color 100ms ease;
+  transition: background-color 120ms var(--ease);
 }
 
 .cmd-item.is-selected {
@@ -355,19 +348,20 @@
   justify-content: center;
   width: 26px;
   height: 26px;
-  border-radius: 7px;
-  background-color: var(--surface-3);
+  border-radius: 6px;
+  background-color: var(--surface-2);
   color: var(--text-secondary);
   flex-shrink: 0;
+  transition: background-color 120ms var(--ease), color 120ms var(--ease);
 }
 
 .cmd-item.is-selected .cmd-item-icon {
-  background-color: var(--accent-soft);
-  color: var(--accent);
+  background-color: var(--surface-3);
+  color: var(--text-primary);
 }
 
 .cmd-item-label {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-primary);
 }
@@ -375,18 +369,19 @@
 .cmd-item-hint {
   margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .cmd-footer {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 9px 16px;
+  padding: 8px 16px;
   border-top: 1px solid var(--border-subtle);
   background-color: var(--surface-2);
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-family: var(--font-sans);
+  font-size: 12px;
   color: var(--text-muted);
 }
